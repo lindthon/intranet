@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "intranet": {
+    "intranetNew": {
       "projectType": "application",
       "schematics": {},
       "root": "",
@@ -13,7 +13,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/intranet",
+            "outputPath": "dist/intranetNew",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
@@ -62,18 +62,18 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "intranet:build"
+            "browserTarget": "intranetNew:build"
           },
           "configurations": {
             "production": {
-              "browserTarget": "intranet:build:production"
+              "browserTarget": "intranetNew:build:production"
             }
           }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "intranet:build"
+            "browserTarget": "intranetNew:build"
           }
         },
         "test": {
@@ -110,19 +110,19 @@
           "builder": "@angular-devkit/build-angular:protractor",
           "options": {
             "protractorConfig": "e2e/protractor.conf.js",
-            "devServerTarget": "intranet:serve"
+            "devServerTarget": "intranetNew:serve"
           },
           "configurations": {
             "production": {
-              "devServerTarget": "intranet:serve:production"
+              "devServerTarget": "intranetNew:serve:production"
             }
           }
         }
       }
     }
   },
-  "defaultProject": "intranet",
+  "defaultProject": "intranetNew",
   "cli": {
-    "analytics": "a31610b0-fdff-486d-b86c-fb821bcfdca3"
+    "analytics": "550ac6d7-d9bb-4c6e-9b0a-d5081150f8a7"
   }
 }

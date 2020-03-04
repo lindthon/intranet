@@ -3,14 +3,26 @@ import { NgModule } from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { XyzComponent } from './xyz/xyz.component';
-import { MainComponent } from './main/main.component';
+import { IndexComponent } from './index/index.component';
+import { BlogComponent } from './blog/blog.component';
+import { BlogSingleComponent } from './blog-single/blog-single.component';
+import { BrowsejobsComponent } from './browsejobs/browsejobs.component';
+import { CandidatesComponent } from './candidates/candidates.component';
+import { ContactComponent } from './contact/contact.component';
+import { JobPostComponent } from './job-post/job-post.component';
+import { NewPostComponent } from './new-post/new-post.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    XyzComponent,
-    MainComponent
+    IndexComponent,
+    BlogComponent,
+    BlogSingleComponent,
+    BrowsejobsComponent,
+    CandidatesComponent,
+    ContactComponent,
+    JobPostComponent,
+    NewPostComponent
   ],
   imports: [
     BrowserModule,
