@@ -36,3 +36,7 @@
 .img_4-img{
   background-image: url('assets/images/image_4.jpg');
 }
+
+#titulo{
+  text-align: center;
+}
