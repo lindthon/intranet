@@ -33,6 +33,7 @@
               "src/assets/css/style.css"
             ],
             "scripts": [
+              "src/assets/js/jquery.min.js",
               "src/assets/bootstrap/js/bootstrap.min.js",
               "src/assets/js/jquery.min.js",
               "src/assets/js/jquery-migrate-3.0.1.min.js",
