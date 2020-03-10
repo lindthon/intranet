@@ -141,7 +141,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 h2 {
 	font-size: 36px;
-	color: #E89A2F;
+	color: #081f47;
 }
 h3 {
 	font-size: 26px;
@@ -231,7 +231,7 @@ a:before, a:after {
    ========================================================================== */
 
 #headerwrap {
-	background: url(../img/header_bg.jpg) no-repeat center top;
+	background: url(../img/tilapia.PNG) no-repeat center top;
 	margin-top: -50px;
 	padding-top: 120px;
 	text-align: center;
@@ -312,7 +312,7 @@ background: #fff;
 	text-align: center;
 }
 .hero-section{
-background-color: #E89A2F;
+background-color: #081f47;
 padding:60px 0
 }
 .hero-section p {
