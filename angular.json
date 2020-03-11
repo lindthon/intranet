@@ -31,7 +31,8 @@
               "src/assets/css/font-awesome.min.css",
               "src/assets/css/styles.css"
             ],
-            "scripts": ["src/assets/js/bootstrap.min.js",
+            "scripts": ["node_modules/jquery/dist/jquery.min.js",
+              "src/assets/js/bootstrap.min.js",
               "src/assets/js/custom-scripts.js",
               "src/assets/js/jquery.easing.1.3.js",
               "src/assets/js/jquery.min.js",

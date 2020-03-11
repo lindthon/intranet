@@ -1,4 +1,27 @@
 /* You can add global styles to this file, and also import other style files */
+
+.btn-register{
+    float:right;
+
+}
+.center{
+   vertical-align: middle;
+   padding: 10px 16px;
+   
+   
+}
+
+#navbar-main > div > div > div.logo{
+    display: flex;
+    justify-content: center;
+    align-content: center;
+}
+
 .shrimp{
     margin-top: 10;
+}
+
+body{
+    background-image: url("src/assets/img/background/bush/bush.png");
+    background-repeat: repeat;
 }

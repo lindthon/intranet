@@ -294,14 +294,13 @@ padding: 5px;
 background: #fff;
 }
 #about {
-	background: #FFF;
+	/*background: #FFF;*/
 	padding: 100px 0;
 }
 #about img {
 	margin-top: 65px;
 }
 #services {
-	background: #FFFFFF;
 	padding: 100px 0;
 	text-align: center;
 }
@@ -362,7 +361,7 @@ background:#fff;
 	background-color: #ffbf00;
 }
 #portfolio {
-	background: #fff;
+	/*background: #fff;*/
 	padding: 100px 0;
 }
 #portfolio .btn-default {
