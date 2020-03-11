@@ -308,6 +308,7 @@ background: #fff;
 	color: #E89A2F;
 }
 #services p {
+	font-weight: bold;
 	text-align: center;
 }
 .hero-section{
@@ -340,6 +341,7 @@ background:#fff;
 	color: #898989;
 }
 #team p.large {
+	font-weight: bold;
 	margin-top: 60px;
 	margin-bottom: 40px;
 }
