@@ -11,11 +11,7 @@
    
 }
 
-#navbar-main > div > div > div.logo{
-    display: flex;
-    justify-content: center;
-    align-content: center;
-}
+
 
 .shrimp{
     margin-top: 10;
@@ -24,4 +20,7 @@
 body{
     background-image: url("src/assets/img/background/bush/bush.png");
     background-repeat: repeat;
+}
+.home{
+    padding: 20px 5px;
 }
