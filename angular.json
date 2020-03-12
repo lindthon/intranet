@@ -29,7 +29,16 @@
               "src/assets/css/bootstrap.css",
               "src/assets/css/font-awesome.css",
               "src/assets/css/font-awesome.min.css",
-              "src/assets/css/styles.css"
+              "src/assets/css/styles.css",
+              "src/assets/css-anime/style.css",
+               "src/assets/css-anime/animate.css",
+                "src/assets/css-anime/bootstrap.min.css",
+                "src/assets/css-anime/classy-nav.css",
+                "src/assets/css-anime/font-awesome.min.css",
+                "src/assets/css-anime/magnific-popup.css",
+                "src/assets/css-anime/nice-select.css",
+                "src/assets/css-anime/owl.carousel.min.css",
+                "src/assets/css-anime/themify-icons.css"
             ],
             "scripts": ["node_modules/jquery/dist/jquery.min.js",
               "src/assets/js/bootstrap.min.js",
@@ -37,7 +46,15 @@
               "src/assets/js/jquery.easing.1.3.js",
               "src/assets/js/jquery.min.js",
               "src/assets/js/modernizr.custom.js",
-              "src/assets/js/smoothscroll.js"]
+              "src/assets/js/smoothscroll.js",
+              
+              "src/assets/js-anime/jquery/jquery-2.2.4.min.js",
+              "src/assets/js-anime/bootstrap/popper.min.js",
+              "src/assets/js-anime/bootstrap/bootstrap.min.js",
+              "src/assets/js-anime/plugins/plugins.js",
+              "src/assets/js-anime/active.js/" 
+            ]
+
           },
           "configurations": {
             "production": {
