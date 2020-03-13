@@ -24,3 +24,33 @@ body{
 .home{
     padding: 20px 5px;
 }
+.news-container{
+    background-color: aliceblue;
+}
+.justificacion{
+    text-align: justify;
+}
+.text-center{ 
+    background-color: aliceblue;
+
+}
+.margen{
+    margin-bottom: 5px;
+
+}
+.color{
+    background-color: brown;
+}
+.seccion{
+    margin-bottom: 10%;
+}
+
+.noticia{
+
+
+    background-color: burlywood;
+}
+.Categorias{
+    padding-left: 5%;
+    padding-right: 5%;
+}
