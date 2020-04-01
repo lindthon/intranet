@@ -1,0 +1,14 @@
+@import './css/bootstrap.css';
+@import './css/styles.css';
+
+.centrate{
+    text-align: center;
+}
+
+div.background_pattern{
+    background-image: url("src/assets/img/background/bush/bush.png")!important;
+    background-repeat: repeat!important;
+}
+#team{
+    background: #f5c92c;
+}

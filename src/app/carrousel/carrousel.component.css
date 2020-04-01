@@ -1,0 +1,10 @@
+@import 'https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css';
+
+img{
+    width:100%;
+    height:500px;
+}
+
+.background_label{
+    background-color:#212529be;
+}

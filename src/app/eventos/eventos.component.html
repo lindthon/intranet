@@ -1,0 +1,92 @@
+<div class="background_pattern">
+    <app-header></app-header>       
+    
+        <hr>
+        <!-- ##### Archive Post Area Start ##### -->
+        <div class="archive-post-area">
+            <div class="container">
+                <div class="row justify-content-center">
+                    <div class="col-12 col-xl-8">
+                        <div class="archive-posts-area bg-white p-30 mb-30 box-shadow">
+                            <ul class="event-list" *ngFor="let new of news | paginate: {itemsPerPage: 7, currentPage: p}">
+                                <li>
+                                    <time datetime="2014-07-20">
+                                        <span class="day">4</span>
+                                        <span class="month">Jul</span>
+                                        <span class="year">2014</span>
+                                        <span class="time">ALL DAY</span>
+                                    </time>
+                                    <img alt="Independence Day" src="https://farm4.staticflickr.com/3100/2693171833_3545fb852c_q.jpg" />
+                                    <div class="info">
+                                        <h2 class="title">Independence Day</h2>
+                                        <p class="desc">United States Holiday</p>
+                                        <i class="fas fa-map-marked-alt place"> Lugar Planta 1</i>
+                                        
+                                        
+                                    </div>                                                                                                               
+                                    
+                                </li>
+                
+                                
+                            </ul>
+                               
+                            
+                            
+                       
+    
+                        <pagination-controls (pageChange)="p = $event"></pagination-controls>
+                            <!-- Pagination 
+                            <nav>
+                                <ul class="pagination">
+                                    <li class="page-item active"><a class="page-link" href="#">1</a></li>
+                                    <li class="page-item"><a class="page-link" href="#">2</a></li>
+                                    <li class="page-item"><a class="page-link" href="#">3</a></li>
+                                    <li class="page-item"><a class="page-link" href="#"><i class="ti-angle-right"></i></a></li>
+                                </ul>
+                            </nav>-->
+    
+                        </div>
+                    </div>
+    
+                    <div class="col-12 col-md-6 col-lg-5 col-xl-4">
+                        <div class="sidebar-area bg-white mb-30 box-shadow">
+                            
+    
+                            <!-- Sidebar Widget -->
+                            <div class="single-sidebar-widget p-30">
+                                <!-- Section Title -->
+                                <div class="section-heading">
+                                    <h5>Categories</h5>
+                                </div>
+    
+                                <!-- Catagory Widget -->
+                                <ul class="catagory-widgets">
+                                    <li><a href="#"><span><i class="fa fa-angle-double-right" aria-hidden="true"></i> Life Style</span> <span>35</span></a></li>
+                                    <li><a href="#"><span><i class="fa fa-angle-double-right" aria-hidden="true"></i> Travel</span> <span>30</span></a></li>
+                                    <li><a href="#"><span><i class="fa fa-angle-double-right" aria-hidden="true"></i> Foods</span> <span>13</span></a></li>
+                                    <li><a href="#"><span><i class="fa fa-angle-double-right" aria-hidden="true"></i> Game</span> <span>06</span></a></li>
+                                    <li><a href="#"><span><i class="fa fa-angle-double-right" aria-hidden="true"></i> Sports</span> <span>28</span></a></li>
+                                    <li><a href="#"><span><i class="fa fa-angle-double-right" aria-hidden="true"></i> Football</span> <span>08</span></a></li>
+                                    <li><a href="#"><span><i class="fa fa-angle-double-right" aria-hidden="true"></i> TV Show</span> <span>13</span></a></li>
+                                </ul>
+                            </div>
+    
+                            <!-- Sidebar Widget -->
+                            <div class="single-sidebar-widget">
+                                <a href="#" class="add-img"><img src="img/bg-img/add2.png" alt=""></a>
+                            </div>
+    
+                            
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- ##### Archive Post Area End ##### -->
+    
+    </div>
+    
+    <app-footer></app-footer>
+
+
+

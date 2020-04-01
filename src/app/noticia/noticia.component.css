@@ -1,0 +1,7 @@
+@import './css/bootstrap.css';
+@import './css/style.css';
+
+div.background_pattern{
+    background-image: url("src/assets/img/patrones/beige-tiles.png")!important;
+    background-repeat: repeat!important;
+}
