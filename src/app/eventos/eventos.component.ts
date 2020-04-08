@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { faClock,faMapMarkerAlt } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-eventos',
@@ -7,76 +8,26 @@ import { Component, OnInit } from '@angular/core';
 })
 export class EventosComponent implements OnInit {
 
+  faClock=faClock;
+  faMapMarkerAlt=faMapMarkerAlt;
   
-  news:any=[{
-    "image":"assets/img/planta/camarones.jpeg",
-    "date":"MAY 8, 2018",
-    "id":"1",
-    "title":"Titulo de Camarones",
-    "descr":"Excepteur sint occaecat cupidatat non proident, sunt in culpa officia deserunt mollit anim id est laborum. Sed ut perspiciatis lorem150"
+  events:any=[{
+    "day":"3",
+    "month":"Marzo",
+    "year":"2020",
+    "time":"ALL DAY",
+    "title":"Inauguracion",
+    "desc":"Inauguracion de algún evento de santa priscila",
+    "place":"Planta 1"
   },
   {
-    "image":"assets/img/planta/maquina.jpeg",
-    "date":"MAY 8, 2018",
-    "id":"1",
-    "title":"Global Travel And Vacations Luxury Travel On A Tight Budget",
-    "descr":"Excepteur sint occaecat cupidatat non proident, sunt in culpa officia deserunt mollit anim id est laborum. Sed ut perspiciatis lorem150"
-  },
-  {
-    "image":"assets/img/planta/sistema.jpeg",
-    "date":"MAY 8, 2018",
-    "id":"1",
-    "title":"Global Travel And Vacations Luxury Travel On A Tight Budget",
-    "descr":"Excepteur sint occaecat cupidatat non proident, sunt in culpa officia deserunt mollit anim id est laborum. Sed ut perspiciatis lorem150"
-  },
-  {
-    "image":"assets/img/planta/contenedor.jpeg",
-    "date":"MAY 8, 2018",
-    "id":"1",
-    "title":"Global Travel And Vacations Luxury Travel On A Tight Budget",
-    "descr":"Excepteur sint occaecat cupidatat non proident, sunt in culpa officia deserunt mollit anim id est laborum. Sed ut perspiciatis lorem150"
-  },
-  {
-    "image":"assets/img/planta/camarones.jpeg",
-    "date":"MAY 8, 2018",
-    "id":"1",
-    "title":"Global Travel And Vacations Luxury Travel On A Tight Budget",
-    "descr":"Excepteur sint occaecat cupidatat non proident, sunt in culpa officia deserunt mollit anim id est laborum. Sed ut perspiciatis lorem150"
-  },
-  {
-    "image":"assets/img/planta/sistema.jpeg",
-    "date":"MAY 8, 2018",
-    "id":"1",
-    "title":"Global Travel And Vacations Luxury Travel On A Tight Budget",
-    "descr":"Excepteur sint occaecat cupidatat non proident, sunt in culpa officia deserunt mollit anim id est laborum. Sed ut perspiciatis lorem150"
-  },
-  {
-    "image":"assets/img/planta/maquina.jpeg",
-    "date":"MAY 8, 2018",
-    "id":"1",
-    "title":"Global Travel And Vacations Luxury Travel On A Tight Budget",
-    "descr":"Excepteur sint occaecat cupidatat non proident, sunt in culpa officia deserunt mollit anim id est laborum. Sed ut perspiciatis lorem150"
-  },
-  {
-    "image":"assets/img/planta/contenedor.jpeg",
-    "date":"MAY 8, 2018",
-    "id":"1",
-    "title":"Global Travel And Vacations Luxury Travel On A Tight Budget",
-    "descr":"Excepteur sint occaecat cupidatat non proident, sunt in culpa officia deserunt mollit anim id est laborum. Sed ut perspiciatis lorem150"
-  },
-  {
-    "image":"assets/img/planta/camarones.jpeg",
-    "date":"MAY 8, 2018",
-    "id":"1",
-    "title":"Global Travel And Vacations Luxury Travel On A Tight Budget",
-    "descr":"Excepteur sint occaecat cupidatat non proident, sunt in culpa officia deserunt mollit anim id est laborum. Sed ut perspiciatis lorem150"
-  },
-  {
-    "image":"assets/img/planta/contenedor.jpeg",
-    "date":"MAY 8, 2018",
-    "id":"1",
-    "title":"Global Travel And Vacations Luxury Travel On A Tight Budget",
-    "descr":"Excepteur sint occaecat cupidatat non proident, sunt in culpa officia deserunt mollit anim id est laborum. Sed ut perspiciatis lorem150"
+    "day":"5",
+    "month":"Septiembre",
+    "year":"2020",
+    "time":"ALL DAY",
+    "title":"Inauguracion 2",
+    "desc":"Inauguracion de algún evento de santa priscila",
+    "place":"Planta 2"
   }
 ]
   constructor() { }

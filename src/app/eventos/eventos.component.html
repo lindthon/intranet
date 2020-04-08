@@ -8,28 +8,26 @@
                 <div class="row justify-content-center">
                     <div class="col-12 col-xl-8">
                         <div class="archive-posts-area bg-white p-30 mb-30 box-shadow">
-                            <ul class="event-list" *ngFor="let new of news | paginate: {itemsPerPage: 7, currentPage: p}">
+                            <ul class="event-list" *ngFor="let event of events | paginate: {itemsPerPage: 7, currentPage: p}">
                                 <li>
-                                    <time datetime="2014-07-20">
-                                        <span class="day">4</span>
-                                        <span class="month">Jul</span>
-                                        <span class="year">2014</span>
-                                        <span class="time">ALL DAY</span>
+                                    <time>
+                                        <span class="day">{{event.day}}</span>
+                                        <span class="month">{{event.month}}</span>
+                                        <span class="year">{{event.year}}</span>
+                                        <span class="time"><fa-icon [icon]="faClock"></fa-icon>{{event.time}}</span>
                                     </time>
                                     <img alt="Independence Day" src="https://farm4.staticflickr.com/3100/2693171833_3545fb852c_q.jpg" />
                                     <div class="info">
-                                        <h2 class="title">Independence Day</h2>
-                                        <p class="desc">United States Holiday</p>
-                                        <i class="fas fa-map-marked-alt place"> Lugar Planta 1</i>
-                                        
-                                        
-                                    </div>                                                                                                               
+                                        <h2 class="title">{{event.title}}</h2>
+                                        <p class="desc">{{event.desc}}</p>
+                                        <p class="place"> <fa-icon [icon]="faMapMarkerAlt"></fa-icon> {{event.place}}</p>
+                                    </div>                                                
                                     
                                 </li>
                 
                                 
                             </ul>
-                               
+                              
                             
                             
                        
