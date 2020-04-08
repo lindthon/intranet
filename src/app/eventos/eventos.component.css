@@ -6,12 +6,8 @@
 @import './css/style.css';
 
 div.background_pattern{
-    background-image: url("src/assets/img/patrones/diagonal-squares.png")!important;
+    background-image: url("src/assets/img/patrones/leaves.png")!important;
     background-repeat: repeat!important;
-}
-
-.new-box{
-    margin-bottom: 5%!important;
 }
 
 body {
@@ -36,7 +32,7 @@ body {
     display: inline-block;
     width: 100%;
     color: rgb(255, 255, 255);
-    background-color: rgb(197, 44, 102);
+    background-color: rgb(105, 161, 127);
     padding: 5px;
     text-align: center;
     text-transform: uppercase;
@@ -49,16 +45,29 @@ body {
 }
 .event-list > li > time > .day {
     display: block;
-    font-size: 56pt;
-    font-weight: 100;
+    font-size: 30pt;
     line-height: 1;
 }
 .event-list > li time > .month {
     display: block;
-    font-size: 24pt;
-    font-weight: 900;
+    font-size: 18pt;
+    font-weight: 600;
     line-height: 1;
 }
+.event-list > li time > .year {
+    display: block;
+    font-size: 18pt;
+    font-weight: 500;
+    line-height: 1;
+}
+.event-list > li time > .time {
+    display: block;
+    font-size: 18pt;
+    font-weight: 400;
+    line-height: 1;
+}
+
+
 .event-list > li > img {
     width: 100%;
 }
@@ -75,6 +84,15 @@ body {
     font-size: 13pt;
     font-weight: 300;
     margin: 0px;
+    line-height: 1!important;
+}
+.event-list > li > .info > .place {
+    font-size: 13pt;
+    font-weight: 300;
+    margin: 7px;
+    position: absolute;
+    left: 1px;
+    bottom: 0px;
 }
 .event-list > li > .info > ul,
 .event-list > li > .social > ul {
@@ -163,7 +181,7 @@ body {
     }
     .event-list > li > time,
     .event-list > li > img {
-        width: 120px;
+        width: 152px;
         height: 120px;
         padding: 0px;
         margin: 0px;
@@ -202,11 +220,4 @@ body {
         width: 40px;
         padding: 10px 0px 9px;
     }
-}
-
-.place{
-    position: absolute;
-  bottom: 10px;
-  width: 50%;
-    margin-left: 1%;
 }

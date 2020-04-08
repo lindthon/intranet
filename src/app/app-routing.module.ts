@@ -11,7 +11,7 @@ import { CategoriaNoticiasComponent } from './categoria-noticias/categoria-notic
 const routes: Routes = [
   { path: "",component:IndexComponent},
   { path: "noticias",component:NoticiasComponent},
-  { path: "CategoriaNoticias",component:CategoriaNoticiasComponent},
+  { path: "categoria-noticias",component:CategoriaNoticiasComponent},
   { path: "noticia",component:NoticiaComponent},
   { path: "eventos",component:EventosComponent},
   { path: "calendario",component:CalendarComponent}
