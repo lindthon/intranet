@@ -16,6 +16,9 @@ import { NoticiaComponent } from './noticia/noticia.component';
 import { NgxPaginationModule} from 'ngx-pagination';
 import { EventosComponent } from './eventos/eventos.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { CalendarComponent } from './calendar/calendar.component';
+
+import { MonthCalendarModule } from 'simple-angular-calendar';
 
 @NgModule({
   declarations: [
@@ -27,7 +30,8 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
     CarrouselComponent,
     CategoriaNoticiasComponent,
     NoticiaComponent,
-    EventosComponent
+    EventosComponent,
+    CalendarComponent
   ],
   imports: [
     BrowserModule,
@@ -35,7 +39,8 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
     NgbModule,
     FormsModule,
     NgxPaginationModule,
-    FontAwesomeModule
+    FontAwesomeModule,
+    MonthCalendarModule
   ],
   providers: [],
   bootstrap: [AppComponent]
