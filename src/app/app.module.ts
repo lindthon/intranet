@@ -13,12 +13,14 @@ import { CarrouselComponent } from './carrousel/carrousel.component';
 
 import { CategoriaNoticiasComponent } from './categoria-noticias/categoria-noticias.component';
 import { NoticiaComponent } from './noticia/noticia.component';
-import { NgxPaginationModule} from 'ngx-pagination';
+import { NgxPaginationModule } from 'ngx-pagination';
 import { EventosComponent } from './eventos/eventos.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { CalendarComponent } from './calendar/calendar.component';
 
 import { MonthCalendarModule } from 'simple-angular-calendar';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { IgxCalendarModule } from 'igniteui-angular';
 
 @NgModule({
   declarations: [
@@ -40,9 +42,12 @@ import { MonthCalendarModule } from 'simple-angular-calendar';
     FormsModule,
     NgxPaginationModule,
     FontAwesomeModule,
-    MonthCalendarModule
+    MonthCalendarModule,
+    BrowserAnimationsModule,
+    IgxCalendarModule
   ],
   providers: [],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {
+}

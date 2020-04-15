@@ -8,7 +8,7 @@
                 <div class="row justify-content-center">
                     <div class="col-12 col-xl-8">
                         <div class="archive-posts-area bg-white p-30 mb-30 box-shadow">
-                            <ul class="event-list" *ngFor="let event of events | paginate: {itemsPerPage: 7, currentPage: p}">
+                            <ul class="event-list" *ngFor="let event of events">
                                 <li>
                                     <time>
                                         <span class="day">{{event.day}}</span>
@@ -31,8 +31,7 @@
                             
                             
                        
-    
-                        <pagination-controls (pageChange)="p = $event"></pagination-controls>
+                        
                             <!-- Pagination 
                             <nav>
                                 <ul class="pagination">
@@ -52,28 +51,10 @@
     
                             <!-- Sidebar Widget -->
                             <div class="single-sidebar-widget p-30">
-                                <!-- Section Title -->
-                                <div class="section-heading">
-                                    <h5>Categories</h5>
-                                </div>
-    
-                                <!-- Catagory Widget -->
-                                <ul class="catagory-widgets">
-                                    <li><a href="#"><span><i class="fa fa-angle-double-right" aria-hidden="true"></i> Life Style</span> <span>35</span></a></li>
-                                    <li><a href="#"><span><i class="fa fa-angle-double-right" aria-hidden="true"></i> Travel</span> <span>30</span></a></li>
-                                    <li><a href="#"><span><i class="fa fa-angle-double-right" aria-hidden="true"></i> Foods</span> <span>13</span></a></li>
-                                    <li><a href="#"><span><i class="fa fa-angle-double-right" aria-hidden="true"></i> Game</span> <span>06</span></a></li>
-                                    <li><a href="#"><span><i class="fa fa-angle-double-right" aria-hidden="true"></i> Sports</span> <span>28</span></a></li>
-                                    <li><a href="#"><span><i class="fa fa-angle-double-right" aria-hidden="true"></i> Football</span> <span>08</span></a></li>
-                                    <li><a href="#"><span><i class="fa fa-angle-double-right" aria-hidden="true"></i> TV Show</span> <span>13</span></a></li>
-                                </ul>
+                                <igx-month-picker (click)="loadEvents()" [(ngModel)]="date" [locale]="locale"></igx-month-picker>
                             </div>
-    
-                            <!-- Sidebar Widget -->
-                            <div class="single-sidebar-widget">
-                                <a href="#" class="add-img"><img src="img/bg-img/add2.png" alt=""></a>
-                            </div>
-    
+
+                            <p>Date: {{monthPicker.value|date:'longDate'}}</p>
                             
                         </div>
                     </div>
@@ -82,9 +63,9 @@
         </div>
         <!-- ##### Archive Post Area End ##### -->
     
-    </div>
-    
-    <app-footer></app-footer>
+</div>
+
+<app-footer></app-footer>
 
 
 
