@@ -18,9 +18,14 @@ import { EventosComponent } from './eventos/eventos.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { CalendarComponent } from './calendar/calendar.component';
 
-import { MonthCalendarModule } from 'simple-angular-calendar';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { IgxCalendarModule } from 'igniteui-angular';
+
+import { CalendarModule, DateAdapter } from 'angular-calendar';
+import { adapterFactory } from 'angular-calendar/date-adapters/date-fns';
+import { SugerenciasComponent } from './sugerencias/sugerencias.component';
+import { ReglamentoComponent } from './reglamento/reglamento.component';
+import { DirectorioComponent } from './directorio/directorio.component';
 
 @NgModule({
   declarations: [
@@ -33,7 +38,10 @@ import { IgxCalendarModule } from 'igniteui-angular';
     CategoriaNoticiasComponent,
     NoticiaComponent,
     EventosComponent,
-    CalendarComponent
+    CalendarComponent,
+    SugerenciasComponent,
+    ReglamentoComponent,
+    DirectorioComponent
   ],
   imports: [
     BrowserModule,
@@ -42,9 +50,12 @@ import { IgxCalendarModule } from 'igniteui-angular';
     FormsModule,
     NgxPaginationModule,
     FontAwesomeModule,
-    MonthCalendarModule,
     BrowserAnimationsModule,
-    IgxCalendarModule
+    IgxCalendarModule,
+    CalendarModule.forRoot({
+      provide: DateAdapter,
+      useFactory: adapterFactory,
+    }),
   ],
   providers: [],
   bootstrap: [AppComponent]

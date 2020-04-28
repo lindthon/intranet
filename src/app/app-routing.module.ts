@@ -3,9 +3,13 @@ import { Routes, RouterModule } from '@angular/router';
 import { IndexComponent } from './index/index.component';
 import { NoticiasComponent } from './noticias/noticias.component';
 import { NoticiaComponent } from './noticia/noticia.component';
+import { CategoriaNoticiasComponent } from './categoria-noticias/categoria-noticias.component';
 import { EventosComponent } from './eventos/eventos.component';
 import { CalendarComponent } from './calendar/calendar.component';
-import { CategoriaNoticiasComponent } from './categoria-noticias/categoria-noticias.component';
+import { SugerenciasComponent } from './sugerencias/sugerencias.component';
+import { ReglamentoComponent } from './reglamento/reglamento.component';
+import { DirectorioComponent } from './directorio/directorio.component';
+
 
 
 const routes: Routes = [
@@ -14,7 +18,10 @@ const routes: Routes = [
   { path: "categoria-noticias",component:CategoriaNoticiasComponent},
   { path: "noticia",component:NoticiaComponent},
   { path: "eventos",component:EventosComponent},
-  { path: "calendario",component:CalendarComponent}
+  { path: "calendario",component:CalendarComponent},
+  { path: "sugerencias",component:SugerenciasComponent},
+  { path: "reglamento",component:ReglamentoComponent},
+  { path: "directorio",component:DirectorioComponent}
 ];
 
 @NgModule({

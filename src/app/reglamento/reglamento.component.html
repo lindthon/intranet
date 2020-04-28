@@ -1,0 +1,27 @@
+<div class="background-pattern">
+
+<app-header></app-header>
+
+<div class="container">
+
+<div class="list-group col-md-3">
+  <ul class="list-group">
+    <li class="list-group-item elemento" [ngClass]="{'item':politicas}" (click)="showPoliticas()">Politicas</li>
+    <li class="list-group-item elemento" [ngClass]="{'item':procedimientos}" (click)="showProcedimientos()">Procedimientos</li>
+    <li class="list-group-item elemento" [ngClass]="{'item':organigrama}" (click)="showOrganigrama()">Organigrama institucional</li>    
+  </ul>
+  </div>
+
+
+<div class="col-md-9">
+
+  <div *ngIf="politicas"> ¡POLITICAS!</div>
+  <div *ngIf="procedimientos">¡PROCEDIMIENTOS!</div>
+  <img src="assets/img/organigrama.jpg" *ngIf="organigrama">
+
+</div>
+</div>
+
+<app-footer></app-footer>
+
+</div>

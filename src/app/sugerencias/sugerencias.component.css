@@ -1,0 +1,28 @@
+@import './css/bootstrap.css';
+
+.container{
+    margin-top: 2%;
+    
+    margin-bottom: 2%;
+    background-color: rgba(255, 255, 255, 0.678);
+}
+
+.background-pattern{
+    background-image: url("src/assets/img/patrones/more-leaves.png")!important;
+    background-repeat: repeat!important;
+}
+
+.label-option{
+    font-weight: normal;
+    margin-left: 1%;
+}
+
+.input-option{
+    margin-left: 1%;
+}
+
+.button-text{
+    font-size: 25px;
+    margin-bottom: 3%;
+}
+
