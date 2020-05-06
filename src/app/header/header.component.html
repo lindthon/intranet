@@ -24,40 +24,27 @@
 
           <ul class="main-menu-m">
               <li>
-                  <a href="index.html">Principal</a>
-                  <ul class="sub-menu-m">
-                      <li><a href="index.html">Misión Visión y Valores</a></li>
-                      <li><a href="home-02.html">Certificados</a></li>
-                      <li><a href="home-03.html">Empleados destacados</a></li>
-                  </ul>
+                  <a routerLink="/" class="quitarflecha">Principal</a>                  
 
-                  <span class="arrow-main-menu-m">
+                  <!--<span class="arrow-main-menu-m">
                       <i class="fa fa-angle-right" aria-hidden="true"></i>
-                  </span>
+                  </span>-->
               </li>
 
               <li>
-                  <a href="category-01.html">Noticias</a>
+                  <a routerLink="/noticias">Noticias</a>
               </li>
 
               <li>
-                  <a href="category-02.html">Eventos</a>
+                  <a routerLink="/eventos">Eventos</a>
               </li>
 
               <li>
-                  <a href="category-01.html">Business</a>
+                  <a routerLink="/directorio">Directorio general</a>
               </li>
 
               <li>
-                  <a href="category-02.html">Travel</a>
-              </li>
-
-              <li>
-                  <a href="category-01.html">Life Style</a>
-              </li>
-
-              <li>
-                  <a href="/reglamento">Reglamento</a>
+                  <a routerLink="/reglamento">Reglamento</a>
               </li>
 
               <li>
@@ -70,7 +57,7 @@
       <div class="wrap-logo container">
           <!-- Logo desktop -->		
           <div class="logo">
-              <a href="index.html"><img src="assets/img/logo.png" alt="LOGO" width="100" height="80"></a>
+              <a routerLink="/"><img src="assets/img/logo.png" alt="LOGO" width="100" height="80"></a>
           </div>	
 
       </div>	
@@ -80,67 +67,68 @@
           <div class="main-nav">
               <!-- Menu desktop -->
               <nav class="menu-desktop">
-                  <a class="logo-stick" href="index.html">
+                  <a class="logo-stick" routerLink="/">
                       <img src="assets/img/logo.png" alt="LOGO">
                   </a>
 
                   <ul class="main-menu">
                       <li class="main-menu-active">
-                          <a routerLink="/">Principal</a>
-                          <ul class="sub-menu">
+                          <a href="/" class="quitarflecha">Principal</a>
+                          <!--<ul class="sub-menu">
                               <li><a routerLink="/">Misión Visión y Valores</a></li>
                               <li><a routerLink="/">Certificados</a></li>
                               <li><a routerLink="/">Empleados destacados</a></li>
-                          </ul>
+                          </ul>-->
                       </li>
 
                       <li class="main-menu-active">
-                          <a routerLink='/noticias'>Noticias</a>
+                          <a href='/noticias'>Noticias</a>
 
                           <ul class="sub-menu">
-                            <li><a routerLink="/noticias">Últimos Comunicados</a></li>
-                            <li><a routerLink="/categoria-noticias">Categorías</a></li>
+                            <li><a href="/noticias">Últimos Comunicados</a></li>
+                            <li><a href="/categoria-noticias">Categorías</a></li>
                         </ul>
 
                       </li>
 
                       <li class="main-menu-active">
-                          <a routerLink="/eventos">Eventos </a>
+                          <a routerLink="/eventos" class="quitarflecha">Eventos </a>
 
-                          <ul class="sub-menu">
+                          <!--<ul class="sub-menu">
                             <li><a routerLink="/eventos">Eventos por mes</a></li>
                             <li><a routerLink="/eventos">Calendario de eventos</a></li>
-                        </ul>
-                      </li>
+                        </ul>-->
+                      </li>                                      
 
                       <li class="main-menu-item">
-                          <a href="category-01.html">Business</a>
-
-                          
-                      </li>
-
-                      <li class="main-menu-item">
-                          <a href="category-02.html">Travel</a>
-
-                          
-                      </li>
-
-                      <li class="mega-menu-item">
-                          <a href="category-01.html">Life Style</a>
-                          
+                        <a routerLink="/directorio" class="quitarflecha">Directorio general</a>
                       </li>
 
                       <li>
                           <a href="/reglamento" class="quitarflecha">Reglamento</a>
-
-                          
                       </li>
 
                       <li>
-                          <a routerLink="/sugerencias" class="quitarflecha">Buzón de sugerencias</a>                          
+                          <a routerLink="/sugerencias" class="quitarflecha">Buzón de sugerencias</a>
                       </li>
+
+                      <li class="otherItem">                          
+                            <a class="otherLinks lock">
+                                <fa-icon class="icon-unlock" [icon]="faDoorClosed"></fa-icon>
+                                <fa-icon class="icon-lock" [icon]="faDoorOpen"></fa-icon>
+                            </a>
+                            <ul class="sub-menu">
+                                <li><a href="">E-Learning</a></li>
+                                <li><a href="">SGC</a></li>
+                            </ul>
+                        
+                    </li>
+                     
+
                   </ul>
+                  
               </nav>
+               
           </div>
       </div>	
   </div>

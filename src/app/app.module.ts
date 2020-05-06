@@ -20,6 +20,8 @@ import { CalendarComponent } from './calendar/calendar.component';
 
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { IgxCalendarModule } from 'igniteui-angular';
+import {Ng2SmartTableModule} from 'ng2-smart-table';
+
 
 import { CalendarModule, DateAdapter } from 'angular-calendar';
 import { adapterFactory } from 'angular-calendar/date-adapters/date-fns';
@@ -52,10 +54,7 @@ import { DirectorioComponent } from './directorio/directorio.component';
     FontAwesomeModule,
     BrowserAnimationsModule,
     IgxCalendarModule,
-    CalendarModule.forRoot({
-      provide: DateAdapter,
-      useFactory: adapterFactory,
-    }),
+    Ng2SmartTableModule
   ],
   providers: [],
   bootstrap: [AppComponent]

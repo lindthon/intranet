@@ -10,5 +10,26 @@ div.background_pattern{
     background-repeat: repeat!important;
 }
 #team{
-    background: #f5c92c;
+    background: #187986;
+}
+.large{
+    font-family: "Raleway";
+}
+div.callout p{
+    font-family: "Raleway";
+}
+.texto{
+    font-family: "Raleway";
+}
+.trabajadores-destacados{
+    padding-top: 5%;
+    padding-bottom: 10%;
+}
+
+.empl{
+    padding-bottom: 15%;
+}
+.pattern{
+    background-image: url("src/assets/img/patrones/weather.png")!important;
+    background-repeat: repeat!important;
 }

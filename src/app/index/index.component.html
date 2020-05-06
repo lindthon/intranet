@@ -91,12 +91,8 @@
             Aqui encontraran algunas de nuestras certificaciones:</p>
         </div>
       </div>
-      <!-- /row -->
-      <div class="container">
-        <div class="row"> 
-          
-          
-          <div class="col-md-4 " align="center">
+
+          <div class="col-md-4" align="center">
             
               <figure> <img class="img-responsive" src="assets/img/certificados/cert1.png" alt="">
                   <h5>Certificado Orgánico
@@ -191,41 +187,43 @@
 </div>
 </div>
 </div>
-</div>
-</div>
   <!-- /container --> 
   
   <!-- ==== TEAM MEMBERS ==== -->
-  <div id="team" name="team">
+  <div class="pattern">
+  <section class="hero-section section">  
+    <div class="container">
+        <div class="highlight tb">
+            
+            
+        </div>
+    </div>
+    
+</section>
+<div class="div-pattern"></div>
+
+  
+  
     <div class="container">
       <div class="row centered">
-        <h2 class="centered">Trabajadores destacados</h2>
-        <hr>
-         <div class="col-lg-8 col-lg-offset-2 centered">
-          
-          <br/>
+        <h2 class="centered trabajadores-destacados">Trabajadores destacados</h2>
         </div>
-        <div class="col-md-4 centered"> <img class="img img-circle" src="assets/img/team/team01.jpg" height="120px" width="120px" alt="">
-          <h4><strong>Erick Pulla</strong></h4>
-          <p></p>
- </div>
-        <div class="col-md-4 centered"> <img class="img img-circle" src="assets/img/team/team02.jpg" height="120px" width="120px" alt="">
-          <h4><b>Jaime Alarcón</b></h4>
-          <p></p>
- </div>
-        <div class="col-md-4 centered"> <img class="img img-circle" src="assets/img/team/team03.jpg" height="120px" width="120px" alt="">
-          <h4><b>Luis Carrasco</b></h4>
-          <p></p>
- </div>
         
-       
-</div>
+        <div class="col-md-4 centered empl"> <img class="img img-circle" src="{{asistencia.img}}" height="120px" width="120px" alt="">
+          <h4><strong>{{asistencia.name}}</strong></h4>
+          <p class="texto">{{asistencia.label}}</p>
+        </div>
+        <div class="col-md-4 centered empl"> <img class="img img-circle" src="{{colaborativo.img}}" height="120px" width="120px" alt="">
+          <h4><b>{{colaborativo.name}}</b></h4>
+          <p class="texto">{{colaborativo.label}}</p>
+        </div>
+        <div class="col-md-4 centered empl"> <img class="img img-circle" src="{{agil.img}}" height="120px" width="120px" alt="">
+          <h4><b>{{agil.name}}</b></h4>
+          <p class="texto">{{agil.label}}</p>                
+      </div>
+    
     </div>
-    <!-- row -->
   </div>
-  <!-- container -->
-  
-  <!-- container -->
 </div>
 
 <app-footer></app-footer>

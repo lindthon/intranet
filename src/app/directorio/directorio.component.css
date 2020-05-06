@@ -1,0 +1,93 @@
+@import './css/bootstrap.css';
+
+.background-pattern{
+    background-image: url("src/assets/img/patrones/blue-snow.png")!important;
+    background-repeat: repeat!important;
+}
+
+.container{
+    margin-top: 1%;
+    margin-bottom: 1%;
+    background-color: white;
+}
+
+:host /deep/ a.ng2-smart-page-link.page-link {
+    height: 30px;
+    width: 30px;
+    text-align: center;
+    vertical-align: middle;
+    color: royalblue;
+    font-weight: bold;
+    line-height: 6px;
+    margin-left:5px;
+    }
+    /* selected paging number */
+    :host /deep/ span.ng2-smart-page-link.page-link {
+    height: 30px;
+    width: 30px;
+    text-align: center;
+    vertical-align: middle;
+    color: rgb(0, 0, 0);
+    font-weight: bold;
+    line-height: 6px;
+    margin-left:5px;
+    }
+    :host /deep/ span.ng2-smart-page-item.page-item.disabled {
+    height: 30px;
+    width: 30px;
+    text-align: center;
+    vertical-align: middle;
+    color: grey;
+    font-weight: bold;
+    line-height: 6px;
+    margin-left:5px;
+    }
+    
+    /* previous paging button */
+    :host /deep/ a.ng2-smart-page-link.page-link.page-link-prev {
+    height: 30px;
+    width: 30px;
+    text-align: center;
+    vertical-align: middle;
+    color: royalblue;
+    font-weight: bold;
+    line-height: 6px;
+    margin-left:5px;
+    }
+    
+    /* previous paging button disabled */
+    :host /deep/ span.ng2-smart-page-link.page-link.page-link-prev.disabled {
+    height: 30px;
+    width: 30px;
+    text-align: center;
+    vertical-align: middle;
+    color: grey;
+    font-weight: bold;
+    line-height: 6px;
+    margin-left:5px;
+    }
+    
+    /* next paging button */
+    :host /deep/ a.ng2-smart-page-link.page-link.page-link-next {
+    height: 30px;
+    width: 30px;
+    text-align: center;
+    vertical-align: middle;
+    color: royalblue;
+    font-weight: bold;
+    line-height: 6px;
+    margin-left:5px;
+    }
+    
+    /* next paging button */
+    :host /deep/ span.ng2-smart-page-link.page-link.page-link-next.disabled {
+    height: 30px;
+    width: 30px;
+    text-align: center;
+    vertical-align: middle;
+    color: grey;
+    font-weight: bold;
+    line-height: 6px;
+    margin-left:5px;
+    }
+    

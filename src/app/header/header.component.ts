@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { faDoorClosed,faDoorOpen} from '@fortawesome/free-solid-svg-icons';
 declare var jQuery: any;
 
 @Component({
@@ -7,7 +8,8 @@ declare var jQuery: any;
   styleUrls: ['./header.component.css']
 })
 export class HeaderComponent implements OnInit {
-
+  faDoorClosed=faDoorClosed;
+  faDoorOpen=faDoorOpen;
   constructor() { }
 
   ngOnInit(): void {
