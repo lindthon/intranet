@@ -19,91 +19,104 @@ export class DirectorioComponent implements OnInit {
       edit:false,      
     },
     columns: {
-      id: {
-        title: 'ID',
-      },
+      
       name: {
         title: 'Full Name',
-      },
-      username: {
-        title: 'User Name',
-      },
+      },      
       email: {
         title: 'Email',
       },
+      office: {
+        title: 'Oficina',
+      },
+      ext: {
+        title: 'Extension',
+      }
     },
   };
 
   data = [
     {
       id: 1,
-      name: "Leanne Graham",
-      username: "Bret",
-      email: "Sincere@april.biz"
+      name: "Leanne Graham",      
+      email: "Sincere@april.biz",
+      office:"Planta 1",
+      ext:"256"
     },
     {
       id: 2,
       name: "Ervin Howell",
       username: "Antonette",
-      email: "Shanna@melissa.tv"
+      email: "Shanna@melissa.tv",
+      office:"Planta 1",
+      ext:"255"
     },
     {
       id: 1,
       name: "Leanne Graham",
       username: "Bret",
-      email: "Sincere@april.biz"
+      email: "Sincere@april.biz",
+      office:"Planta 2",
+      ext:"128"
     },
     {
       id: 2,
       name: "Ervin Howell",
       username: "Antonette",
-      email: "Shanna@melissa.tv"
+      email: "Shanna@melissa.tv",
+      office:"Oficina Centro",
+      ext:"222"
     },
     {
       id: 1,
       name: "Leanne Graham",
       username: "Bret",
-      email: "Sincere@april.biz"
+      email: "Sincere@april.biz",
+      office:"Planta 1",
+      ext:"222"
     },
     {
       id: 2,
       name: "Ervin Howell",
       username: "Antonette",
-      email: "Shanna@melissa.tv"
+      email: "Shanna@melissa.tv",
+      office:"Planta 1",
+      ext:"222"
     },
     {
       id: 1,
       name: "Leanne Graham",
       username: "Bret",
-      email: "Sincere@april.biz"
+      email: "Sincere@april.biz",
+      office:"Planta 2",
+      ext:"222"
     },
     {
       id: 2,
       name: "Ervin Howell",
       username: "Antonette",
-      email: "Shanna@melissa.tv"
+      email: "Shanna@melissa.tv",
+      office:"Planta 2",
+      ext:"222"
     },
     {
       id: 1,
       name: "Leanne Graham",
       username: "Bret",
-      email: "Sincere@april.biz"
+      email: "Sincere@april.biz",
+      office:"Oficina Centro",
+      ext:"222"
     },
     {
       id: 2,
       name: "Ervin Howell",
       username: "Antonette",
-      email: "Shanna@melissa.tv"
+      email: "Shanna@melissa.tv",
+      office:"Oficina Centro",
+      ext:"222"
     },
 
     // ... list of items
-
-    {
-      id: 11,
-      name: "Nicholas DuBuque",
-      username: "Nicholas.Stanton",
-      email: "Rey.Padberg@rosamond.biz"
-    }
   ];
 
   onDeleteConfirm(event) {

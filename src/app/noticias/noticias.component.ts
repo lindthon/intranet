@@ -65,7 +65,7 @@ export class NoticiasComponent implements OnInit {
     "descr":"Excepteur sint occaecat cupidatat non proident, sunt in culpa officia deserunt mollit anim id est laborum. Sed ut perspiciatis lorem150"
   }]
 
-  Brigada:any=[{
+  brigada:any=[{
     "image":"assets/img/planta/camarones.jpeg",
     "date":"MAY 8, 2018",
     "cat":"Brigada Médica",
@@ -88,6 +88,32 @@ export class NoticiasComponent implements OnInit {
     "id":"3",
     "title":"Global Travel And Vacations Luxury Travel On A Tight Budget",
     "descr":"Excepteur sint occaecat cupidatat non proident, sunt in culpa officia deserunt mollit anim id est laborum. Sed ut perspiciatis lorem150"
+  }]
+
+  birthdays:any=[{
+    "image":"assets/img/team/team01.jpg",
+    "name":"Jhonny Stan",
+    "date":"19 de Marzo"
+  },
+  {
+    "image":"assets/img/team/team02.jpg",
+    "name":"Jorge Lopez",
+    "date":"20 de Marzo"
+  },
+  {
+    "image":"assets/img/team/team03.jpg",
+    "name":"Alvaro Monetenegro",
+    "date":"22 de Marzo"
+  },
+  {
+    "image":"assets/img/team/team04.jpg",
+    "name":"Arturo Plaza",
+    "date":"25 de Marzo"
+  },
+  {
+    "image":"assets/img/team/team01.jpg",
+    "name":"Maria Rivadeneira",
+    "date":"30 de Marzo"
   }]
 
   constructor() { }

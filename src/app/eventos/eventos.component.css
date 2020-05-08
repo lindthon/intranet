@@ -221,3 +221,6 @@ body {
         padding: 10px 0px 9px;
     }
 }
+.igx-calendar-picker__date{
+    font-size:2rem
+}

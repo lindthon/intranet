@@ -9,22 +9,16 @@
             <div class="col-12 col-xl-8">
                 <div class="post-details-content bg-white mb-30 p-30 box-shadow">
                     <div class="blog-thumb mb-30">
-                        <img src="assets/img/planta/camarones.jpeg" alt="">
+                        <img src="{{noticia.img}}" alt="">
                     </div>
                     <div class="blog-content">
                         <div class="post-meta">
-                            <a href="#">MAY 8, 2018</a>
-                            <a href="archive.html">lifestyle</a>
+                            <a>{{noticia.date}}</a>
+                            <a>{{noticia.cat}}</a>
                         </div>
-                        <h4 class="post-title">From Wetlands To Canals And Dams Amsterdam Is Alive</h4>
-                        <!-- Post Meta -->
-                        <div class="post-meta-2">
-                            <a href="#"><i class="fa fa-eye" aria-hidden="true"></i> 1034</a>
-                            <a href="#"><i class="fa fa-thumbs-o-up" aria-hidden="true"></i> 834</a>
-                            <a href="#"><i class="fa fa-comments-o" aria-hidden="true"></i> 234</a>
-                        </div>
+                        <h4 class="post-title">{{noticia.title}}</h4>
 
-                        <p>Lorem ipsum dolor sit amet, consectetur sita adipiscing elit. Proin molestie accumsan orci suneget placerat. Etiama faucibuss orci quis posuere vestibulu. Ut id purusos ultricies, dictumax quam id, ullamcorper urna. Curabitur sitdown nisi vitae nisi vestotana vestibul ut non massa. Aliquam erat volutpat. Morbi nect nunc et orci euismode finibus. Donec lobortis venenatis turpis. Aenean act congue arcu, nect porttitor magna. Nam consequa ligula nibh, in maximus gravida. Vivamus nuornare masa. Quisque sed honcus leo, ullamcorper auctor mi. Maecenas mollis purus, mattis nisl condimentum. Nam eros elementu, congue diam imperdiet, interdum tellus.</p>
+                        <p></p>
 
                         <p>Mauris dapibus turpis vel ialis tempor. Morbi turpis leon, pulvinar vitae convallis vitae, scelerisque necto eros. Suspendisse vitae pharetra risus. Pellentesque varius, felis in lacinia faucibus, ipsum liula aliquam nulla, non honcus nunc ipsum eu risus. Nunc finibus euismod magna sagittis. Sed dictum libero consectetur.</p>
 
@@ -47,27 +41,22 @@
                         <p>Mauris nisi arcu, consectetur convallis fringilla quis, posuere ac mauris. Ut in placerat lorem. Donec cursus malesuada nibhem, eget consectetur posuere sed. Suspendisse auctor nec diamet consectetur. Etiam ac maurised nisib tincidunt viverra. Sed nulla lacus, convallis vel nunc sed, fringilla venenatis neque.</p>
 
                         <blockquote>
-                            <h6 class="quote-text">“Design is a funny word. Some people think design means how it looks. But of course, if you dig deeper, it's really how it works. The design of the Mac wasn't what it looked like, although that was part of it.”</h6>
-                            <h6 class="quote-name">STEVE JOBS</h6>
+                            <h6 class="quote-text">{{noticia.quote.quote}}</h6>
+                            <h6 class="quote-name">{{noticia.quote.name}}</h6>
                         </blockquote>
 
                         <p>Phasellus laoreet mattis ultrices. Integer ex sem, ultrices eu sem in, laoreet vehicula ligula. Phasellus quistor blandit salah convallis augue. Sed velot dictum sapient. In pulvinar libero turpis. Quisque facilisis bigbang consenti. Nullam bendumaz, massan consequat in gravida porttitor, aguet lacus condimentum mauris, id blandit quam augue eget mana. Etiam denim jeans lacus, nascetur auge bibendum vel pulvinar viverra, mattis sit amet mi. Mauris fringilla, ex vitae maximus fringilla, neque sapien maximus justo, cursus risus neque sed nibh. Donec at urna eros scelerisque non nibh sed.</p>
 
-                        <!-- Like Dislike Share -->
-                        <div class="like-dislike-share my-5">
-                            <h4 class="share">240<span>Share</span></h4>
-                            <a href="#" class="facebook"><i class="fa fa-facebook" aria-hidden="true"></i> Share on Facebook</a>
-                            <a href="#" class="twitter"><i class="fa fa-twitter" aria-hidden="true"></i> Share on Twitter</a>
-                        </div>
+                        
 
                         <!-- Post Author -->
                         <div class="post-author d-flex align-items-center">
                             <div class="post-author-thumb">
-                                <img src="img/bg-img/52.jpg" alt="">
+                                <img src="{{noticia.author.img}}" alt="">
                             </div>
                             <div class="post-author-desc pl-4">
-                                <a href="#" class="author-name">Alan Shaerer</a>
-                                <p>Duis tincidunt turpis sodales, tincidunt nisi et, auctor nisi. Curabitur vulputate sapien eu metus ultricies fermentum nec vel augue. Maecenas eget lacinia est.</p>
+                                <a class="author-name">{{noticia.author.name}}</a>
+                                <p>{{noticia.author.descr}}</p>
                             </div>
                         </div>
                     </div>
@@ -94,9 +83,9 @@
 
                         <!-- Catagory Widget -->
                         <ul class="catagory-widgets">
-                            <li><a href="#"><span><i class="fa fa-angle-double-right" aria-hidden="true"></i> Cambios Políticos</span> <span>35</span></a></li>
-                            <li><a href="#"><span><i class="fa fa-angle-double-right" aria-hidden="true"></i> Brigada Médica</span> <span>30</span></a></li>
-                            <li><a href="#"><span><i class="fa fa-angle-double-right" aria-hidden="true"></i> Promociones</span> <span>13</span></a></li>
+                            <li><a routerLink="/categoria-noticias"><span><i class="fa fa-angle-double-right" aria-hidden="true"></i> Cambios Políticos</span> <span>35</span></a></li>
+                            <li><a routerLink="/categoria-noticias"><span><i class="fa fa-angle-double-right" aria-hidden="true"></i> Brigada Médica</span> <span>30</span></a></li>
+                            <li><a routerLink="/categoria-noticias"><span><i class="fa fa-angle-double-right" aria-hidden="true"></i> Promociones</span> <span>13</span></a></li>
                         </ul>
                     </div>
 

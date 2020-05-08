@@ -104,68 +104,29 @@
 
           <div class="featured-video-posts">
               <div class="row">
-                  <div class="col-12">
-                      
-                      <div class=" col-lg-4">
+                <div class="col-12">
+
+                    <div *ngFor="let medica of brigada">
+                      <div class="col-lg-4">
                       <!-- Single Featured Post -->
                       <div class="single-featured-post">
                           <!-- Thumbnail -->
                           <div class="post-thumbnail mb-50">
-                              <img src="img/bg-img/22.jpg" alt="">                                    
+                              <img src="{{medica.image}}" alt="">
                           </div>
                           <!-- Post Contetnt -->
                           <div class="post-content">
                               <div class="post-meta">
-                                  <a href="#">MAY 8, 2018</a>
-                                  <a href="archive.html">lifestyle</a>
+                                  <a >{{medica.date}}</a>
+                                  <a >{{medica.cat}}</a>
                               </div>
-                              <a href="video-post.html" class="post-title">A Closer Look At Our Front Porch Items From Lowe’s</a>
-                              <p>Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium</p>
+                              <a routerLink="/noticia" class="post-title">{{medica.title}}</a>
+                              <p>{{medica.descr}}</p>
+                          </div>
                           </div>
                           </div>
                       </div>
                   </div>
-
-                  <div class="col-12 col-lg-4">
-                      <!-- Single Featured Post -->
-                      <div class="single-featured-post">
-                          <!-- Thumbnail -->
-                          <div class="post-thumbnail mb-50">
-                              <img src="img/bg-img/22.jpg" alt="">                                    
-                          </div>
-                          <!-- Post Contetnt -->
-                          <div class="post-content">
-                              <div class="post-meta">
-                                  <a href="#">MAY 8, 2018</a>
-                                  <a href="archive.html">lifestyle</a>
-                              </div>
-                              <a href="video-post.html" class="post-title">A Closer Look At Our Front Porch Items From Lowe’s</a>
-                              <p>Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium</p>
-                          </div>
-                          
-                      </div>
-                  </div>
-
-                  <div class="col-12 col-lg-4">
-                      <!-- Single Featured Post -->
-                      <div class="single-featured-post">
-                          <!-- Thumbnail -->
-                          <div class="post-thumbnail mb-50">
-                              <img src="img/bg-img/22.jpg" alt="">                                    
-                          </div>
-                          <!-- Post Contetnt -->
-                          <div class="post-content">
-                              <div class="post-meta">
-                                  <a href="#">MAY 8, 2018</a>
-                                  <a href="archive.html">lifestyle</a>
-                              </div>
-                              <a href="video-post.html" class="post-title">A Closer Look At Our Front Porch Items From Lowe’s</a>
-                              <p>Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium</p>
-                          </div>
-                          
-                      </div>
-                  </div>
-
                   
               </div>
           </div>
@@ -187,16 +148,16 @@
 
           <!-- Catagory Widget -->
           <ul class="catagory-widgets">
-              <li><a href="#"><span><i class="fa fa-angle-double-right" aria-hidden="true"></i> Cambios Políticos</span> <span>35</span></a></li>
-              <li><a href="#"><span><i class="fa fa-angle-double-right" aria-hidden="true"></i> Brigada Médica</span> <span>30</span></a></li>
-              <li><a href="#"><span><i class="fa fa-angle-double-right" aria-hidden="true"></i> Promociones</span> <span>13</span></a></li>
+              <li><a routerLink="/categoria-noticias"><span><i class="fa fa-angle-double-right" aria-hidden="true"></i> Cambios Políticos</span> <span>35</span></a></li>
+              <li><a routerLink="/categoria-noticias"><span><i class="fa fa-angle-double-right" aria-hidden="true"></i> Brigada Médica</span> <span>30</span></a></li>
+              <li><a routerLink="/categoria-noticias"><span><i class="fa fa-angle-double-right" aria-hidden="true"></i> Promociones</span> <span>13</span></a></li>
               
           </ul>
       </div>
 
       <!-- Sidebar Widget -->
       <div class="single-sidebar-widget">
-        <img src="assets/img/portfolio/folio01.jpg" alt="">
+        <img src="assets/img/portfolio/birthday.png" alt="">
       </div>
 
       <!-- Sidebar Widget -->
@@ -207,16 +168,20 @@
           </div>
 
           <!-- Single YouTube Channel -->
-          <div class="single-youtube-channel d-flex">
-              <div class="youtube-channel-thumbnail">
-                  <img src="assets/img/team/team01.jpg" alt="">
-              </div>
-              <div class="youtube-channel-content">
-                  <a href="single-post.html" class="channel-title">Jhonny Stan</a>
-                  <p>19 de Marzo</p>
-              </div>
-          </div>
+          <div *ngFor="let birthday of birthdays">
 
+            <div class="single-youtube-channel d-flex">
+                <div class="youtube-channel-thumbnail">
+                    <img src="{{birthday.image}}" alt="">
+                </div>
+                <div class="youtube-channel-content">
+                    <a href="single-post.html" class="channel-title">{{birthday.name}}</a>
+                    <p>{{birthday.date}}</p>
+                </div>
+            </div>
+            
+          </div>
+        
           <!-- Single YouTube Channel -->
           <div class="single-youtube-channel d-flex">
               <div class="youtube-channel-thumbnail">

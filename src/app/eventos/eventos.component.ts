@@ -143,23 +143,7 @@ abril:any=[{
   loadEvents(){
     let month:String =this.monthPicker._viewDate.toString().substring(4,7);
     console.log(month);
-    /*switch(month){
-      case "Jan":{
-        console.log(this.events);
-        this.events=this.enero;
-        console.log(this.events);
-      }
-      case "Feb":{
-        this.events=this.febrero;  
-      }
-      case "Mar":{
-        this.events=this.marzo;  
-      }
-      case "Apr":{
-        this.events=this.abril;
-      }
-      default:
-    }*/
+    
     if(month=="Jan")
       this.events=this.enero;
     else if(month=="Feb")
