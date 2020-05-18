@@ -39,7 +39,7 @@
     "minireset.css": "~0.0.4",
     "ng2-smart-table": "^1.6.0",
     "ngx-pagination": "^5.0.0",
-    "node-sass": "^4.13.1",
+    "node-sass": "^4.14.1",
     "resize-observer-polyfill": "^1.5.1",
     "rxjs": "~6.5.4",
     "simple-angular-calendar": "^1.0.1",

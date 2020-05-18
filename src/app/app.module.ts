@@ -22,12 +22,11 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { IgxCalendarModule } from 'igniteui-angular';
 import {Ng2SmartTableModule} from 'ng2-smart-table';
 
-
-import { CalendarModule, DateAdapter } from 'angular-calendar';
-import { adapterFactory } from 'angular-calendar/date-adapters/date-fns';
 import { SugerenciasComponent } from './sugerencias/sugerencias.component';
 import { ReglamentoComponent } from './reglamento/reglamento.component';
 import { DirectorioComponent } from './directorio/directorio.component';
+
+import { HashLocationStrategy, LocationStrategy  } from '@angular/common';
 
 @NgModule({
   declarations: [
@@ -56,7 +55,9 @@ import { DirectorioComponent } from './directorio/directorio.component';
     IgxCalendarModule,
     Ng2SmartTableModule
   ],
-  providers: [],
+  providers: [
+    {provide : LocationStrategy , useClass: HashLocationStrategy}
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule {
