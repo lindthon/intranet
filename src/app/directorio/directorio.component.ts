@@ -1,4 +1,5 @@
 import { Component,HostListener,ViewChild, OnInit } from '@angular/core';
+import { HttpClient, HttpResponse, HttpErrorResponse } from '@angular/common/http';
 
 @Component({
   selector: 'app-directorio',
@@ -8,7 +9,12 @@ import { Component,HostListener,ViewChild, OnInit } from '@angular/core';
 export class DirectorioComponent implements OnInit {
 
 
-  constructor() { }
+  constructor(public  _http: HttpClient) { 
+    this.getEmpleados(_http)
+
+
+
+  }
 
   ngOnInit(): void {
   }
@@ -118,6 +124,17 @@ export class DirectorioComponent implements OnInit {
 
     // ... list of items
   ];
+  empleados: any;
+
+   //Metodo para obtener empleados
+  getEmpleados(_http: HttpClient){
+    this._http.get('http://127.0.0.1:8000/getEmpleado/')
+      .subscribe(
+        data=>console.log(data)
+        ,(err: HttpErrorResponse)=>{console.log("Un error ha ocurrido")}
+        ,()=>console.log("solicitud finalizada OK")
+        )
+  }
 
   onDeleteConfirm(event) {
     console.log("Delete Event In Console")

@@ -8,6 +8,23 @@ from django.views.decorators.csrf import csrf_exempt
 
 # Create your views here
 # .
+#API de Servicios del directorio de empleados
+def get_Empleado(request):
+    if request.method=='GET':
+        response = dict()
+        data = Empleado.objects.all()
+        contador = 0
+        for empleado in data:
+            res = dict()
+            contador=contador+1
+            response["Empleado "+ str(contador)]=res
+            res["Nombre "]=empleado.nombre
+            res["Apellido "]=empleado.apellido
+            res["Ubicaion"]=empleado.ubicacion
+    return JsonResponse(response)
+
+
+
 #API de Servicios de sugerencias
 @csrf_exempt
 def postCreateTipoSugerencia(request):
