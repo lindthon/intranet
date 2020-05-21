@@ -18,9 +18,9 @@ def get_Empleado(request):
             res = dict()
             contador=contador+1
             response["Empleado "+ str(contador)]=res
-            res["Nombre "]=empleado.nombre
-            res["Apellido "]=empleado.apellido
-            res["Ubicaion"]=empleado.ubicacion
+            res["Nombre"]=empleado.nombre +'\t'+ empleado.apellido
+            res["Apellido"]=empleado.apellido
+            res["Ubicacion"]=empleado.ubicacion
     return JsonResponse(response)
 
 
