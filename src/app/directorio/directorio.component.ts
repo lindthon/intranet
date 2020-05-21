@@ -32,13 +32,13 @@ export class DirectorioComponent implements OnInit {
       Nombre: {
         title: 'Full Name',
       },      
-      Apellido: {
+      Correo: {
         title: 'Email',
       },
       Ubicacion: {
         title: 'Oficina',
       },
-      ext: {
+      Extension: {
         title: 'Exten sion',
       }
     },
@@ -131,7 +131,6 @@ export class DirectorioComponent implements OnInit {
     console.log("afterinit");
     setTimeout(() => {
       
-      console.log("sss "+ this.empleados);
 
     }, 1000);
     
@@ -140,7 +139,7 @@ export class DirectorioComponent implements OnInit {
 
    //Metodo para obtener empleados
   getEmpleados(_http: HttpClient){
-    this._http.get('http://127.0.0.1:8000/getEmpleado/')
+    this._http.get('http://127.0.0.1:8000/getContacto/')
       .subscribe(
         (data)=>{console.log(data);
           this.empleados=data;
@@ -148,8 +147,7 @@ export class DirectorioComponent implements OnInit {
             let empleado = this.empleados[key];
             this.data2.push(empleado);
             this.source = new LocalDataSource(this.data2);
-        }
-            
+        }   
         }
         ,(err: HttpErrorResponse)=>{console.log("Un error ha ocurrido")}
         ,()=>console.log("solicitud finalizada OK")

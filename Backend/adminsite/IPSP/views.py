@@ -8,6 +8,25 @@ from django.views.decorators.csrf import csrf_exempt
 
 # Create your views here
 # .
+
+
+def get_Contacto(request):
+    if request.method=='GET':
+        response = dict()
+        data = Contacto.objects.all()
+        contador = 0
+        for contacto in data:
+            res = dict()
+            contador=contador+1
+            response["Contacto "+ str(contador)]=res
+            res["Nombre"]=contacto.nombre 
+            res["Correo"]=contacto.correo
+            res["Ubicacion"]=contacto.ubicacion
+            res["Extension"]=contacto.extension
+
+    return JsonResponse(response)
+
+
 #API de Servicios del directorio de empleados
 def get_Empleado(request):
     if request.method=='GET':

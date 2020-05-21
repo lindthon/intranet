@@ -12,4 +12,8 @@ urlpatterns = [
     #Api Empleados
     path('getEmpleado/', get_Empleado),
 
+    #Api Empleados
+    path('getContacto/', get_Contacto),
+
+
 ]
