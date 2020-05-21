@@ -26,6 +26,8 @@ import { SugerenciasComponent } from './sugerencias/sugerencias.component';
 import { ReglamentoComponent } from './reglamento/reglamento.component';
 import { DirectorioComponent } from './directorio/directorio.component';
 
+import { HttpClientModule } from '@angular/common/http';
+
 import { HashLocationStrategy, LocationStrategy  } from '@angular/common';
 
 @NgModule({
@@ -53,7 +55,8 @@ import { HashLocationStrategy, LocationStrategy  } from '@angular/common';
     FontAwesomeModule,
     BrowserAnimationsModule,
     IgxCalendarModule,
-    Ng2SmartTableModule
+    Ng2SmartTableModule,
+    HttpClientModule
   ],
   providers: [
     {provide : LocationStrategy , useClass: HashLocationStrategy}

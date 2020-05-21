@@ -1,4 +1,6 @@
 import { Component,HostListener,ViewChild, OnInit } from '@angular/core';
+import { HttpClient, HttpResponse, HttpErrorResponse } from '@angular/common/http';
+import {  LocalDataSource } from 'ng2-smart-table';
 
 @Component({
   selector: 'app-directorio',
@@ -7,11 +9,18 @@ import { Component,HostListener,ViewChild, OnInit } from '@angular/core';
 })
 export class DirectorioComponent implements OnInit {
 
+  empleados: any;
+  data2=[]
 
-  constructor() { }
 
-  ngOnInit(): void {
+  source: LocalDataSource ;
+  constructor(public  _http: HttpClient) { 
+    this.getEmpleados(_http);
+
+
   }
+
+ 
    settings = {
     actions: {
       delete: false,
@@ -20,22 +29,21 @@ export class DirectorioComponent implements OnInit {
     },
     columns: {
       
-      name: {
+      Nombre: {
         title: 'Full Name',
       },      
-      email: {
+      Apellido: {
         title: 'Email',
       },
-      office: {
+      Ubicacion: {
         title: 'Oficina',
       },
       ext: {
-        title: 'Extension',
+        title: 'Exten sion',
       }
     },
   };
-
-  data = [
+  datas = [
     {
       id: 1,
       name: "Leanne Graham",      
@@ -119,6 +127,35 @@ export class DirectorioComponent implements OnInit {
     // ... list of items
   ];
 
+  ngAfterViewInit() {
+    console.log("afterinit");
+    setTimeout(() => {
+      
+      console.log("sss "+ this.empleados);
+
+    }, 1000);
+    
+  }
+
+
+   //Metodo para obtener empleados
+  getEmpleados(_http: HttpClient){
+    this._http.get('http://127.0.0.1:8000/getEmpleado/')
+      .subscribe(
+        (data)=>{console.log(data);
+          this.empleados=data;
+          for (let key in this.empleados) {
+            let empleado = this.empleados[key];
+            this.data2.push(empleado);
+            this.source = new LocalDataSource(this.data2);
+        }
+            
+        }
+        ,(err: HttpErrorResponse)=>{console.log("Un error ha ocurrido")}
+        ,()=>console.log("solicitud finalizada OK")
+        )
+  }
+
   onDeleteConfirm(event) {
     console.log("Delete Event In Console")
     console.log(event);
@@ -140,5 +177,7 @@ export class DirectorioComponent implements OnInit {
     console.log(event);
   }
   
+  ngOnInit(): void {
 
+  }
 }
