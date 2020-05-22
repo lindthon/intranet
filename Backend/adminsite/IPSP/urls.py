@@ -15,5 +15,8 @@ urlpatterns = [
     #Api Empleados
     path('getContacto/', get_Contacto),
 
+     #Api Eventos
+    path('getEvento/', get_Eventos),
+
 
 ]

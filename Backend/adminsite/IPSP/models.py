@@ -21,8 +21,13 @@ class Buzon_sugerencia(models.Model):
     correo = models.CharField(max_length=65)
     ubicacion = models.CharField(max_length=55) 
 
+class Mes_Evento(models.Model):
+    id_mes = models.AutoField(primary_key=True )
+    mes = models.CharField(max_length=55)
+
 class Evento(models.Model):
     id_evento = models.AutoField(primary_key=True )
+    mes = models.ForeignKey(Mes_Evento, on_delete=models.CASCADE)
     fecha = models.DateField(blank=True, null=True)
     titulo = models.CharField(max_length=55)
     hora = models.CharField(max_length=55)

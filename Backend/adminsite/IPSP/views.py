@@ -8,8 +8,30 @@ from django.views.decorators.csrf import csrf_exempt
 
 # Create your views here
 # .
+#API de Eventos
+def get_Eventos(request):
+    if request.method=='GET':
+        response = dict()
+        data = Contacto.objects.all()
+        id = request.GET.get("fecha")
+        mesEvento = Mes_Evento.objects.get(mes=id)
+        evento = Evento.objects.filter(mes = mesEvento.id_mes)
+        contador =0 
+        for e in evento:
+            res = dict()
+            contador = contador +1
+            response["Evento " + str(contador)]=res
+            res['day'] = 12
+            res['month'] = "Enero"
+            res['year'] = 2020
+            res['time'] = 1
+            res['title'] = e.titulo
+            res['desc'] = e.descripcion
+            res['place']= e.lugar
+    return JsonResponse(response)
 
 
+#API de Servicios del directorio de empleados
 def get_Contacto(request):
     if request.method=='GET':
         response = dict()
@@ -27,7 +49,6 @@ def get_Contacto(request):
     return JsonResponse(response)
 
 
-#API de Servicios del directorio de empleados
 def get_Empleado(request):
     if request.method=='GET':
         response = dict()
