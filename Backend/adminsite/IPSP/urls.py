@@ -10,13 +10,12 @@ urlpatterns = [
     path('getSugerencia/', get_Sugerencia),
 
     #Api Empleados
-    path('getEmpleado/', get_Empleado),
+    path('getEmpleadoBirthday/', get_Empleado),
 
     #Api Empleados
     path('getContacto/', get_Contacto),
 
      #Api Eventos
     path('getEvento/', get_Eventos),
-
 
 ]

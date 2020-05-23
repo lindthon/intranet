@@ -3,7 +3,7 @@ from django.http import HttpResponse, JsonResponse, HttpResponseRedirect
 
 from .models import *
 import json
-
+import datetime
 from django.views.decorators.csrf import csrf_exempt
 
 # Create your views here
@@ -21,10 +21,10 @@ def get_Eventos(request):
             res = dict()
             contador = contador +1
             response["Evento " + str(contador)]=res
-            res['day'] = 12
-            res['month'] = "Enero"
-            res['year'] = 2020
-            res['time'] = 1
+            res['day'] = e.fecha.day
+            res['month'] = id
+            res['year'] = e.fecha.year
+            res['time'] = e.hora
             res['title'] = e.titulo
             res['desc'] = e.descripcion
             res['place']= e.lugar
@@ -54,13 +54,21 @@ def get_Empleado(request):
         response = dict()
         data = Empleado.objects.all()
         contador = 0
+        today = datetime.date.today()
+
+        month_number = today.month
+        datetime_object = datetime.datetime.strptime(str(month_number), "%m")
+        month_name = datetime_object.strftime("%b")
+
         for empleado in data:
             res = dict()
             contador=contador+1
-            response["Empleado "+ str(contador)]=res
-            res["Nombre"]=empleado.nombre +'\t'+ empleado.apellido
-            res["Apellido"]=empleado.apellido
-            res["Ubicacion"]=empleado.ubicacion
+            if(empleado.fecha_nacimiento.month==today.month):
+                response["Empleado "+ str(contador)]=res
+                res["name"]=empleado.nombre +'\t'+ empleado.apellido
+                res["date"]=str(empleado.fecha_nacimiento.day) +" de "+ month_name
+                res["image"]=empleado.imagen.url
+
     return JsonResponse(response)
 
 

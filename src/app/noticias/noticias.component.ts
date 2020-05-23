@@ -1,5 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { NgbCarousel, NgbSlideEvent, NgbSlideEventSource } from '@ng-bootstrap/ng-bootstrap';
+import { HttpClient, HttpResponse, HttpErrorResponse } from '@angular/common/http';
 
 @Component({
   selector: 'app-noticias',
@@ -90,7 +91,8 @@ export class NoticiasComponent implements OnInit {
     "descr":"Excepteur sint occaecat cupidatat non proident, sunt in culpa officia deserunt mollit anim id est laborum. Sed ut perspiciatis lorem150"
   }]
 
-  birthdays:any=[{
+  birthdays:any=[
+    /*{
     "image":"assets/img/team/team01.jpg",
     "name":"Jhonny Stan",
     "date":"19 de Marzo"
@@ -114,16 +116,35 @@ export class NoticiasComponent implements OnInit {
     "image":"assets/img/team/team01.jpg",
     "name":"Maria Rivadeneira",
     "date":"30 de Marzo"
-  }]
+  }*/]
 
-  constructor() { }
+  constructor(public _http: HttpClient) { }
 
   ngOnInit(): void {
+    this.getCumpleaniosEmpleados(this._http)
   }
 
   
 
   @ViewChild('carousel', {static : true}) carousel: NgbCarousel;
+  data2 = [];
+  empleados: any;
+  getCumpleaniosEmpleados(_http:HttpClient){
+    this._http.get('http://127.0.0.1:8000/getEmpleadoBirthday/')
+    .subscribe(
+      (data)=>{console.log(data);
+        this.empleados=data;
+        for (let key in this.empleados) {
+          let empleado = this.empleados[key];
+          console.log(empleado);
+          this.birthdays.push(empleado);
+      }   
+      }
+      ,(err: HttpErrorResponse)=>{console.log("Un error ha ocurrido")}
+      ,()=>console.log("solicitud finalizada OK")
+      )
+
+  }
 
   togglePaused() {
     if (this.paused) {
