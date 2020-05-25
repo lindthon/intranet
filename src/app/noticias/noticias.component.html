@@ -36,7 +36,7 @@
                         <div class="single-featured-post">
                             <!-- Thumbnail -->
                             <div class="post-thumbnail mb-50">
-                                <img src="{{ultima.image}}" alt="">                                    
+                                <img src="http://127.0.0.1:8000{{ultima.image}}" alt="">                                    
                             </div>
                             <!-- Post Contetnt -->
                             <div class="post-content">
@@ -56,41 +56,37 @@
       </div>
 
       <!-- Feature Video Posts Area -->
-      <div class="feature-video-posts mb-30">
+      <div *ngFor="let cat of arrayCategoria" class="feature-video-posts mb-30">
           <!-- Section Title -->
           <div class="section-heading">
-              <h5>Cambios políticos</h5>
+              <h5>{{cat}}</h5>
           </div>
 
-          <div class="featured-video-posts">
+          <div *ngFor="let noticias of arrayNoticiasCate2" class="featured-video-posts">
               <div class="row">
                   <div class="col-12">
 
-                    <div *ngFor="let cambio of cambios">
+                    <div >
                       <div class="col-lg-4">
                       <!-- Single Featured Post -->
                       <div class="single-featured-post">
                           <!-- Thumbnail -->
                           <div class="post-thumbnail mb-50">
-                              <img src="{{cambio.image}}" alt="">                                    
+                              <img src="http://127.0.0.1:8000{{noticias.image}}" alt="">                                    
                           </div>
                           <!-- Post Contetnt -->
                           <div class="post-content">
                               <div class="post-meta">
-                                  <a >{{cambio.date}}</a>
-                                  <a >{{cambio.cat}}</a>
+                                  <a >{{noticias.date}}</a>
+                                  <a >{{noticias.cat}}</a>
                               </div>
-                              <a routerLink="/noticia" class="post-title">{{cambio.title}}</a>
-                              <p>{{cambio.descr}}</p>
+                              <a routerLink="/noticia" class="post-title">{{noticias.title}}</a>
+                              <p>{{noticias.descr}}</p>
                           </div>
                           </div>
                       </div>
                   </div>
-                  </div>
-                  
-
-
-                  
+                  </div>   
               </div>
           </div>
       </div>
@@ -112,7 +108,7 @@
                       <div class="single-featured-post">
                           <!-- Thumbnail -->
                           <div class="post-thumbnail mb-50">
-                              <img src="{{medica.image}}" alt="">
+                              <img src="http://127.0.0.1:8000{{medica.image}}" alt="">
                           </div>
                           <!-- Post Contetnt -->
                           <div class="post-content">
@@ -131,8 +127,6 @@
               </div>
           </div>
       </div>
-
-
   </div>
 
   <!-- >>>>>>>>>>>>>>>>>>>>
@@ -140,17 +134,15 @@
   <<<<<<<<<<<<<<<<<<<<< -->
   <div class="post-sidebar-area right-sidebar mt-30 mb-30 box-shadow">
       <!-- Sidebar Widget -->
-      <div class="single-sidebar-widget p-30">
+      <div  class="single-sidebar-widget p-30">
           <!-- Section Title -->
           <div class="section-heading">
               <h5>Categorías</h5>
           </div>
 
           <!-- Catagory Widget -->
-          <ul class="catagory-widgets">
-              <li><a routerLink="/categoria-noticias"><span><i class="fa fa-angle-double-right" aria-hidden="true"></i> Cambios Políticos</span> <span>35</span></a></li>
-              <li><a routerLink="/categoria-noticias"><span><i class="fa fa-angle-double-right" aria-hidden="true"></i> Brigada Médica</span> <span>30</span></a></li>
-              <li><a routerLink="/categoria-noticias"><span><i class="fa fa-angle-double-right" aria-hidden="true"></i> Promociones</span> <span>13</span></a></li>
+          <ul *ngFor="let cat of categorias" class="catagory-widgets">
+              <li><a routerLink="/categoria-noticias"><span><i class="fa fa-angle-double-right" aria-hidden="true"></i> {{cat.categoria}}</span> <span>35</span></a></li>
               
           </ul>
       </div>

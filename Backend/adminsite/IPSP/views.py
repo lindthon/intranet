@@ -8,6 +8,94 @@ from django.views.decorators.csrf import csrf_exempt
 
 # Create your views here
 # .
+#Api de noticias 
+def get_UltimaNoticias(request):
+    if request.method=='GET':
+        response = dict()
+        noticiasAcutales = Noticia.objects.all()
+        contador =0 
+        today = datetime.date.today()
+        temp =0
+        for noticia in noticiasAcutales:
+            res = dict()
+            contador = contador +1
+            if(noticia.fecha.month==today.month):
+                response["Notica " + str(contador)]=res
+                res['title'] = noticia.titulo
+                res['descr'] = noticia.descripcion
+                res['date'] = str(noticia.fecha.month)+" "+str(noticia.fecha.day)
+                res['image'] = noticia.imagen.url
+                res['id'] = noticia.id_noticia
+                temp = Tipo_noticia.objects.get(id_tiponot=noticia.tipo_noticia_id)
+                res['cat'] = temp.categoria
+    return JsonResponse(response)
+
+def get_NoticiaBrigada(request):
+    if request.method=='GET':
+        response = dict()
+        noticiaBrigada = Noticia.objects.filter(tipo_noticia = 1)#Codigo de Noticia Brigada
+        contador =0 
+        for noticia in noticiaBrigada:
+            res = dict()
+            contador = contador +1
+            response["Notica " + str(contador)]=res
+            res['title'] = noticia.titulo
+            res['descr'] = noticia.descripcion
+            res['date'] = str(noticia.fecha.month)+" "+str(noticia.fecha.day)
+            res['image'] = noticia.imagen.url
+            res['id'] = noticia.id_noticia
+            res['cat'] = "Brigada de Seguridad"
+    return JsonResponse(response)
+
+def get_NoticiaPorCategoria(request):
+    if request.method=='GET':
+        response = dict()
+        categorias = Tipo_noticia.objects.all()
+        for categoria in categorias:
+            noticias = Noticia.objects.filter(tipo_noticia = categoria.id_tiponot)#Codigo de Noticia Brigada
+            res = dict()
+            response[categoria.categoria]=res
+            for noticia in noticias:
+                new = dict()
+                res[noticia.id_noticia] = new
+                new['title'] = noticia.titulo
+                new['descr'] = noticia.descripcion
+                new['date'] = str(noticia.fecha.month)+" "+str(noticia.fecha.day)
+                new['image'] = noticia.imagen.url
+                new['cat'] = categoria.categoria
+    return JsonResponse(response)
+def get_NoticiaCambiosPoliticos(request):
+    if request.method=='GET':
+        response = dict()
+        noticiaBrigada = Noticia.objects.filter(tipo_noticia = 2)#Codigo de Noticia Cambios Politicos
+        contador =0 
+        for noticia in noticiaBrigada:
+            res = dict()
+            contador = contador +1
+            response["Notica " + str(contador)]=res
+            res['title'] = noticia.titulo
+            res['descr'] = noticia.descripcion
+            res['date'] = str(noticia.fecha.month)+" "+str(noticia.fecha.day)
+            res['image'] = noticia.imagen.url
+            res['id'] = noticia.id_noticia
+            res['cat'] = "Cambios Politicos"
+    return JsonResponse(response)
+
+def get_CategoriaNoticia(request):
+    if request.method=='GET':
+        response=dict()
+        categorias = Tipo_noticia.objects.all()
+        contador = 0
+        for categoria in categorias:
+            res = dict()
+            contador=contador+1
+            response["Categoria "+ str(contador)]=res
+            res["id"]=categoria.id_tiponot 
+            res["categoria"]=categoria.categoria
+
+    return JsonResponse(response)
+
+
 #API de Eventos
 def get_Eventos(request):
     if request.method=='GET':

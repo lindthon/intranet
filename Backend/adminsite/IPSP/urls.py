@@ -18,4 +18,13 @@ urlpatterns = [
      #Api Eventos
     path('getEvento/', get_Eventos),
 
+  #Api Noticias
+    path('getNoticiasBrigada/',get_NoticiaBrigada),
+    path('getNoticiasCambio/',get_NoticiaCambiosPoliticos),
+    path('getCategoria/',get_CategoriaNoticia),
+    path('getUltimasNoticias/',get_UltimaNoticias),
+    path('getNoticiasPorCategoria/',get_NoticiaPorCategoria),
+
+    
+
 ]
