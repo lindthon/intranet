@@ -62,25 +62,24 @@
               <h5>{{cat}}</h5>
           </div>
 
-          <div *ngFor="let noticias of arrayNoticiasCate2" class="featured-video-posts">
-              <div class="row">
+          <div  class="featured-video-posts">
+              <div  class="row">
                   <div class="col-12">
-
-                    <div >
-                      <div class="col-lg-4">
+                    <div *ngFor="let noticias of arrayNoticiasCate" >
+                      <div  *ngIf="noticias.cat === cat" class="col-lg-4">
                       <!-- Single Featured Post -->
-                      <div class="single-featured-post">
+                      <div  class="single-featured-post">
                           <!-- Thumbnail -->
                           <div class="post-thumbnail mb-50">
                               <img src="http://127.0.0.1:8000{{noticias.image}}" alt="">                                    
                           </div>
                           <!-- Post Contetnt -->
-                          <div class="post-content">
+                          <div  class="post-content">
                               <div class="post-meta">
                                   <a >{{noticias.date}}</a>
                                   <a >{{noticias.cat}}</a>
                               </div>
-                              <a routerLink="/noticia" class="post-title">{{noticias.title}}</a>
+                              <a [routerLink]="['/noticia',noticias.id , 'details']"  class="post-title" >{{noticias.title}}</a>
                               <p>{{noticias.descr}}</p>
                           </div>
                           </div>
@@ -113,7 +112,7 @@
                           <!-- Post Contetnt -->
                           <div class="post-content">
                               <div class="post-meta">
-                                  <a >{{medica.date}}</a>
+                                  <a >Matrrrrr+{{medica.date}}</a>
                                   <a >{{medica.cat}}</a>
                               </div>
                               <a routerLink="/noticia" class="post-title">{{medica.title}}</a>

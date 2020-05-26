@@ -16,7 +16,7 @@ const routes: Routes = [
   { path: "",component:IndexComponent},
   { path: "noticias",component:NoticiasComponent},
   { path: "categoria-noticias",component:CategoriaNoticiasComponent},
-  { path: "noticia",component:NoticiaComponent},
+  { path: "noticia/:id/details",component:NoticiaComponent, pathMatch: 'full'},
   { path: "eventos",component:EventosComponent},
   { path: "calendario",component:CalendarComponent},
   { path: "sugerencias",component:SugerenciasComponent},

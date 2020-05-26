@@ -1,5 +1,8 @@
-import { Component, OnInit } from '@angular/core';
-
+import { Component, OnInit, Input } from '@angular/core';
+import { ActivatedRoute,Params } from '@angular/router';
+import { NoticiasComponent } from '../noticias/noticias.component';
+import {Observable} from 'rxjs';
+import {map} from 'rxjs/operators';
 @Component({
   selector: 'app-noticia',
   templateUrl: './noticia.component.html',
@@ -20,9 +23,16 @@ export class NoticiaComponent implements OnInit {
       "descr":"Duis tincidunt turpis sodales, tincidunt nisi et, auctor nisi. Curabitur vulputate sapien eu metus ultricies fermentum nec vel augue. Maecenas eget lacinia est."
     }
   }
-  constructor() { }
 
+  @Input('childMessage') child: String;
+  constructor(public activatedRoute: ActivatedRoute) { }
+  @Input() noticias: NoticiasComponent;
+  state$: any;
+  car: any;
   ngOnInit(): void {
+    this.state$ = this.activatedRoute.snapshot.params['details'];
+    this.car = this.activatedRoute.snapshot.params['id'];
+   console.log(this.car)
   }
 
 }

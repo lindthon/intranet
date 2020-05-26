@@ -67,7 +67,7 @@ export class NoticiasComponent implements OnInit {
     "descr":"Excepteur sint occaecat cupidatat non proident, sunt in culpa officia deserunt mollit anim id est laborum. Sed ut perspiciatis lorem150"
   }*/]
 
-  brigada:any=[/*{
+  brigada:any=[{
     "image":"assets/img/planta/camarones.jpeg",
     "date":"MAY 8, 2018",
     "cat":"Brigada Médica",
@@ -101,7 +101,7 @@ export class NoticiasComponent implements OnInit {
 
 
     
-  }*/
+  }
 
 ]
 
@@ -185,8 +185,6 @@ export class NoticiasComponent implements OnInit {
             for (let key in noticia) {
             }
          }
-          this.arrayNoticiasCate2=this.arrayNoticiasCate;
-          this.arrayNoticiasCate=[];
         }   
       }
       ,(err: HttpErrorResponse)=>{console.log("Un error ha ocurrido")}

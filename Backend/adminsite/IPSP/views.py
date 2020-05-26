@@ -63,6 +63,7 @@ def get_NoticiaPorCategoria(request):
                 new['date'] = str(noticia.fecha.month)+" "+str(noticia.fecha.day)
                 new['image'] = noticia.imagen.url
                 new['cat'] = categoria.categoria
+                new['id'] = noticia.id_noticia
     return JsonResponse(response)
 def get_NoticiaCambiosPoliticos(request):
     if request.method=='GET':
