@@ -3,6 +3,7 @@ import { ActivatedRoute,Params } from '@angular/router';
 import { NoticiasComponent } from '../noticias/noticias.component';
 import {Observable} from 'rxjs';
 import {map} from 'rxjs/operators';
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 @Component({
   selector: 'app-noticia',
   templateUrl: './noticia.component.html',
@@ -10,7 +11,7 @@ import {map} from 'rxjs/operators';
 })
 export class NoticiaComponent implements OnInit {
 
-  noticia:any={
+  noticia:any={/*
     "img":"assets/img/planta/camarones.jpeg",
     "date":"MAY 8, 2018",
     "cat":"Brigada médica",
@@ -21,18 +22,35 @@ export class NoticiaComponent implements OnInit {
       "img":"assets/img/team/team02.jpg",
       "name":"Alan Shaerer",
       "descr":"Duis tincidunt turpis sodales, tincidunt nisi et, auctor nisi. Curabitur vulputate sapien eu metus ultricies fermentum nec vel augue. Maecenas eget lacinia est."
-    }
+    }*/   
   }
 
-  @Input('childMessage') child: String;
-  constructor(public activatedRoute: ActivatedRoute) { }
-  @Input() noticias: NoticiasComponent;
-  state$: any;
-  car: any;
+  constructor( public _http: HttpClient,public activatedRoute: ActivatedRoute) { }
+
+  id: any;
   ngOnInit(): void {
-    this.state$ = this.activatedRoute.snapshot.params['details'];
-    this.car = this.activatedRoute.snapshot.params['id'];
-   console.log(this.car)
+    this.id = this.activatedRoute.snapshot.params['id'];
+   console.log(this.id);
+   this.getNoticiaByID(this._http);
+  }
+  news =[];
+  val: any;
+
+  getNoticiaByID(_http: HttpClient){
+    this._http.get('http://127.0.0.1:8000/getNoticiasByID/?id='+this.id)
+    .subscribe(
+      (data)=>{console.log(data);
+        this.val=data;
+        for (let key in this.val ) {
+          let noticia = this.val[key];
+          this.news.push(noticia);
+          console.log(noticia);
+        }   
+      }
+      ,(err: HttpErrorResponse)=>{console.log("Un error ha ocurrido")}
+      ,()=>console.log("solicitud finalizada OK")
+      )
+
   }
 
 }

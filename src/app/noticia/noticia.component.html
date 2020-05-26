@@ -6,17 +6,17 @@
     <div class="container">
         <div class="row justify-content-center">
             <!-- Post Details Content Area -->
-            <div class="col-12 col-xl-8">
+            <div *ngFor="let noti of news"class="col-12 col-xl-8">
                 <div class="post-details-content bg-white mb-30 p-30 box-shadow">
                     <div class="blog-thumb mb-30">
-                        <img src="{{noticia.img}}" alt="">
+                        <img src="http://127.0.0.1:8000{{noti.image  }}" alt="">
                     </div>
                     <div class="blog-content">
                         <div class="post-meta">
-                            <a>{{noticia.date}}</a>
-                            <a>{{noticia.cat}}</a>
+                            <a>{{noti.date}}</a>
+                            <a>{{noti.cat}}</a>
                         </div>
-                        <h4 class="post-title">{{state$}}</h4>
+                        <h4 class="post-title">{{noti.title}}</h4>
 
                         <p></p>
 
