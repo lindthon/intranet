@@ -32,9 +32,28 @@ export class NoticiaComponent implements OnInit {
     this.id = this.activatedRoute.snapshot.params['id'];
    console.log(this.id);
    this.getNoticiaByID(this._http);
+   this.getCategorias(this._http);
   }
   news =[];
   val: any;
+
+  cate: any;
+  categorias=[];
+  getCategorias(_http:HttpClient){
+    this._http.get('http://127.0.0.1:8000/getCategoria/')
+    .subscribe(
+      (data)=>{console.log(data);
+        this.cate=data;
+        for (let key in this.cate) {
+          let cate = this.cate[key];
+          console.log(cate);
+          this.categorias.push(cate);
+      }   
+      }
+      ,(err: HttpErrorResponse)=>{console.log("Un error ha ocurrido")}
+      ,()=>console.log("solicitud finalizada OK")
+      )
+  }
 
   getNoticiaByID(_http: HttpClient){
     this._http.get('http://127.0.0.1:8000/getNoticiasByID/?id='+this.id)

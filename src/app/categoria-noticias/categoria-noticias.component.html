@@ -7,7 +7,7 @@
         <div class="row h-100 align-items-center">
             <div class="col-12">
                 <div class="breadcrumb-content">
-                    <h2>Cambios Políticos</h2>
+                    <h2>{{categoria}}</h2>
                 </div>
             </div>
         </div>
@@ -24,23 +24,23 @@
                 <div class="col-12 col-xl-8">
                     <div class="archive-posts-area bg-white p-30 mb-30 box-shadow">
                         
-                         <div *ngFor="let new of news | paginate: {itemsPerPage: 7, currentPage: p}">
+                         <div *ngFor="let notic of noticias | paginate: {itemsPerPage: 7, currentPage: p}">
                         <!-- Single Catagory Post -->
                         <div class="single-catagory-post d-flex flex-wrap new-box">
                             <!-- Thumbnail -->
-                            <div class="post-thumbnail bg-img" style="background-image: url({{new.image}});">
+                            <div class="post-thumbnail bg-img" style="background-image: url(http://127.0.0.1:8000{{notic.image}});">
                                 
                             </div>
 
                             <!-- Post Contetnt -->
                             <div class="post-content">
                                 <div class="post-meta">
-                                    <a >{{new.date}}</a>
-                                    <a routerLink="/categoria-noticias">{{new.cat}}</a>
+                                    <a >{{notic.date}}</a>
+                                    <a routerLink="/categoria-noticias">{{notic.cat}}</a>
                                 </div>
-                                <a routerLink="/noticia" class="post-title">{{new.title}}</a>
+                                <a  [routerLink]="['/noticia',notic.id , 'details']" class="post-title">{{notic.title}}</a>
                                 
-                                <p>{{new.descr}}</p>
+                                <p>{{notic.descr}}</p>
                             </div>
                         </div>                        
                     </div>
@@ -62,10 +62,8 @@
                             </div>
 
                             <!-- Catagory Widget -->
-                            <ul class="catagory-widgets">
-                                <li><a routerLink="categoria-noticias"><span><i class="fa fa-angle-double-right" aria-hidden="true"></i> Cambios Políticos</span> <span>35</span></a></li>
-                                <li><a routerLink="categoria-noticias"><span><i class="fa fa-angle-double-right" aria-hidden="true"></i> Brigada Médica</span> <span>30</span></a></li>
-                                <li><a routerLink="categoria-noticias"><span><i class="fa fa-angle-double-right" aria-hidden="true"></i> Promociones</span> <span>13</span></a></li>
+                            <ul *ngFor="let cat of categorias" class="catagory-widgets">
+                                <li><a [routerLink]="['/categoria-noticias',cat.id,cat.categoria]"><span><i class="fa fa-angle-double-right" aria-hidden="true"></i> {{cat.categoria}}</span> <span>35</span></a></li>
                             </ul>
                         </div>
 

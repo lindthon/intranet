@@ -15,7 +15,7 @@ import { DirectorioComponent } from './directorio/directorio.component';
 const routes: Routes = [
   { path: "",component:IndexComponent},
   { path: "noticias",component:NoticiasComponent},
-  { path: "categoria-noticias",component:CategoriaNoticiasComponent},
+  { path: "categoria-noticias/:id/:categoria",component:CategoriaNoticiasComponent, pathMatch: 'full'},
   { path: "noticia/:id/details",component:NoticiaComponent, pathMatch: 'full'},
   { path: "eventos",component:EventosComponent},
   { path: "calendario",component:CalendarComponent},
@@ -25,7 +25,7 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  imports: [RouterModule.forRoot(routes,{onSameUrlNavigation: 'reload'})],
   exports: [RouterModule]
 })
 export class AppRoutingModule { }

@@ -25,6 +25,8 @@ urlpatterns = [
     path('getUltimasNoticias/',get_UltimaNoticias),
     path('getNoticiasPorCategoria/',get_NoticiaPorCategoria),
     path('getNoticiasByID/',get_NoticiaByID),
+    path('getTodasLasNoticiasByID/',get_TodasLasNoticiasByID),
+
 
     
 

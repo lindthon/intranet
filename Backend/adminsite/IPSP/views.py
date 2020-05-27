@@ -23,7 +23,7 @@ def get_UltimaNoticias(request):
                 response["Notica " + str(contador)]=res
                 res['title'] = noticia.titulo
                 res['descr'] = noticia.descripcion
-                res['date'] = datetime.datetime.strptime(str(noticia.fecha.month), "%m").strftime("%b")+" "+str(noticia.fecha.day)
+                res['date'] = datetime.datetime.strptime(str(noticia.fecha.month), "%m").strftime("%b")+" "+str(noticia.fecha.day)+", "+str(noticia.fecha.year)
                 res['image'] = noticia.imagen.url
                 res['id'] = noticia.id_noticia
                 temp = Tipo_noticia.objects.get(id_tiponot=noticia.tipo_noticia_id)
@@ -44,7 +44,7 @@ def get_NoticiaBrigada(request):
             res['descr'] = noticia.descripcion
             datetime_object = datetime.datetime.strptime(str(noticia.fecha.month), "%m")
             month_name = datetime_object.strftime("%b")
-            res['date'] = month_name+" "+str(noticia.fecha.day)
+            res['date'] = month_name+" "+str(noticia.fecha.day)+", "+str(noticia.fecha.year)
             res['image'] = noticia.imagen.url
             res['id'] = noticia.id_noticia
             res['cat'] = "Brigada de Seguridad"
@@ -65,11 +65,33 @@ def get_NoticiaPorCategoria(request):
                 new['descr'] = noticia.descripcion
                 datetime_object = datetime.datetime.strptime(str(noticia.fecha.month), "%m")
                 month_name = datetime_object.strftime("%b")
-                new['date'] = month_name +" "+str(noticia.fecha.day)
+                new['date'] = month_name +" "+str(noticia.fecha.day)+", "+str(noticia.fecha.year)
                 new['image'] = noticia.imagen.url
                 new['cat'] = categoria.categoria
                 new['id'] = noticia.id_noticia
     return JsonResponse(response)
+
+def get_TodasLasNoticiasByID(request):
+        if request.method=='GET':
+            response = dict()
+            id= request.GET.get("id")
+            noticias = Noticia.objects.filter(tipo_noticia = id)
+            contador =0 
+            for noticia in noticias:
+                res = dict()
+                contador = contador +1
+                response["Notica " + str(contador)]=res
+                res['title'] = noticia.titulo
+                res['descr'] = noticia.descripcion
+                datetime_object = datetime.datetime.strptime(str(noticia.fecha.month), "%m")
+                month_name = datetime_object.strftime("%b")
+                res['date'] = month_name +" "+str(noticia.fecha.day)+", "+str(noticia.fecha.year)
+                res['image'] = noticia.imagen.url
+                res['id'] = noticia.id_noticia
+                temp = Tipo_noticia.objects.get(id_tiponot=noticia.tipo_noticia_id)
+                res['cat'] = temp.categoria
+        return JsonResponse(response)
+
 
 
 def get_NoticiaByID(request):
@@ -86,7 +108,7 @@ def get_NoticiaByID(request):
                 res['descr'] = noticia.descripcion
                 datetime_object = datetime.datetime.strptime(str(noticia.fecha.month), "%m")
                 month_name = datetime_object.strftime("%b")
-                res['date'] = month_name +" "+str(noticia.fecha.day)
+                res['date'] = month_name +" "+str(noticia.fecha.day)+", "+str(noticia.fecha.year)
                 res['image'] = noticia.imagen.url
                 res['id'] = noticia.id_noticia
                 temp = Tipo_noticia.objects.get(id_tiponot=noticia.tipo_noticia_id)
@@ -104,7 +126,7 @@ def get_NoticiaCambiosPoliticos(request):
             response["Notica " + str(contador)]=res
             res['title'] = noticia.titulo
             res['descr'] = noticia.descripcion
-            res['date'] = str(noticia.fecha.month)+" "+str(noticia.fecha.day)
+            res['date'] = str(noticia.fecha.month)+" "+str(noticia.fecha.day)+", "+str(noticia.fecha.year)
             res['image'] = noticia.imagen.url
             res['id'] = noticia.id_noticia
             res['cat'] = "Cambios Politicos"
