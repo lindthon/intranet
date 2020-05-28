@@ -44,6 +44,7 @@ export class IndexComponent implements OnInit {
           console.log(empleado);
           this.empleados.push(empleado);
       }   
+  
       }
       ,(err: HttpErrorResponse)=>{console.log("Un error ha ocurrido")}
       ,()=>console.log("solicitud finalizada OK")
