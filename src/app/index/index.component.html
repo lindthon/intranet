@@ -208,19 +208,21 @@
       <div class="row centered">
         <h2 class="centered trabajadores-destacados">Trabajadores destacados</h2>
         </div>
-        
-        <div class="col-md-4 centered empl"> <img class="img img-circle" src="{{asistencia.img}}" height="120px" width="120px" alt="">
-          <h4><strong>{{asistencia.name}}</strong></h4>
-          <p class="texto">{{asistencia.label}}</p>
+      
+        <div class="col-md-4 col-sm-6 col-12 centered empl"  *ngFor="let mejor of empleados"> 
+          <img class="img img-circle" src="http://127.0.0.1:8000{{mejor.image}}" height="120px" width="120px" alt="">
+          <h4><strong>{{mejor.name}}</strong></h4>
+          <p class="texto">{{mejor.MejorEn}}</p>
         </div>
-        <div class="col-md-4 centered empl"> <img class="img img-circle" src="{{colaborativo.img}}" height="120px" width="120px" alt="">
+
+      <!-- <div class="col-md-4 centered empl"> <img class="img img-circle" src="{{colaborativo.img}}" height="120px" width="120px" alt="">
           <h4><b>{{colaborativo.name}}</b></h4>
           <p class="texto">{{colaborativo.label}}</p>
         </div>
         <div class="col-md-4 centered empl"> <img class="img img-circle" src="{{agil.img}}" height="120px" width="120px" alt="">
           <h4><b>{{agil.name}}</b></h4>
           <p class="texto">{{agil.label}}</p>                
-      </div>
+      </div>-->
     
     </div>
   </div>

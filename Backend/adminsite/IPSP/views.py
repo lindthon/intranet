@@ -210,6 +210,27 @@ def get_Empleado(request):
 
     return JsonResponse(response)
 
+def get_MejorEmpleado(request):
+     if request.method=='GET':
+        response = dict()
+        data = Empleado.objects.all()
+        contador = 0
+        today = datetime.date.today()
+        month_number = today.month
+        datetime_object = datetime.datetime.strptime(str(month_number), "%m")
+        month_name = datetime_object.strftime("%b")
+        for empleado in data:
+                res = dict()
+                contador=contador+1
+                response["Empleado "+ str(contador)]=res
+                res["name"]=empleado.nombre +'\t'+ empleado.apellido
+                res["date"]=str(empleado.fecha_nacimiento.day) +" de "+ month_name
+                res["image"]=empleado.imagen.url
+                temp = Tipo_categoria.objects.get(id_tipocat=empleado.tipo_categoria_id)
+                res["MejorEn"]=temp.categoria
+        return JsonResponse(response)
+
+
 
 
 #API de Servicios de sugerencias
