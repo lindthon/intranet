@@ -6,17 +6,17 @@
     <div class="container">
         <div class="row justify-content-center">
             <!-- Post Details Content Area -->
-            <div class="col-12 col-xl-8">
+            <div *ngFor="let noti of news"class="col-12 col-xl-8">
                 <div class="post-details-content bg-white mb-30 p-30 box-shadow">
                     <div class="blog-thumb mb-30">
-                        <img src="{{noticia.img}}" alt="">
+                        <img src="http://127.0.0.1:8000{{noti.image}}" alt="">
                     </div>
                     <div class="blog-content">
                         <div class="post-meta">
-                            <a>{{noticia.date}}</a>
-                            <a>{{noticia.cat}}</a>
+                            <a>{{noti.date}}</a>
+                            <a>{{noti.cat}}</a>
                         </div>
-                        <h4 class="post-title">{{noticia.title}}</h4>
+                        <h4 class="post-title">{{noti.title}}</h4>
 
                         <p></p>
 
@@ -40,16 +40,16 @@
 
                         <p>Mauris nisi arcu, consectetur convallis fringilla quis, posuere ac mauris. Ut in placerat lorem. Donec cursus malesuada nibhem, eget consectetur posuere sed. Suspendisse auctor nec diamet consectetur. Etiam ac maurised nisib tincidunt viverra. Sed nulla lacus, convallis vel nunc sed, fringilla venenatis neque.</p>
 
-                        <blockquote>
+                       <!-- <blockquote>
                             <h6 class="quote-text">{{noticia.quote.quote}}</h6>
                             <h6 class="quote-name">{{noticia.quote.name}}</h6>
-                        </blockquote>
+                        </blockquote>-->
 
                         <p>Phasellus laoreet mattis ultrices. Integer ex sem, ultrices eu sem in, laoreet vehicula ligula. Phasellus quistor blandit salah convallis augue. Sed velot dictum sapient. In pulvinar libero turpis. Quisque facilisis bigbang consenti. Nullam bendumaz, massan consequat in gravida porttitor, aguet lacus condimentum mauris, id blandit quam augue eget mana. Etiam denim jeans lacus, nascetur auge bibendum vel pulvinar viverra, mattis sit amet mi. Mauris fringilla, ex vitae maximus fringilla, neque sapien maximus justo, cursus risus neque sed nibh. Donec at urna eros scelerisque non nibh sed.</p>
 
                         
 
-                        <!-- Post Author -->
+                        <!-- Post Author 
                         <div class="post-author d-flex align-items-center">
                             <div class="post-author-thumb">
                                 <img src="{{noticia.author.img}}" alt="">
@@ -58,7 +58,7 @@
                                 <a class="author-name">{{noticia.author.name}}</a>
                                 <p>{{noticia.author.descr}}</p>
                             </div>
-                        </div>
+                        </div>-->
                     </div>
                 </div>
 
@@ -82,10 +82,8 @@
                         </div>
 
                         <!-- Catagory Widget -->
-                        <ul class="catagory-widgets">
-                            <li><a routerLink="/categoria-noticias"><span><i class="fa fa-angle-double-right" aria-hidden="true"></i> Cambios Políticos</span> <span>35</span></a></li>
-                            <li><a routerLink="/categoria-noticias"><span><i class="fa fa-angle-double-right" aria-hidden="true"></i> Brigada Médica</span> <span>30</span></a></li>
-                            <li><a routerLink="/categoria-noticias"><span><i class="fa fa-angle-double-right" aria-hidden="true"></i> Promociones</span> <span>13</span></a></li>
+                        <ul *ngFor="let cat of categorias" class="catagory-widgets">
+                            <li><a [routerLink]="['/categoria-noticias',cat.id,cat.categoria]"><span><i class="fa fa-angle-double-right" aria-hidden="true"></i>{{cat.categoria}}</span> <span>35</span></a></li>
                         </ul>
                     </div>
 

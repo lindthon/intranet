@@ -36,7 +36,7 @@
                         <div class="single-featured-post">
                             <!-- Thumbnail -->
                             <div class="post-thumbnail mb-50">
-                                <img src="{{ultima.image}}" alt="">                                    
+                                <img src="http://127.0.0.1:8000{{ultima.image}}" alt="">                                    
                             </div>
                             <!-- Post Contetnt -->
                             <div class="post-content">
@@ -44,7 +44,7 @@
                                     <a>{{ultima.date}}</a>
                                     <a>{{ultima.cat}}</a>
                                 </div>
-                                <a routerLink="/noticia" class="post-title">{{ultima.title}}</a>
+                                <a [routerLink]="['/noticia',ultima.id , 'details']" class="post-title">{{ultima.title}}</a>
                                 <p>{{ultima.descr}}</p>
                             </div>                            
                         </div>
@@ -56,83 +56,39 @@
       </div>
 
       <!-- Feature Video Posts Area -->
-      <div class="feature-video-posts mb-30">
+      <div *ngFor="let cat of arrayCategoria" class="feature-video-posts mb-30">
           <!-- Section Title -->
           <div class="section-heading">
-              <h5>Cambios políticos</h5>
+              <h5>{{cat}}</h5>
           </div>
 
-          <div class="featured-video-posts">
-              <div class="row">
+          <div  class="featured-video-posts">
+              <div  class="row">
                   <div class="col-12">
-
-                    <div *ngFor="let cambio of cambios">
-                      <div class="col-lg-4">
+                    <div *ngFor="let noticias of arrayNoticiasCate" >
+                      <div  *ngIf="noticias.cat === cat" class="col-lg-4">
                       <!-- Single Featured Post -->
-                      <div class="single-featured-post">
+                      <div  class="single-featured-post">
                           <!-- Thumbnail -->
                           <div class="post-thumbnail mb-50">
-                              <img src="{{cambio.image}}" alt="">                                    
+                              <img src="http://127.0.0.1:8000{{noticias.image}}" alt="">                                    
                           </div>
                           <!-- Post Contetnt -->
-                          <div class="post-content">
+                          <div  class="post-content">
                               <div class="post-meta">
-                                  <a >{{cambio.date}}</a>
-                                  <a >{{cambio.cat}}</a>
+                                  <a >{{noticias.date}}</a>
+                                  <a >{{noticias.cat}}</a>
                               </div>
-                              <a routerLink="/noticia" class="post-title">{{cambio.title}}</a>
-                              <p>{{cambio.descr}}</p>
+                              <a [routerLink]="['/noticia',noticias.id , 'details']"  class="post-title" >{{noticias.title}}</a>
+                              <p>{{noticias.descr}}</p>
                           </div>
                           </div>
                       </div>
                   </div>
-                  </div>
-                  
-
-
-                  
+                  </div>   
               </div>
           </div>
       </div>
-
-      <!-- Feature Video Posts Area -->
-      <div class="feature-video-posts mb-30">
-          <!-- Section Title -->
-          <div class="section-heading">
-              <h5>Brigadas de SeguridadS</h5>
-          </div>
-
-          <div class="featured-video-posts">
-              <div class="row">
-                <div class="col-12">
-
-                    <div *ngFor="let medica of brigada">
-                      <div class="col-lg-4">
-                      <!-- Single Featured Post -->
-                      <div class="single-featured-post">
-                          <!-- Thumbnail -->
-                          <div class="post-thumbnail mb-50">
-                              <img src="{{medica.image}}" alt="">
-                          </div>
-                          <!-- Post Contetnt -->
-                          <div class="post-content">
-                              <div class="post-meta">
-                                  <a >{{medica.date}}</a>
-                                  <a >{{medica.cat}}</a>
-                              </div>
-                              <a routerLink="/noticia" class="post-title">{{medica.title}}</a>
-                              <p>{{medica.descr}}</p>
-                          </div>
-                          </div>
-                          </div>
-                      </div>
-                  </div>
-                  
-              </div>
-          </div>
-      </div>
-
-
   </div>
 
   <!-- >>>>>>>>>>>>>>>>>>>>
@@ -140,17 +96,15 @@
   <<<<<<<<<<<<<<<<<<<<< -->
   <div class="post-sidebar-area right-sidebar mt-30 mb-30 box-shadow">
       <!-- Sidebar Widget -->
-      <div class="single-sidebar-widget p-30">
+      <div  class="single-sidebar-widget p-30">
           <!-- Section Title -->
           <div class="section-heading">
               <h5>Categorías</h5>
           </div>
 
           <!-- Catagory Widget -->
-          <ul class="catagory-widgets">
-              <li><a routerLink="/categoria-noticias"><span><i class="fa fa-angle-double-right" aria-hidden="true"></i> Cambios Políticos</span> <span>35</span></a></li>
-              <li><a routerLink="/categoria-noticias"><span><i class="fa fa-angle-double-right" aria-hidden="true"></i> Brigada Médica</span> <span>30</span></a></li>
-              <li><a routerLink="/categoria-noticias"><span><i class="fa fa-angle-double-right" aria-hidden="true"></i> Promociones</span> <span>13</span></a></li>
+          <ul *ngFor="let cat of categorias" class="catagory-widgets">
+              <li><a  [routerLink]="['/categoria-noticias',cat.id,cat.categoria]"><span><i class="fa fa-angle-double-right" aria-hidden="true"></i> {{cat.categoria}}</span> <span>35</span></a></li>
               
           </ul>
       </div>
@@ -170,19 +124,20 @@
           <!-- Single YouTube Channel -->
           <div *ngFor="let birthday of birthdays">
 
-            <div class="single-youtube-channel d-flex">
-                <div class="youtube-channel-thumbnail">
-                    <img src="{{birthday.image}}" alt="">
+            <div class="single-youtube-channel d-flex cuadro">
+                <div class="youtube-channel-thumbnail ">
+                    <img src="http://127.0.0.1:8000{{birthday.image}}" alt="">
                 </div>
+                <p></p>
                 <div class="youtube-channel-content">
                     <a href="single-post.html" class="channel-title">{{birthday.name}}</a>
-                    <p>{{birthday.date}}</p>
+                    <p>{{birthday.date}}<br></p>
                 </div>
             </div>
             
           </div>
         
-          <!-- Single YouTube Channel -->
+          <!-- Single YouTube Channel 
           <div class="single-youtube-channel d-flex">
               <div class="youtube-channel-thumbnail">
                   <img src="assets/img/team/team02.jpg" alt="">
@@ -191,9 +146,9 @@
                   <a href="single-post.html" class="channel-title">Jorge Lopez</a>
                   <p>19 de Marzo</p>
               </div>
-          </div>
+          </div>-->
 
-          <!-- Single YouTube Channel -->
+          <!-- 
           <div class="single-youtube-channel d-flex">
               <div class="youtube-channel-thumbnail">
                   <img src="assets/img/team/team03.jpg" alt="">
@@ -204,7 +159,7 @@
               </div>
           </div>
 
-          <!-- Single YouTube Channel -->
+         
           <div class="single-youtube-channel d-flex">
               <div class="youtube-channel-thumbnail">
                   <img src="assets/img/team/team04.jpg" alt="">
@@ -215,7 +170,6 @@
               </div>
           </div>
 
-          <!-- Single YouTube Channel -->
           <div class="single-youtube-channel d-flex">
               <div class="youtube-channel-thumbnail">
                   <img src="assets/img/team/team01.jpg" alt="">
@@ -224,7 +178,7 @@
                   <a href="single-post.html" class="channel-title">Maria Rivadeneira</a>
                   <p>19 de Marzo</p>
               </div>
-          </div>
+          </div>-->
 
       </div>
 

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 
 @Component({
   selector: 'app-carrousel',
@@ -27,9 +28,27 @@ export class CarrouselComponent implements OnInit {
     "desc":"Aqui va la descripcion de la noticia"
   }
 
-  constructor() { }
+  constructor(public _http: HttpClient) { }
 
   ngOnInit(): void {
+    this.getUltimasNoticias(this._http);
   } 
+  noticiasActuales: any;
+  ultimos= [];
+  getUltimasNoticias(_http:HttpClient){
+    this._http.get('http://127.0.0.1:8000/getUltimasNoticias/')
+    .subscribe(
+      (data)=>{console.log(data);
+        this.noticiasActuales=data;
+        for (let key in this.noticiasActuales) {
+          let notica = this.noticiasActuales[key];
+          console.log(notica);
+          this.ultimos.push(notica);
+      }   
+      }
+      ,(err: HttpErrorResponse)=>{console.log("Un error ha ocurrido")}
+      ,()=>console.log("solicitud finalizada OK")
+      )
+  }
 
 }

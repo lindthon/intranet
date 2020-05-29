@@ -1,6 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { faClock,faMapMarkerAlt } from '@fortawesome/free-solid-svg-icons';
 import { IgxMonthPickerComponent } from "igniteui-angular";
+import { HttpClient, HttpResponse, HttpErrorResponse } from '@angular/common/http';
 
 @Component({
   selector: 'app-eventos',
@@ -11,7 +12,8 @@ export class EventosComponent implements OnInit {
   @ViewChild(IgxMonthPickerComponent, { static: true })
     public monthPicker;
 
-
+    vants :any;
+    data2 = [];
   faClock=faClock;
   faMapMarkerAlt=faMapMarkerAlt;
 
@@ -23,7 +25,7 @@ export class EventosComponent implements OnInit {
   };
 
 
-  events:any;
+  events :any;
 
   enero:any=[{
     "day":"1",
@@ -132,28 +134,57 @@ abril:any=[{
 }
 ]
 
-  constructor() { }
+  constructor(public  _http: HttpClient) { 
+    //if(this.month!=null)
+     // this.getEventos(_http)
+  
+  }
   p:number =1;
+  month:String=this.date.toString().substring(4,7);
 
   ngOnInit(): void {
     this.loadEvents();
+
     //this.events=this.enero;
   }
-
+  
+  data3 =[];
   loadEvents(){
     let month:String =this.monthPicker._viewDate.toString().substring(4,7);
-    console.log(month);
-    
-    if(month=="Jan")
-      this.events=this.enero;
-    else if(month=="Feb")
-      this.events=this.febrero;
-    else if(month=="Mar")
+    this.month=this.monthPicker._viewDate.toString().substring(4,7);
+    this.getEventos(this._http);
+    this.events=this.data2;
+   /* if(month=="Jan"){
+    this.getEventos(this._http);
+    }else if(month=="Feb"){
+      this.getEventos(this._http);
+      this.events=this.data2;
+    }else if(month=="Mar")
       this.events=this.marzo;
     else if(month=="Apr")
       this.events=this.abril;
     else
-      this.events=[];
-    console.log(this.events);
+      this.events=[];*/
+  }
+
+  getEventos(_http: HttpClient){
+    this.data2=[];
+    this._http.get('http://127.0.0.1:8000/getEvento/?fecha='+this.month)
+    .subscribe(
+      (data)=>{console.log(data);
+        this.vants=data;
+        for (let key in this.vants ) {
+          let event = this.vants[key];
+          this.data2.push(event);
+          
+          console.log("aaaaaaaaaaa"+key);
+        }   
+
+      
+      }
+      ,(err: HttpErrorResponse)=>{console.log("Un error ha ocurrido")}
+      ,()=>console.log("solicitud finalizada OK")
+      )
+
   }
 }
