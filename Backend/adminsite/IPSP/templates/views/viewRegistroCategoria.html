@@ -1,0 +1,53 @@
+{% extends "views/header.html" %} 
+{% load static %}
+
+  <!-- /.container -->
+
+{% block content %}
+
+    
+<head><link rel="stylesheet" href="{% static 'css/styleRegistroNoticias.css' %}"></head>
+<br />
+<div class="inner contact">
+                <!-- Form Area -->
+                <div class="contact-form">
+                    <!-- Form -->
+                    <form id="contact-us" method="post" action="#">
+                        {% csrf_token %}
+                        <!-- Left Inputs -->
+                        <div class="col-xs-6  mx-auto wow animated slideInLeft" data-wow-delay=".5s">
+                            <!-- Name -->
+                            <h5>Registro el tipo de noticias</h5>
+                            <label  class="ml-5" for="Motivo">Tipo Noticia:</label>
+                            <input type="text" name="tipoNoticia" id="name" required="required" class="formFecha" placeholder="Nombre" />
+                            <button type="submit" id="submit" name="tipo" class="form-btn semibold">Publicar Noticia</button> 
+                        </div><!-- End Left Inputs -->
+                        <div class="col-xs-6  mx-auto wow animated slideInLeft" data-wow-delay=".5s">
+                            <h5>Registro la categoria del empleado</h5>
+                            <label class="ml-5" for="Motivo">Categoria Empleado:</label>
+                            <input type="text" name="categoria" id="name" required="required" class="formFecha" placeholder="Apellido" />
+                            <button type="submit" id="submit" name="emplecategoria" class="form-btn semibold">Publicar Noticia</button> 
+
+                        </div><!-- End Left Inputs -->
+
+                        <!-- Bottom Submit -->
+                        <div class="relative fullwidth col-xs-12">
+                            <!-- Send Button -->
+                            <div class="col-md-8">
+                                <button type="submit" id="submit" name="submit" class="form-btn semibold">Publicar Noticia</button> 
+                                <button type="submit" id="submit" name="submit" class="form-btn semibold">Limpiar Campos</button> 
+                            </div>
+                        </div><!-- End Bottom Submit -->
+                        <!-- Clear -->
+                        <div class="clear"></div>
+                    </form>
+                    <div class="mail-message-area">
+                        <!-- Message -->
+                        <div class="alert gray-bg mail-message not-visible-message">
+                            <strong>Thank You !</strong> Your email has been delivered.
+                        </div>
+                    </div>
+                </div><!-- End Contact Form Area -->
+            </div><!-- End Inner -->
+
+{% endblock %}  

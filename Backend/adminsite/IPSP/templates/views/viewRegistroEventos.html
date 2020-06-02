@@ -1,0 +1,83 @@
+{% extends "views/header.html" %} 
+{% load static %}
+
+  <!-- /.container -->
+
+{% block content %}
+
+    
+<head><link rel="stylesheet" href="{% static 'css/styleRegistroNoticias.css' %}"></head>
+<br />
+<div class="inner contact">
+                <!-- Form Area -->
+                <div class="contact-form">
+                    <h3>Registrar Eventos De La Empresa</h3>
+                    <!-- Form -->
+                    <form id="contact-us" method="post" action="#">
+                        {% csrf_token %}
+                        <!-- Left Inputs -->
+                        <div class="col-xs-6 wow animated slideInLeft" data-wow-delay=".5s">
+                            <!-- Name -->
+                            <label  for="Motivo">Titulo De Evento:</label>
+                            <input type="text" name="evento" id="name" required="required" class="formFecha" placeholder="Titulo Evento" />
+                            <label  for="Motivo">Subir Imagen Noticia:</label>
+                            <input type="file" name="imagen" accept="image/*" id="id_imagen">
+                       
+                        </div><!-- End Left Inputs -->
+                            <div class="col-xs-6 wow animated slideInLeft" data-wow-delay=".5s">
+                                <label  for="Motivo">Mes del Evento:</label>
+                                <select name="mes" class="formFecha">
+                                    {% for mesEvento in meses  %}
+                                    <option value="{{mesEvento.mes}}">{{mesEvento.mes}}</option>
+                                    {% endfor  %}
+
+                                </select>
+                                <label  >Fecha De Publicacion:</label>
+                                <input type="date" name="fecha" id="subject" required="required" class="formFecha" placeholder="Subject" />
+                            </div>
+                            
+                            <div class="col-xs-6 wow animated slideInLeft" data-wow-delay=".5s">
+                                <label  for="Motivo">Hora De Evento:</label>
+                                <input type="time" name="hora" id="name" required="required" class="formFecha" placeholder="Hora" />      
+                                <label  >Lugar Del  Evento:</label>
+                                <input type="text" name="lugar" id="subject" required="required" class="formFecha" placeholder="Lugar" />
+                            </div>
+
+                         <!-- Email -->
+                        
+                        <!-- Subject -->
+                        <!-- Right Inputs -->
+                        <div class="col-xs-6 wow animated slideInRight" data-wow-delay=".5s">
+                        </div>
+                        <div class="col-xs-6 wow animated slideInRight" data-wow-delay=".5s">
+                            <!-- Message -->
+                            <label  >Escriba la descripcion del evento:</label>
+
+                            <textarea name="descripcion" id="message" class="form textarea"  placeholder="Descripcion"></textarea>
+                        </div><!-- End Right Inputs -->
+                        <!-- Bottom Submit -->
+                        <div class="relative fullwidth col-xs-12">
+                            <!-- Send Button -->
+                            <div class="col-md-8">
+                                <button type="submit" id="submit" name="submit" class="form-btn semibold">Publicar Noticia</button> 
+                                <button type="submit" id="submit" name="" class="form-btn semibold">Limpiar Campos</button> 
+                            </div>
+                            
+
+                        </div><!-- End Bottom Submit -->
+                        <!-- Clear -->
+                        <div class="clear"></div>
+                    </form>
+
+                    <!-- Your Mail Message -->
+                    <div class="mail-message-area">
+                        <!-- Message -->
+                        <div class="alert gray-bg mail-message not-visible-message">
+                            <strong>Thank You !</strong> Your email has been delivered.
+                        </div>
+                    </div>
+
+                </div><!-- End Contact Form Area -->
+            </div><!-- End Inner -->
+
+{% endblock %}  

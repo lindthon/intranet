@@ -1,0 +1,65 @@
+{% extends "views/header.html" %} 
+{% load static %}
+
+  <!-- /.container -->
+
+{% block content %}
+  
+    
+ <head><link rel="stylesheet" href="{% static 'css/styleRegistroNoticias.css' %}"></head>
+<br />
+<div class="inner contact">
+                <!-- Form Area -->
+                <div class="contact-form">
+                    <h3>Registrar Noticas De La Empresa</h3>
+                    <!-- Form -->
+                    <form id="contact-us" method="POST" action="#">
+                        {% csrf_token %}
+                        <!-- Left Inputs -->
+                        <div class="col-xs-6 wow animated slideInLeft" data-wow-delay=".5s">
+                            <!-- Name -->
+                            <label  for="Motivo">Titulo De Noticia:</label>
+                            <input type="text" name="titulo" id="name" required="required" class="formFecha" placeholder="Titulo Noticia" />
+                            <label  for="Motivo"   >Subir Imagen Noticia:</label>
+                            <input type="file" name="image"  class="formFecha" required="required"  name="archivosubido">
+                        </div><!-- End Left Inputs -->
+                            <div class="col-xs-6 wow animated slideInLeft" data-wow-delay=".5s">
+                                <label  for="Motivo">Categoria Noticia:</label>
+                                <select name="categoria" required="required"  class="formFecha">
+                                    {% for cat in categorias  %}
+                                    <option value="{{cat.id_tiponot}}">{{cat.categoria}}</option>
+                                    {% endfor  %}
+                                </select>
+                                <label  >  Fecha De Publicacion:</label>
+                                <input type="date" name="fecha" id="subject" required="required" class="formFecha" placeholder="Subject" />
+                            </div>
+                        <div class="col-xs-6 wow animated slideInRight" data-wow-delay=".5s">
+                            <!-- Message -->
+                            <label  >Escriba la reseña de la noticia:</label>
+                            <textarea name="descripcion" id="message" class="form textarea"  placeholder="Descripcion"></textarea>
+                        </div><!-- End Right Inputs -->
+                        <!-- Bottom Submit -->
+                        <div class="relative fullwidth col-xs-12">
+                            <!-- Send Button -->
+                            <div class="col-md-8">
+                                <button type="submit" id="submit" name="submit" class="form-btn semibold">Publicar Noticia</button> 
+                                <button type="submit" id="submit" name="submit" class="form-btn semibold">Limpiar Campos</button> 
+                            </div>
+                        </div><!-- End Bottom Submit -->
+                        <!-- Clear -->
+                        <div class="clear"></div>
+                    </form>
+
+                    <!-- Your Mail Message -->
+                    <div class="mail-message-area">
+                        <!-- Message -->
+                        <div class="alert gray-bg mail-message not-visible-message">
+                            <strong>Thank You !</strong> Your email has been delivered.
+                        </div>
+                    </div>
+
+                </div><!-- End Contact Form Area -->
+            </div><!-- End Inner -->
+
+
+{% endblock %}  
