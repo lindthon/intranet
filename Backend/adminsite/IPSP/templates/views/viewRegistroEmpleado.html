@@ -10,10 +10,11 @@
 <br />
 <div class="inner contact">
                 <!-- Form Area -->
-                <div class="contact-form">
-                    <h3>Registro De Empleados</h3>
+                <h3>Registro De Empleados</h3>
+
+                <div class="contact-form mt-4">
                     <!-- Form -->
-                    <form id="contact-us" method="post" action="#">
+                    <form enctype="multipart/form-data" id="contact-us" method="post" action="#">
                         {% csrf_token %}
                         <!-- Left Inputs -->
                         <div class="col-xs-6  mx-auto wow animated slideInLeft" data-wow-delay=".5s">
@@ -21,24 +22,31 @@
                             <label  class="ml-5" for="Motivo">Nombre:</label>
                             <input type="text" name="name" id="name" required="required" class="formFecha" placeholder="Nombre" />
                             <label class="ml-5" for="Motivo">Apellido:</label>
-                            <input type="text" name="apellido" id="name" required="required" class="formFecha" placeholder="Apellido" />
+                            <input type="text" name="apellido"  required="required" class="formFecha" placeholder="Apellido" />
                         
                         </div><!-- End Left Inputs -->
                          <!-- Left Inputs -->
                          <div class="col-xs-6 wow animated slideInLeft" data-wow-delay=".5s">
                             <!-- Name -->
                             <label  class="ml-5" for="Motivo">Usuario:</label>
-                            <input type="text" name="user" id="name" required="required" class="formFecha" placeholder="Usuario" />
+                            <input type="text" name="user"  required="required" class="formFecha" placeholder="Usuario" />
                             <label  class="ml-5" for="Motivo">Contraseña:</label>
-                            <input type="password" name="password" id="name" required="required" class="formFecha" placeholder="Contraseña" />
+                            <input type="password" name="password"  required="required" class="formFecha" placeholder="Contraseña" />
                         
                         </div><!-- End Left Inputs -->
-                      
+                        <div class="col-xs-6 wow animated slideInLeft" data-wow-delay=".5s">
+                            <!-- Name -->
+                            <label  class="ml-5" for="Motivo">Cedula:</label>
+                            <input type="text" name="cedula"  required="required" class="formFecha" placeholder="cedula" />
+                            <label  class="ml-5" for="Motivo">Contraseña:</label>
+                            <input type="text" name="correo"  required="required" class="formFecha" placeholder="correo" />
+                        
+                        </div><!-- End Left Inputs -->
                             <div class="col-xs-6 wow animated slideInLeft" data-wow-delay=".5s">
                                 <label  for="Motivo">Empleado del mes:</label>
-                                <select name="mes" class="formFecha">
-                                    {% for mesEvento in meses  %}
-                                    <option value="Consulta General">{{mesEvento.mes}}</option>
+                                <select name="mejorEn" class="formFecha">
+                                    {% for cate in categorias  %}
+                                    <option value="{{cate.id_tipocat}}">{{cate.categoria}}</option>
                                     {% endfor  %}
 
                                 </select>
@@ -50,29 +58,20 @@
                                 <label  for="Motivo">Imagen Empleado :</label>
                                 <input type="file" class="formFecha" name="image">                                
                                 <label  >Extension o ruta:</label>
-                                <input type="text" name="lugar" id="subject" required="required" class="formFecha" placeholder="Lugar" />
+                                <input type="text" name="ext" id="subject" required="required" class="formFecha" placeholder="extencion" />
                             </div>
 
                          <!-- Email -->
                         
                         <!-- Subject -->
                         <!-- Right Inputs -->
-                        <div class="col-xs-6 wow animated slideInRight" data-wow-delay=".5s">
-                        </div>
-                        <div class="col-xs-6 wow animated slideInRight" data-wow-delay=".5s">
-                            <!-- Message -->
-                            <label  >Escriba la descripcion del evento:</label>
-
-                        </div><!-- End Right Inputs -->
                         <!-- Bottom Submit -->
-                        <div class="relative fullwidth col-xs-12">
+                        <div class=" fullwidth col-xs-12 divBtn">
                             <!-- Send Button -->
-                            <div class="col-md-8">
+                            <div class="mt-3 divBtn">
                                 <button type="submit" id="submit" name="submit" class="form-btn semibold">Publicar Noticia</button> 
                                 <button type="submit" id="submit" name="submit" class="form-btn semibold">Limpiar Campos</button> 
                             </div>
-                            
-
                         </div><!-- End Bottom Submit -->
                         <!-- Clear -->
                         <div class="clear"></div>

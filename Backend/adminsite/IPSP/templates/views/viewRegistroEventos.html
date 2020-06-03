@@ -13,7 +13,7 @@
                 <div class="contact-form">
                     <h3>Registrar Eventos De La Empresa</h3>
                     <!-- Form -->
-                    <form id="contact-us" method="post" action="#">
+                    <form enctype="multipart/form-data" id="contact-us" method="post" action="#">
                         {% csrf_token %}
                         <!-- Left Inputs -->
                         <div class="col-xs-6 wow animated slideInLeft" data-wow-delay=".5s">
@@ -58,7 +58,7 @@
                         <!-- Bottom Submit -->
                         <div class="relative fullwidth col-xs-12">
                             <!-- Send Button -->
-                            <div class="col-md-8">
+                            <div class="divBtn">
                                 <button type="submit" id="submit" name="submit" class="form-btn semibold">Publicar Noticia</button> 
                                 <button type="submit" id="submit" name="" class="form-btn semibold">Limpiar Campos</button> 
                             </div>

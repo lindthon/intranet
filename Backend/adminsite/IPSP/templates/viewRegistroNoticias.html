@@ -13,15 +13,16 @@
                 <div class="contact-form">
                     <h3>Registrar Noticas De La Empresa</h3>
                     <!-- Form -->
-                    <form id="contact-us" method="POST" action="#">
+                    <form 
+                     id="contact-us" method="POST"  action="#">
                         {% csrf_token %}
                         <!-- Left Inputs -->
                         <div class="col-xs-6 wow animated slideInLeft" data-wow-delay=".5s">
                             <!-- Name -->
                             <label  for="Motivo">Titulo De Noticia:</label>
-                            <input type="text" name="titulo" id="name" required="required" class="formFecha" placeholder="Titulo Noticia" />
+                            <input type="text" name="titulo" id="name" required="required" class="formFecha inp" placeholder="Titulo Noticia" />
                             <label  for="Motivo"   >Subir Imagen Noticia:</label>
-                            <input type="file" name="image"  class="formFecha" required="required"  name="archivosubido">
+                            <input type="file" name="archivoimg"  class="formFecha" required="required" accept="image/*" id="id_imagen">
                         </div><!-- End Left Inputs -->
                             <div class="col-xs-6 wow animated slideInLeft" data-wow-delay=".5s">
                                 <label  for="Motivo">Categoria Noticia:</label>
@@ -41,7 +42,7 @@
                         <!-- Bottom Submit -->
                         <div class="relative fullwidth col-xs-12">
                             <!-- Send Button -->
-                            <div class="col-md-8">
+                            <div class="divBtn">
                                 <button type="submit" id="submit" name="submit" class="form-btn semibold">Publicar Noticia</button> 
                                 <button type="submit" id="submit" name="submit" class="form-btn semibold">Limpiar Campos</button> 
                             </div>

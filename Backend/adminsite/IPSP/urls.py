@@ -1,5 +1,6 @@
 from django.urls import path
 from .views import *
+#from django.contrib.auth import logout
 
 
 urlpatterns = [
@@ -27,6 +28,17 @@ urlpatterns = [
     path('getNoticiasByID/',get_NoticiaByID),
     path('getTodasLasNoticiasByID/',get_TodasLasNoticiasByID),
     path('getMejoresEmpleados/',get_MejorEmpleado),
+
+    #Vistas
+    path('registroNoticias/', view_RegistrarNoticias,name='noticia'),
+    path('registroEventos/', view_RegistrarEventos,name='evento'),
+    path('registroEmpleado/', view_RegistrarEmpleado, name='empleado'),
+
+    path('registroCategorias/', view_RegistrarCategoria, name='categoria'),
+
+    path('', login, name='login'),
+    path('logout/', logout_view, name='logout'),
+
 
 
     

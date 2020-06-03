@@ -1,11 +1,16 @@
 from django.shortcuts import render
 from django.http import HttpResponse, JsonResponse, HttpResponseRedirect
+from django.contrib.auth.decorators import login_required
+
+from django.contrib.auth import login as do_login
+from django.contrib.auth.forms import AuthenticationForm
+from django.contrib.auth import logout
+
 
 from .models import *
 import json
 import datetime
 from django.views.decorators.csrf import csrf_exempt
-
 # Create your views here
 # .
 #Api de noticias 
@@ -143,7 +148,6 @@ def get_CategoriaNoticia(request):
             response["Categoria "+ str(contador)]=res
             res["id"]=categoria.id_tiponot 
             res["categoria"]=categoria.categoria
-
     return JsonResponse(response)
 
 
@@ -163,6 +167,7 @@ def get_Eventos(request):
             res['day'] = e.fecha.day
             res['month'] = id
             res['year'] = e.fecha.year
+            res['image']=e.imagen.url
             res['time'] = e.hora
             res['title'] = e.titulo
             res['desc'] = e.descripcion
@@ -276,3 +281,120 @@ def get_Sugerencia(request):
     return JsonResponse(response)
 
     print(tipo = Tipo_sugerencia.objects.filter(sugerencia=response["tipo"])[0])
+
+
+
+#Vistas
+from django.contrib.auth import authenticate, login
+from django.shortcuts import redirect
+
+@login_required
+@csrf_exempt
+def view_RegistrarNoticias(request):
+        response = Tipo_noticia.objects.all()
+        if request.method=='POST':
+            titulo = request.POST['titulo']
+            fecha = request.POST['fecha']
+            categoria = request.POST['categoria']
+            imagen = request.FILES['archivoimg']
+            descripcion = request.POST['descripcion']
+            id_not = Tipo_noticia.objects.get(id_tiponot = categoria)
+            noticia = Noticia(tipo_noticia_id=id_not.id_tiponot, titulo=titulo, descripcion=descripcion, fecha=fecha, imagen=imagen)
+            noticia.save()
+            print(titulo,fecha,categoria,imagen,descripcion)
+
+        return render(request, 'viewRegistroNoticias.html', {"categorias":response})
+
+@login_required
+def view_RegistrarEventos(request):
+        response = Mes_Evento.objects.all()
+        if request.method=='POST':
+            evento = request.POST['evento']
+            fecha = request.POST['fecha']
+            mes = request.POST['mes']
+            lugar = request.POST['lugar']
+            hora = request.POST['hora']
+            imagen = request.FILES['imagen']
+            descripcion = request.POST['descripcion'] 
+            idfield = Mes_Evento.objects.filter(mes = mes)[0]
+            mesEvento = Mes_Evento.objects.get(id_mes=idfield.id_mes)
+            newEvento = Evento(titulo=evento,lugar=lugar,imagen=imagen,hora=hora,descripcion=descripcion,mes=mesEvento, fecha=fecha)
+            newEvento.save()
+            print(evento,fecha,mes,hora,lugar,imagen,descripcion)
+
+        return render(request, 'views/viewRegistroEventos.html', {"meses":response})
+
+
+def view_RegistrarEmpleado(request):
+    response= Tipo_categoria.objects.all()
+    if request.method=='POST':
+            nombre = request.POST['name']
+            cedula = request.POST['cedula']
+            apell = request.POST['apellido']
+            usuario = request.POST['user']
+            passwrd = request.POST['password']
+            fecha = request.POST['fecha']
+            correo = request.POST['correo']
+            imagen = request.FILES['image']
+            ext = request.POST['ext'] 
+            mejorEn = request.POST['mejorEn'] 
+            idfield = Tipo_categoria.objects.get(id_tipocat = mejorEn)
+            auth5 = User.objects.create_user(
+                username = usuario,
+                password = passwrd,
+                first_name=nombre, 
+                last_name=apell,
+                email=correo
+            )
+            empleado = Empleado(id_empleado=cedula,auth_user=auth5,
+            tipo_categoria=idfield,nombre=nombre,apellido=apell,
+            correo=correo,imagen=imagen,fecha_nacimiento=fecha,ubicacion=ext)
+            empleado.save()
+    return render(request, 'views/viewRegistroEmpleado.html', {"categorias":response})        
+
+def view_RegistrarCategoria(request):
+    return render(request, 'views/viewRegistroCategoria.html', {})        
+
+
+
+def view_Login(request):
+    login(request)
+    return render(request, 'views/login.html', {})
+
+
+
+# ...
+@csrf_exempt
+def login(request):
+    # Creamos el formulario de autenticación vacío
+    form = AuthenticationForm()
+    if request.method == "POST":
+        # Añadimos los datos recibidos al formulario
+        form = AuthenticationForm(data=request.POST)
+        # Si el formulario es válido...
+        if form.is_valid():
+            # Recuperamos las credenciales validadas
+            username = form.cleaned_data['username']
+            password = form.cleaned_data['password']
+
+            # Verificamos las credenciales del usuario
+            user = authenticate(username=username, password=password)
+            print("verificando")
+
+            # Si existe un usuario con ese nombre y contraseña
+            if user is not None:
+                # Hacemos el login manualmente
+                do_login(request, user)
+                print("si existe")
+                # Y le redireccionamos a la portada
+                return redirect('registroNoticias/')
+
+    # Si llegamos al final renderizamos el formulario
+    return render(request, "views/login.html", {'form': form})
+
+
+def logout_view(request):
+    logout(request)
+    return redirect('/')
+
+    # Redirect to a success page.
