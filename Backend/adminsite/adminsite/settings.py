@@ -88,9 +88,9 @@ WSGI_APPLICATION = 'adminsite.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'dbipsp',
+        'NAME': 'intranet',
 	    'USER': 'root',
-	    'PASSWORD': '23198',
+	    'PASSWORD': 'root',
 	    'HOST': 'localhost',
 	    'PORT': '3306',
     }

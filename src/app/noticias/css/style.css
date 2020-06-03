@@ -1,8 +1,5 @@
 /* Master Stylesheet */
 /* :: 1.0 Import Fonts */
-@import url("https://fonts.googleapis.com/css?family=Poppins:200,300,400,500,600,700");
-/* :: 2.0 Import All CSS */
-
 /* :: 3.0 Base CSS */
 * {
   margin: 0;
@@ -667,38 +664,30 @@ input:focus {
   -webkit-box-flex: 0;
   -ms-flex: 0 0 300px;
   flex: 0 0 300px;
-  max-width: 300px;
-  width: 300px;
+ 
   margin-left: 15px;
   margin-right: 15px; }
   @media only screen and (min-width: 1200px) and (max-width: 1499px) {
     .post-sidebar-area {
       -webkit-box-flex: 0;
       -ms-flex: 0 0 280px;
-      flex: 0 0 280px;
-      max-width: 280px;
-      width: 280px; } }
+      flex: 0 0 280px; } }
   @media only screen and (min-width: 992px) and (max-width: 1199px) {
     .post-sidebar-area {
       -webkit-box-flex: 0;
       -ms-flex: 0 0 calc(50% - 30px);
-      flex: 0 0 calc(50% - 30px);
-      max-width: calc(50% - 30px);
-      width: calc(50% - 30px); } }
+      flex: 0 0 calc(50% - 30px); } }
   @media only screen and (min-width: 768px) and (max-width: 991px) {
     .post-sidebar-area {
       -webkit-box-flex: 0;
       -ms-flex: 0 0 calc(50% - 30px);
-      flex: 0 0 calc(50% - 30px);
-      max-width: calc(50% - 30px);
-      width: calc(50% - 30px); } }
+      flex: 0 0 calc(50% - 30px);} }
   @media only screen and (max-width: 767px) {
     .post-sidebar-area {
       -webkit-box-flex: 0;
       -ms-flex: 0 0 calc(100% - 30px);
       flex: 0 0 calc(100% - 30px);
-      max-width: calc(100% - 30px);
-      width: calc(100% - 30px); } }
+ } }
 
 .mag-posts-content {
   position: relative;
@@ -707,8 +696,7 @@ input:focus {
   -webkit-box-flex: 0;
   -ms-flex: 0 0 calc(100% - 690px + 330px);
   flex: 0 0 calc(100% - 690px + 330px);
-  max-width: calc(100% - 690px + 330px);
-  width: calc(100% - 690px + 330px);
+  
   margin-left: 15px;
   margin-right: 15px; }
   @media only screen and (min-width: 1200px) and (max-width: 1499px) {
@@ -716,29 +704,25 @@ input:focus {
       -webkit-box-flex: 0;
       -ms-flex: 0 0 calc(100% - 650px + 100px);
       flex: 0 0 calc(100% - 650px + 100px);
-      max-width: calc(100% - 650px + 100px);
-      width: calc(100% - 650px + 100px); } }
+       } }
   @media only screen and (min-width: 992px) and (max-width: 1199px) {
     .mag-posts-content {
       -webkit-box-flex: 0;
       -ms-flex: 0 0 calc(100% - 30px + 100px);
       flex: 0 0 calc(100% - 30px + 100px);
-      max-width: calc(100% - 30px + 100px);
-      width: calc(100% - 30px + 100px); } }
+       } }
   @media only screen and (min-width: 768px) and (max-width: 991px) {
     .mag-posts-content {
       -webkit-box-flex: 0;
       -ms-flex: 0 0 calc(100% - 30px + 100px);
       flex: 0 0 calc(100% - 30px + 100px);
-      max-width: calc(100% - 30px + 100px);
-      width: calc(100% - 30px + 100px); } }
+       } }
   @media only screen and (max-width: 767px) {
-    .mag-posts-content {
+    .mag-posts-content { 
       -webkit-box-flex: 0;
       -ms-flex: 0 0 calc(100% - 30px);
       flex: 0 0 calc(100% - 30px);
-      max-width: calc(100% - 30px);
-      width: calc(100% - 30px); } }
+       } }
 
 @media only screen and (min-width: 992px) and (max-width: 1199px) {
   .post-sidebar-area.left-sidebar {
@@ -2196,8 +2180,6 @@ textarea.form-control {
       .map-area iframe {
         height: 250px; } }
 
-.cuadro{
-  padding-top: 8%;
-}
 /* ====== The End ====== */
+
 /*# sourceMappingURL=style.css.map */
