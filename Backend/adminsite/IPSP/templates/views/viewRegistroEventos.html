@@ -1,4 +1,4 @@
-{% extends "views/header.html" %} 
+{% extends "views/index.html" %} 
 {% load static %}
 
   <!-- /.container -->
@@ -18,29 +18,31 @@
                         <!-- Left Inputs -->
                         <div class="col-xs-6 wow animated slideInLeft" data-wow-delay=".5s">
                             <!-- Name -->
-                            <label  for="Motivo">Titulo De Evento:</label>
-                            <input type="text" name="evento" id="name" required="required" class="formFecha" placeholder="Titulo Evento" />
-                            <label  for="Motivo">Subir Imagen Noticia:</label>
-                            <input type="file" name="imagen" accept="image/*" id="id_imagen">
+                            <label  class="labelCol" for="Motivo">Titulo De Evento:</label>
+                            <input type="text" name="evento" id="name" required="required" class="formFecha3" placeholder="Titulo Evento" />
+                            <label  class="labelCol" for="Motivo">Subir Imagen Noticia:</label>
+                            <input type="file" class="formFecha2" name="imagen" accept="image/*" id="id_imagen">
                        
                         </div><!-- End Left Inputs -->
+
+                        
                             <div class="col-xs-6 wow animated slideInLeft" data-wow-delay=".5s">
-                                <label  for="Motivo">Mes del Evento:</label>
-                                <select name="mes" class="formFecha">
+                                <label  class="labelCol" for="Motivo">Mes del Evento:</label>
+                                <select name="mes" class="formFecha2">
                                     {% for mesEvento in meses  %}
                                     <option value="{{mesEvento.mes}}">{{mesEvento.mes}}</option>
                                     {% endfor  %}
 
                                 </select>
-                                <label  >Fecha De Publicacion:</label>
-                                <input type="date" name="fecha" id="subject" required="required" class="formFecha" placeholder="Subject" />
+                                <label  class="labelCol"  >Fecha De Publicacion:</label>
+                                <input type="date" name="fecha" id="subject" required="required" class="formFecha3" placeholder="Subject" />
                             </div>
                             
                             <div class="col-xs-6 wow animated slideInLeft" data-wow-delay=".5s">
-                                <label  for="Motivo">Hora De Evento:</label>
-                                <input type="time" name="hora" id="name" required="required" class="formFecha" placeholder="Hora" />      
-                                <label  >Lugar Del  Evento:</label>
-                                <input type="text" name="lugar" id="subject" required="required" class="formFecha" placeholder="Lugar" />
+                                <label  class="labelCol" for="Motivo">Hora De Evento:</label>
+                                <input type="time" name="hora" id="name" required="required" class="formFecha2" placeholder="Hora" />      
+                                <label  class="labelCol"  >Lugar Del  Evento:</label>
+                                <input type="text" name="lugar" id="subject" required="required" class="formFecha3" placeholder="Lugar" />
                             </div>
 
                          <!-- Email -->

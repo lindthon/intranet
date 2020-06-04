@@ -1,0 +1,5 @@
+
+.flexnav{
+    position: relative; /* <-- Added */
+    z-index: 1; /* <-- Added */
+} 

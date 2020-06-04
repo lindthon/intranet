@@ -1,4 +1,4 @@
-{% extends "views/header.html" %} 
+{% extends "views/index.html" %} 
 {% load static %}
 
   <!-- /.container -->
@@ -13,31 +13,31 @@
                 <div class="contact-form">
                     <h3>Registrar Noticas De La Empresa</h3>
                     <!-- Form -->
-                    <form 
-                     id="contact-us" method="POST"  action="#">
+                    <form enctype="multipart/form-data" id="contact-us" method="POST"  action="#">
                         {% csrf_token %}
                         <!-- Left Inputs -->
                         <div class="col-xs-6 wow animated slideInLeft" data-wow-delay=".5s">
                             <!-- Name -->
-                            <label  for="Motivo">Titulo De Noticia:</label>
+                            <label class="labelCol"  >Titulo De Noticia:</label>
                             <input type="text" name="titulo" id="name" required="required" class="formFecha inp" placeholder="Titulo Noticia" />
-                            <label  for="Motivo"   >Subir Imagen Noticia:</label>
-                            <input type="file" name="archivoimg"  class="formFecha" required="required" accept="image/*" id="id_imagen">
+                            <label  class="labelCol"   >Subir Imagen Noticia:</label>
+                            <input type="file" name="archivoimg"  class="formFecha2" required="required" accept="image/*" id="id_imagen">
                         </div><!-- End Left Inputs -->
                             <div class="col-xs-6 wow animated slideInLeft" data-wow-delay=".5s">
-                                <label  for="Motivo">Categoria Noticia:</label>
-                                <select name="categoria" required="required"  class="formFecha">
+                                <label  class="labelCol col-md-3">Categoria Noticia:</label>
+                                <select name="categoria" required="required"  class="formFecha col-md-3">
                                     {% for cat in categorias  %}
                                     <option value="{{cat.id_tiponot}}">{{cat.categoria}}</option>
                                     {% endfor  %}
                                 </select>
-                                <label  >  Fecha De Publicacion:</label>
-                                <input type="date" name="fecha" id="subject" required="required" class="formFecha" placeholder="Subject" />
+                                <label  class="labelCol col-md-3">  Fecha De Publicacion:</label>
+                                <input type="date" name="fecha" id="subject" required="required" class="formFecha2 col-md-3" placeholder="Subject" />
                             </div>
+                            <label  class="labelCol">Escriba la reseña de la noticia:</label>
+
                         <div class="col-xs-6 wow animated slideInRight" data-wow-delay=".5s">
                             <!-- Message -->
-                            <label  >Escriba la reseña de la noticia:</label>
-                            <textarea name="descripcion" id="message" class="form textarea"  placeholder="Descripcion"></textarea>
+                            <textarea name="descripcion" id="message" class="formMessage textarea"  placeholder="Descripcion"></textarea>
                         </div><!-- End Right Inputs -->
                         <!-- Bottom Submit -->
                         <div class="relative fullwidth col-xs-12">

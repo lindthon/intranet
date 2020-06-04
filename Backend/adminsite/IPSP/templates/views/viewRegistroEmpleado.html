@@ -1,4 +1,4 @@
-{% extends "views/header.html" %} 
+{% extends "views/index.html" %} 
 {% load static %}
 
   <!-- /.container -->
@@ -12,53 +12,53 @@
                 <!-- Form Area -->
                 <h3>Registro De Empleados</h3>
 
-                <div class="contact-form mt-4">
+                <div class="contact-form mt-4 ">
                     <!-- Form -->
                     <form enctype="multipart/form-data" id="contact-us" method="post" action="#">
                         {% csrf_token %}
                         <!-- Left Inputs -->
-                        <div class="col-xs-6  mx-auto wow animated slideInLeft" data-wow-delay=".5s">
+                        <div class="  mx-auto wow animated slideInLeft" data-wow-delay=".5s">
                             <!-- Name -->
-                            <label  class="ml-5" for="Motivo">Nombre:</label>
-                            <input type="text" name="name" id="name" required="required" class="formFecha" placeholder="Nombre" />
-                            <label class="ml-5" for="Motivo">Apellido:</label>
-                            <input type="text" name="apellido"  required="required" class="formFecha" placeholder="Apellido" />
+                            <label  class=" labelCol" for="Motivo">Nombre:</label>
+                            <input type="text" name="name" id="name" required="required" class="formFecha3" placeholder="Nombre" />
+                            <label class=" labelCol" for="Motivo">Apellido:</label>
+                            <input type="text" name="apellido"  required="required" class="formFecha3" placeholder="Apellido" />
                         
                         </div><!-- End Left Inputs -->
                          <!-- Left Inputs -->
                          <div class="col-xs-6 wow animated slideInLeft" data-wow-delay=".5s">
                             <!-- Name -->
-                            <label  class="ml-5" for="Motivo">Usuario:</label>
-                            <input type="text" name="user"  required="required" class="formFecha" placeholder="Usuario" />
-                            <label  class="ml-5" for="Motivo">Contraseña:</label>
-                            <input type="password" name="password"  required="required" class="formFecha" placeholder="Contraseña" />
+                            <label  class="ml-5 labelCol" for="Motivo">Usuario:</label>
+                            <input type="text" name="user"  required="required" class="formFecha3" placeholder="Usuario" />
+                            <label  class="ml-5 labelCol" for="Motivo">Contraseña:</label>
+                            <input type="password" name="password"  required="required" class="formFecha3" placeholder="Contraseña" />
                         
                         </div><!-- End Left Inputs -->
                         <div class="col-xs-6 wow animated slideInLeft" data-wow-delay=".5s">
                             <!-- Name -->
-                            <label  class="ml-5" for="Motivo">Cedula:</label>
-                            <input type="text" name="cedula"  required="required" class="formFecha" placeholder="cedula" />
-                            <label  class="ml-5" for="Motivo">Contraseña:</label>
-                            <input type="text" name="correo"  required="required" class="formFecha" placeholder="correo" />
+                            <label  class="ml-5 labelCol" for="Motivo">Cedula:</label>
+                            <input type="text" name="cedula"  required="required" class="formFecha3" placeholder="cedula" />
+                            <label  class="ml-5 labelCol" for="Motivo">Contraseña:</label>
+                            <input type="text" name="correo"  required="required" class="formFecha3" placeholder="correo" />
                         
                         </div><!-- End Left Inputs -->
                             <div class="col-xs-6 wow animated slideInLeft" data-wow-delay=".5s">
-                                <label  for="Motivo">Empleado del mes:</label>
-                                <select name="mejorEn" class="formFecha">
+                                <label  class="labelCol">Empleado del mes:</label>
+                                <select name="mejorEn " class="formFecha">
                                     {% for cate in categorias  %}
                                     <option value="{{cate.id_tipocat}}">{{cate.categoria}}</option>
                                     {% endfor  %}
 
                                 </select>
-                                <label  >Nacimiento en:</label>
-                                <input type="date" name="fecha" id="subject" required="required" class="formFecha" placeholder="Subject" />
+                                <label class="labelCol" >Nacimiento en:</label>
+                                <input type="date" name="fecha" id="subject" required="required" class="formFecha2" placeholder="Subject" />
                             </div>
                             
                             <div class="col-xs-6 wow animated slideInLeft" data-wow-delay=".5s">
-                                <label  for="Motivo">Imagen Empleado :</label>
-                                <input type="file" class="formFecha" name="image">                                
-                                <label  >Extension o ruta:</label>
-                                <input type="text" name="ext" id="subject" required="required" class="formFecha" placeholder="extencion" />
+                                <label  class="labelCol">Imagen Empleado :</label>
+                                <input type="file" class="formFecha2" name="image">                                
+                                <label  class="labelCol">Extension o ruta:</label>
+                                <input type="text" name="ext" id="subject" required="required" class="formFecha3" placeholder="extencion" />
                             </div>
 
                          <!-- Email -->
