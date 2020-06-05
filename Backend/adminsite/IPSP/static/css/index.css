@@ -1,9 +1,11 @@
 body {
-    background: #fff;
+    background: #e6e6e6;
     margin: 0;
     font-family: "Open Sans", Helvetica Neue, Helvetica, Arial, sans-serif;
     color: #fff;
-    padding-left: 240px;
+    padding-left: 325px;
+    padding-top: 25px;
+    
   }
   main {
     position: relative;
@@ -83,6 +85,23 @@ body {
   .menu ul li.icon-delete {
     background-image: url("http://www.entypo.com/images/cross.svg");
   }
+  .menu ul li.icon-user-delete {
+    background-image: url("http://www.entypo.com/images/remove-user.svg");
+  }
+  .menu ul li.icon-log-out {
+    background-image: url("http://www.entypo.com/images/log-out.svg");
+  }
+  .menu ul li.icon-news {
+    background-image: url("http://www.entypo.com/images/news.svg");
+  }
+  .menu ul li.icon-evento {
+    background-image: url("http://www.entypo.com/images/calendar.svg");
+  }
+  .menu ul li.icon-delete-event {
+    background-image: url("http://www.entypo.com/images/circle-with-cross.svg");
+  }
+
+ 
   .menu ul li:hover {
     background-color: rgba(0, 0, 0, 0.1);
   }
@@ -208,3 +227,8 @@ body {
   color: inherit;
 
   }
+.letterh3{
+    color: black;
+
+
+ }

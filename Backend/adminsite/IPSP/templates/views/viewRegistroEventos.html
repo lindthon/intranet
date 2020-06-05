@@ -10,8 +10,8 @@
 <br />
 <div class="inner contact">
                 <!-- Form Area -->
-                <div class="contact-form">
-                    <h3>Registrar Eventos De La Empresa</h3>
+                <div class="contact-form divCont">
+                    <h3 class="letterh3">Registrar Eventos De La Empresa</h3>
                     <!-- Form -->
                     <form enctype="multipart/form-data" id="contact-us" method="post" action="#">
                         {% csrf_token %}
@@ -49,14 +49,13 @@
                         
                         <!-- Subject -->
                         <!-- Right Inputs -->
+                        <label  class="labelCol " >Escriba la descripcion del evento:</label>
                         <div class="col-xs-6 wow animated slideInRight" data-wow-delay=".5s">
+            
+                                <textarea name="descripcion" id="message" class="formMessage2 "  placeholder="Descripcion"></textarea>
                         </div>
-                        <div class="col-xs-6 wow animated slideInRight" data-wow-delay=".5s">
-                            <!-- Message -->
-                            <label  >Escriba la descripcion del evento:</label>
-
-                            <textarea name="descripcion" id="message" class="form textarea"  placeholder="Descripcion"></textarea>
-                        </div><!-- End Right Inputs -->
+                        
+                        
                         <!-- Bottom Submit -->
                         <div class="relative fullwidth col-xs-12">
                             <!-- Send Button -->
@@ -64,8 +63,6 @@
                                 <button type="submit" id="submit" name="submit" class="form-btn semibold">Publicar Noticia</button> 
                                 <button type="submit" id="submit" name="" class="form-btn semibold">Limpiar Campos</button> 
                             </div>
-                            
-
                         </div><!-- End Bottom Submit -->
                         <!-- Clear -->
                         <div class="clear"></div>

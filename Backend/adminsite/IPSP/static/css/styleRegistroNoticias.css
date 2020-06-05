@@ -65,9 +65,9 @@
     z-index: 0;
   }
   .formFecha3{
-    padding: 15px;
+    padding: 10px;
     background:#f8f8f8;
-    width: 35%;
+    width: 30%;
     border:1px solid rgba(0, 0, 0, 0.075);
     margin-right: 25px;
     margin-left: 15px;
@@ -82,7 +82,7 @@
   }
   .formMessage{
     width: 280%;
-    height: 50%;
+    height: 45%;
     padding: 15px;
     background:#f8f8f8;
     border:1px solid rgba(0, 0, 0, 0.075);
@@ -96,10 +96,25 @@
     transition: all 0.4s;
     position: relative;
     z-index: 0;
-
-
-
   }
+  .formMessage2{
+    width: 80%;
+    height: 25%;
+    padding: 15px;
+    background:#f8f8f8;
+    border:1px solid rgba(0, 0, 0, 0.075);
+    margin-right: 25px;
+    margin-left: 15px;
+    margin-bottom:25px;
+    color:#727272 !important;
+    font-size:13px;
+    -webkit-transition: all 0.4s;
+    -moz-transition: all 0.4s;
+    transition: all 0.4s;
+    position: relative;
+    z-index: 0;
+  }
+
   .form{
     width: 100%;
     padding: 15px;
@@ -132,7 +147,7 @@
 
   .textarea{
     padding: 15px;
-    max-height: 600px;
+    max-height: 75%;
     max-width: 98%;
   }
   
@@ -212,3 +227,30 @@ center{
 
 }
 
+.panel{
+  margin: auto;
+  padding: auto;
+}
+
+.formTextArea{
+  width: 75%;
+  height: 50%;
+  background:#f8f8f8;
+  border:1px solid rgba(0, 0, 0, 0.075);
+  color:#727272 !important;
+  font-size:13px;
+  -webkit-transition: all 0.4s;
+  -moz-transition: all 0.4s;
+  transition: all 0.4s;
+  position: relative;
+  z-index: 0;
+}
+
+.divCont {
+  height: 72%;
+  width: 85%;
+  background: #fff;
+  border-radius: 10px;
+  overflow: hidden;
+  padding: 62px 55px 90px 55px;
+}

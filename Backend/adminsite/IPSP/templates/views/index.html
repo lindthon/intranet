@@ -5,22 +5,24 @@
 <nav class="menu" tabindex="0">
 	<div class="smartphone-menu-trigger"></div>
   <header class="avatar">
-		<img src="https://s3.amazonaws.com/uifaces/faces/twitter/kolage/128.jpg" />
-    <h2>{{ request.user }}</h2>
+		<img src="{{user.empleado.imagen.url}}" />
+    <h2>{{user.first_name}} {{user.last_name}} </h2>
   </header>
-	<ul>
-    <li tabindex="0" class="icon-dashboard"><a  href="{% url 'noticia' %}">Registrar Noticias</a></li>
-    <li tabindex="0" class="icon-customers"><a  href="{% url 'evento' %}"><span>Registrar Evento</span></a></li>
-    <li tabindex="0" class="icon-users"><a  href="{% url 'empleado' %}"><span>Resgistar Empleado</span></a></li>
-    <li tabindex="0" ></li>
-    <li tabindex="0" class="icon-delete"><a  href="{% url 'noticia' %}">Eliminar Noticias</a></li>
-    <li tabindex="0" class="icon-customers"><a  href="{% url 'evento' %}"><span>Eliminar Evento</span></a></li>
-    <li tabindex="0" class="icon-users"><a  href="{% url 'empleado' %}"><span>Eliminar Empleado</span></a></li>
-    <li tabindex="0" ></li>
-    <li tabindex="0" class="icon-delete"><span>Cerrar Sesión</span></li>
-  </ul>
-</nav>
 
-{% block content %}
-  
+	<ul>
+    <a  href="{% url 'noticia' %}"><li tabindex="0" class="icon-news">Registrar Noticias</li></a>
+    <a  href="{% url 'evento' %}"><li tabindex="0" class="icon-evento"><span>Registrar Evento</span></li></a>
+    <a  href="{% url 'empleado' %}"><li tabindex="0" class="icon-users"><span>Resgistar Empleado</span></li></a>
+    <li tabindex="0" ></li>
+    <a  href="{% url 'delete' %}"><li tabindex="0" class="icon-delete">Eliminar Noticias</li></a>
+    <a  href="{% url 'evento' %}"><li tabindex="0" class="icon-delete-event"><span>Eliminar Evento</span></li></a>
+    <a  href="{% url 'empleado' %}"><li tabindex="0" class="icon-user-delete"><span>Eliminar Empleado</span></li></a>
+    <li tabindex="0" ></li>
+    <a class="nav-link" href="{% url 'logout' %}"><li tabindex="0" class="icon-log-out"> <span>Cerrar Sesión</span></li></a>
+  </ul>
+
+</nav>
+{% block content %} 
+
 {% endblock %}  
+

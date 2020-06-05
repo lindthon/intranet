@@ -28,6 +28,7 @@ def get_UltimaNoticias(request):
                 response["Notica " + str(contador)]=res
                 res['title'] = noticia.titulo
                 res['descr'] = noticia.descripcion
+                res['resume']= noticia.descripcion[0:55]+" ..."
                 res['date'] = datetime.datetime.strptime(str(noticia.fecha.month), "%m").strftime("%b")+" "+str(noticia.fecha.day)+", "+str(noticia.fecha.year)
                 res['image'] = noticia.imagen.url
                 res['id'] = noticia.id_noticia
@@ -68,6 +69,7 @@ def get_NoticiaPorCategoria(request):
                 res[noticia.id_noticia] = new
                 new['title'] = noticia.titulo
                 new['descr'] = noticia.descripcion
+                new['resume']= noticia.descripcion[0:55]+" ..."
                 datetime_object = datetime.datetime.strptime(str(noticia.fecha.month), "%m")
                 month_name = datetime_object.strftime("%b")
                 new['date'] = month_name +" "+str(noticia.fecha.day)+", "+str(noticia.fecha.year)
@@ -111,6 +113,7 @@ def get_NoticiaByID(request):
                 response["Notica " + str(contador)]=res
                 res['title'] = noticia.titulo
                 res['descr'] = noticia.descripcion
+                res['resume']= noticia.descripcion[0:6]
                 datetime_object = datetime.datetime.strptime(str(noticia.fecha.month), "%m")
                 month_name = datetime_object.strftime("%b")
                 res['date'] = month_name +" "+str(noticia.fecha.day)+", "+str(noticia.fecha.year)
@@ -353,7 +356,10 @@ def view_RegistrarEmpleado(request):
     return render(request, 'views/viewRegistroEmpleado.html', {"categorias":response})        
 
 def view_RegistrarCategoria(request):
-    return render(request, 'views/viewRegistroCategoria.html', {})        
+    return render(request, 'views/viewRegistroCategoria.html', {})    
+    
+def view_DeleteNoticia(request):
+    return render(request, 'views/viewDeleteNoticia.html', {})       
 
 
 
