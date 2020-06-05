@@ -1,0 +1,35 @@
+{% extends "views/index.html" %} 
+{% load static %}
+
+  <!-- /.container -->
+
+{% block content %}
+<link rel="stylesheet" href="{% static 'css/table.css' %}">
+<script src="{% static 'scripts/table.js' %}"></script>
+
+<h2>Responsive Table</h2>
+<div class="table-wrapper">
+    <input class="formFecha2" type="text" id="myInput" onkeyup="myFunction()" placeholder="Search for names..">
+    <table class="fl-table" id="myTable">
+        <thead>
+        <tr>
+            <th>Titulo Noticia</th>
+            <th>Fecha Publicacion</th>
+            <th>Id</th>
+            <th>Options</th>
+        </tr>
+        </thead>
+        <tbody>
+            {% for o in listaNoticia %}
+                <tr>
+                     <td>{{o.titulo}}</td>
+                     <td>{{o.fecha}}</td>
+                     <td>{{o.id_noticia}}</td>
+                     <td><form action="{% url 'delete_noticia' o.id_noticia%}"><input type="submit" value="Delete"></form></td>
+                </tr>
+            {% endfor %}
+                
+        <tbody>
+    </table>
+</div>
+{% endblock %}

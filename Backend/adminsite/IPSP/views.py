@@ -359,8 +359,37 @@ def view_RegistrarCategoria(request):
     return render(request, 'views/viewRegistroCategoria.html', {})    
     
 def view_DeleteNoticia(request):
-    return render(request, 'views/viewDeleteNoticia.html', {})       
+    response= Noticia.objects.all()
+    return render(request, 'views/viewDeleteNoticia.html', {"listaNoticia":response}) 
 
+def delete_noticia(request, pk):
+    val = pk
+    noticia= Noticia.objects.get(id_noticia=val)
+    noticia.delete()
+    response= Noticia.objects.all()
+    return render(request, 'views/viewDeleteEvento.html', {"listaNoticia":response}) 
+
+def view_DeleteEvento(request):
+    response= Evento.objects.all()
+    return render(request, 'views/viewDeleteEvento.html', {"listaEvento":response}) 
+
+def delete_evento(request,pk):
+    val = pk
+    evento= Evento.objects.get(id_evento=val)
+    evento.delete()
+    response= Evento.objects.all()
+    return render(request, 'views/viewDeleteEvento.html', {"listaEvento":response}) 
+
+def view_DeleteEmpleado(request):
+    response= Empleado.objects.all()
+    return render(request, 'views/viewDeleteEmpleado.html', {"listaEmpleado":response}) 
+
+def delete_empleado(request,pk):
+    val = pk
+    empleado= empleado.objects.get(id_empleado=val)
+    empleado.delete()
+    response= Evento.objects.all()
+    return render(request, 'views/viewDeleteEmpleado.html', {"listaEmpleado":response}) 
 
 
 def view_Login(request):

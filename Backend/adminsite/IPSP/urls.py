@@ -19,7 +19,7 @@ urlpatterns = [
      #Api Eventos
     path('getEvento/', get_Eventos),
 
-  #Api Noticias
+     #Api Noticias
     path('getNoticiasBrigada/',get_NoticiaBrigada),
     path('getNoticiasCambio/',get_NoticiaCambiosPoliticos),
     path('getCategoria/',get_CategoriaNoticia),
@@ -33,8 +33,17 @@ urlpatterns = [
     path('registroNoticias/', view_RegistrarNoticias,name='noticia'),
     path('registroEventos/', view_RegistrarEventos,name='evento'),
     path('registroEmpleado/', view_RegistrarEmpleado, name='empleado'),
-
     path('registroCategorias/', view_RegistrarCategoria, name='categoria'),
+
+
+    path('deleteEvento/', view_DeleteEvento, name='deletevento'),
+    path('deleteEvento/<int:pk>', delete_evento, name='delete_evento'),
+
+    path('deleteNoticia/', view_DeleteNoticia, name='delete'),
+    path('deleteNoticia/<int:pk>', delete_noticia, name='delete_noticia'),
+
+    path('deleteEmpleado/', view_DeleteEmpleado, name='deletempleado'),
+    path('deleteEmpleado/<int:pk>', delete_empleado, name='delete_empleado'),
 
     path('', login, name='login'),
     path('logout/', logout_view, name='logout'),
