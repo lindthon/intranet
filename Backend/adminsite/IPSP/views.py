@@ -367,11 +367,63 @@ def delete_noticia(request, pk):
     noticia= Noticia.objects.get(id_noticia=val)
     noticia.delete()
     response= Noticia.objects.all()
-    return render(request, 'views/viewDeleteEvento.html', {"listaNoticia":response}) 
+    return render(request, 'views/viewDeleteNoticia.html', {"listaNoticia":response}) 
+
+def view_ModificarNoticia(request):
+    response= Noticia.objects.all()
+    return render(request, 'views/viewModificarNoticia.html', {"listaNoticia":response})
+@csrf_exempt
+def modificar_noticia(request,pk):#get noticia por id 
+    print(pk)
+    response= Noticia.objects.all()
+    categoria = Tipo_noticia.objects.all()
+    noticia= Noticia.objects.get(id_noticia=pk)
+    print(noticia.titulo)
+    print(noticia.imagen.url)
+    print(noticia.fecha)
+    print(noticia.descripcion)
+    print(noticia.tipo_noticia.categoria)
+    if request.method=='POST':
+        noticia.titulo=request.POST['titulo']
+        noticia.descripcion=request.POST['descripcion']
+        noticia.fecha=request.POST['date']
+        if(bool(request.FILES.get('filepath', False)) == True ):
+            noticia.imagen=request.FILES['archivoimg']
+        tipo= Tipo_noticia.objects.get(id_tiponot=request.POST['categoria'])
+        noticia.tipo_noticia=tipo
+        noticia.save()
+    return render(request, 'views/viewModificarNoticia.html', {"listaNoticia":response,"noticia":noticia,"categoria":categoria}) 
+
+def view_ModificarEvento(request):
+    response= Evento.objects.all()
+    return render(request, 'views/viewModificarEvento.html', {"listaEvento":response})
+@csrf_exempt
+def modificar_evento(request,pk):#get noticia por id 
+    print(pk)
+    response= Evento.objects.all()
+    categoria = Tipo_noticia.objects.all()
+    evento= Evento.objects.get(id_evento=pk)
+    fecha =  str(evento.fecha.day)+"/"+ str(evento.fecha.month)+"/"+str(evento.fecha.year)
+    print(fecha)
+    if request.method=='POST':
+        evento.titulo=request.POST['evento']
+        evento.descripcion=request.POST['descripcion']
+        print(request.POST['fecha']+"assssssssssd")
+        if(request.POST['fecha']!=''):
+            evento.fecha=request.POST['fecha']   
+        if(bool(request.FILES.get('filepath', False)) == True ):
+            evento.imagen=request.FILES['imagen']
+        evento.hora=request.POST['hora']
+        print(request.POST['hora'])
+        evento.lugar=request.POST['lugar']
+        evento.save()
+    return render(request, 'views/viewModificarEvento.html', {"listaEvento":response,"evento":evento,"fechaevento":fecha}) 
+
 
 def view_DeleteEvento(request):
     response= Evento.objects.all()
     return render(request, 'views/viewDeleteEvento.html', {"listaEvento":response}) 
+
 
 def delete_evento(request,pk):
     val = pk
