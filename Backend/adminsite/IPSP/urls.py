@@ -42,9 +42,23 @@ urlpatterns = [
     path('deleteNoticia/', view_DeleteNoticia, name='delete'),
     path('deleteNoticia/<int:pk>', delete_noticia, name='delete_noticia'),
 
+    path('modificarNoticia/', view_ModificarNoticia, name='modificar_noticia'),
+    path('modificarNoticia/<int:pk>', modificar_noticia, name='modificarNoticia'),
+
+    path('modificarEvento/', view_ModificarEvento, name='modificar_evento'),
+    path('modificarEvento/<int:pk>', modificar_evento, name='modificarEvento'),
+
+
+    path('modificarEmpleado/', view_ModificarEmpleado, name='modificar_empleado'),
+    path('modificarEmpleado/<str:pk>',modificar_empleado, name='modificarEmpleado'),
+
+
     path('deleteEmpleado/', view_DeleteEmpleado, name='deletempleado'),
     path('deleteEmpleado/<int:pk>', delete_empleado, name='delete_empleado'),
 
+
+
+    
     path('', login, name='login'),
     path('logout/', logout_view, name='logout'),
 
