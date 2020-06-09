@@ -386,8 +386,10 @@ def modificar_noticia(request,pk):#get noticia por id
     if request.method=='POST':
         noticia.titulo=request.POST['titulo']
         noticia.descripcion=request.POST['descripcion']
-        noticia.fecha=request.POST['date']
-        if(bool(request.FILES.get('filepath', False)) == True ):
+        if(request.POST['date']!=''):
+            noticia.fecha=request.POST['date']
+        if(bool(request.FILES.get('archivoimg', False)) == True ):
+            print("Entrando...")
             noticia.imagen=request.FILES['archivoimg']
         tipo= Tipo_noticia.objects.get(id_tiponot=request.POST['categoria'])
         noticia.tipo_noticia=tipo
@@ -411,7 +413,7 @@ def modificar_evento(request,pk):#get noticia por id
         print(request.POST['fecha']+"assssssssssd")
         if(request.POST['fecha']!=''):
             evento.fecha=request.POST['fecha']   
-        if(bool(request.FILES.get('filepath', False)) == True ):
+        if(bool(request.FILES.get('imagen', False)) == True ):
             evento.imagen=request.FILES['imagen']
         evento.hora=request.POST['hora']
         print(request.POST['hora'])
