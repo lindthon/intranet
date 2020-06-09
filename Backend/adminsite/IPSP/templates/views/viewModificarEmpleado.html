@@ -6,11 +6,23 @@
 {% block content %}
 
     
-<head><link rel="stylesheet" href="{% static 'css/styleRegistroNoticias.css' %}"></head>
+<head>
+    <link rel="stylesheet" href="{% static 'css/styleRegistroNoticias.css' %}">
+    <link rel="stylesheet" href="{% static 'css/dropdown.css' %}"></head>
+
+    <div class="dropdown">
+        <button class="dropbtn">Modificar Empleado</button>
+        <div class="dropdown-content">
+          {% for empleado in listaEmpleado  %}
+            <a href="{% url 'modificarEmpleado' empleado.id_empleado %}">{{empleado.nombre}} {{empleado.apellido}}</a>
+          {% endfor  %}
+        </div>
+      </div>
+</head>
 <br />
 <div class="inner contact divCont">
                 <!-- Form Area -->
-                <h3 class="letterh3">Registro De Empleados</h3>
+                <h3 class="letterh3">Modificar Empleado</h3>
 
                 <div class="contact-form mt-4  ">
                     <!-- Form -->
@@ -20,26 +32,26 @@
                         <div class="  mx-auto wow animated slideInLeft" data-wow-delay=".5s">
                             <!-- Name -->
                             <label  class=" labelCol" for="Motivo">Nombre:</label>
-                            <input type="text" name="name" id="name" required="required" class="formFecha3" placeholder="Nombre" />
+                            <input type="text" name="name" id="name" required="required" class="formFecha3" value="{{empleado.nombre}}" />
                             <label class=" labelCol" for="Motivo">Apellido:</label>
-                            <input type="text" name="apellido"  required="required" class="formFecha3" placeholder="Apellido" />
+                            <input type="text" name="apellido"  required="required" class="formFecha3" value="{{empleado.apellido}}" />
                         
                         </div><!-- End Left Inputs -->
                          <!-- Left Inputs -->
                          <div class="col-xs-6 wow animated slideInLeft" data-wow-delay=".5s">
                             <!-- Name -->
                             <label  class="ml-5 labelCol" for="Motivo">Usuario:</label>
-                            <input type="text" name="user"  required="required" class="formFecha3" placeholder="Usuario" />
+                            <input type="text" name="user"  required="required" class="formFecha3" value="{{empleado.auth_user.username}}"/>
                             <label  class="ml-5 labelCol" for="Motivo">Contraseña:</label>
-                            <input type="password" name="password"  required="required" class="formFecha3" placeholder="Contraseña" />
+                            <input type="password" name="password"   class="formFecha3" placeholder="Contraseña" />
                         
                         </div><!-- End Left Inputs -->
                         <div class="col-xs-6 wow animated slideInLeft" data-wow-delay=".5s">
                             <!-- Name -->
                             <label  class="ml-5 labelCol" for="Motivo">Cedula:</label>
-                            <input type="text" name="cedula"  required="required" class="formFecha3" placeholder="cedula" />
+                            <input type="text" name="cedula"   class="formFecha3" value="{{empleado.id_empleado}}"/>
                             <label  class="ml-5 labelCol" for="Motivo">Correo  :</label>
-                            <input type="text" name="correo"  required="required" class="formFecha3" placeholder="correo" />
+                            <input type="text" name="correo"  class="formFecha3" value="{{empleado.correo}}" />
                         
                         </div><!-- End Left Inputs -->
                             <div class="col-xs-6 wow animated slideInLeft" data-wow-delay=".5s">
@@ -58,7 +70,7 @@
                                 <label  class="labelCol">Imagen Empleado :</label>
                                 <input type="file" class="formFecha2" name="image">                                
                                 <label  class="labelCol">Extension o ruta:</label>
-                                <input type="text" name="ext" id="subject" required="required" class="formFecha3" placeholder="extencion" />
+                                <input type="text" name="ext" id="subject" required="required" class="formFecha3" value="{{empleado.ubicacion}}" />
                             </div>
 
                          <!-- Email -->
