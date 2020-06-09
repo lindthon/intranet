@@ -421,6 +421,30 @@ def modificar_evento(request,pk):#get noticia por id
         evento.save()
     return render(request, 'views/viewModificarEvento.html', {"listaEvento":response,"evento":evento,"fechaevento":fecha}) 
 
+def view_ModificarEmpleado(request):
+    response = Empleado.objects.all()
+    return render(request, 'views/viewModificarEmpleado.html', {"listaEmpleado":response})
+
+@csrf_exempt
+def modificar_empleado(request,pk):#get noticia por id 
+    print(pk)
+    response= Empleado.objects.all()
+    categoria = Tipo_categoria.objects.all()
+    empleado= Empleado.objects.get(id_empleado=pk)
+    if request.method=='POST':
+        empleado.nombre=request.POST['name']
+        empleado.apellido=request.POST['apellido']
+        if(request.POST['fecha']!=''):
+            empleado.fecha_nacimiento=request.POST['fecha']   
+        if(request.POST['user']!=''):
+            empleado.auth_user.username=request.POST['user']   
+        if(request.POST['password']!=''):
+            empleado.auth_user.password=request.POST['password']   
+        if(bool(request.FILES.get('image', False)) == True ):
+            empleado.imagen=request.FILES['image']
+        empleado.ubicacion=request.POST['ext']
+        empleado.save()
+    return render(request, 'views/viewModificarEmpleado.html', {"listaEmpleado":response,"empleado":empleado}) 
 
 def view_DeleteEvento(request):
     response= Evento.objects.all()
