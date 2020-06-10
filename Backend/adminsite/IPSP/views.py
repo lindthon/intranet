@@ -478,6 +478,20 @@ def delete_empleado(request,pk):
     response= Evento.objects.all()
     return render(request, 'views/viewDeleteEmpleado.html', {"listaEmpleado":response}) 
 
+def view_DeleteCategoriaNoticia(request):
+    response= Tipo_noticia.objects.all()
+    return render(request, 'views/viewDeleteCategoriaNoticia.html', {"listaCategoriaNoticia":response}) 
+
+def delete_categoriaNoticia(request,pk):
+    val = pk
+    tipo= Tipo_noticia.objects.get(id_tiponot=val)
+    noticia = Noticia.objects.filter(tipo_noticia_id=tipo)
+    print(noticia)
+    noticia.delete()
+    tipo.delete()
+    response= Tipo_noticia.objects.all()
+    return render(request, 'views/viewDeleteCategoriaNoticia.html', {"listaCategoriaNoticia":response}) 
+
 
 def view_Login(request):
     login(request)
