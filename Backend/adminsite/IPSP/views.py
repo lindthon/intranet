@@ -356,6 +356,14 @@ def view_RegistrarEmpleado(request):
     return render(request, 'views/viewRegistroEmpleado.html', {"categorias":response})        
 
 def view_RegistrarCategoria(request):
+    if request.method=='POST':
+        if(request.POST.get("tipoForm1")=="form1"):
+            tipo = Tipo_noticia(categoria=request.POST['tipoNoticia'])
+            tipo.save()
+        if(request.POST.get("tipoForm2")=="form2"):
+            cate = Tipo_categoria(categoria=request.POST['categoria'])
+            cate.save()
+
     return render(request, 'views/viewRegistroCategoria.html', {})    
     
 def view_DeleteNoticia(request):
@@ -440,9 +448,10 @@ def modificar_empleado(request,pk):#get noticia por id
             empleado.auth_user.username=request.POST['user']   
         if(request.POST['password']!=''):
             empleado.auth_user.password=request.POST['password']   
+        if(request.POST['ext']!=''):
+            empleado.ubicacion=request.POST['ext']
         if(bool(request.FILES.get('image', False)) == True ):
             empleado.imagen=request.FILES['image']
-        empleado.ubicacion=request.POST['ext']
         empleado.save()
     return render(request, 'views/viewModificarEmpleado.html', {"listaEmpleado":response,"empleado":empleado}) 
 
