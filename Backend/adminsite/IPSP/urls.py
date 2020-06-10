@@ -56,7 +56,8 @@ urlpatterns = [
     path('deleteEmpleado/', view_DeleteEmpleado, name='deletempleado'),
     path('deleteEmpleado/<int:pk>', delete_empleado, name='delete_empleado'),
 
-
+    path('deleteCategoriaNoticia/', view_DeleteCategoriaNoticia, name='deletecategoria'),
+    path('deleteCategoriaNoticia/<int:pk>', delete_categoriaNoticia, name='delete_categoriaNoticia'),
 
     
     path('', login, name='login'),

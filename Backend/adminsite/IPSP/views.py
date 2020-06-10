@@ -486,7 +486,6 @@ def delete_categoriaNoticia(request,pk):
     val = pk
     tipo= Tipo_noticia.objects.get(id_tiponot=val)
     noticia = Noticia.objects.filter(tipo_noticia_id=tipo)
-    print(noticia)
     noticia.delete()
     tipo.delete()
     response= Tipo_noticia.objects.all()

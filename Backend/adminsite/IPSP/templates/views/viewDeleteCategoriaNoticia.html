@@ -11,7 +11,7 @@
 <script src="{% static 'scripts/table.js' %}"></script>
 
 <div class="table-wrapper">
-    <input class="formFecha2" type="text" id="myInput" onkeyup="myFunction()" placeholder="Search for names..">
+    <input class="formFecha2" type="text" id="myInput" onkeyup="myFunction()" placeholder="Buscar Categoria">
     <table class="fl-table " id="myTable">
         <thead>
         <tr>
@@ -25,7 +25,7 @@
                 <tr >
                      <td >{{o.categoria}}</td>
                      <td>{{o.id_tiponot}}</td>
-                     <td><form  name="myform" action="{% url 'delete_categoriaNoticia' o.id_tiponot %}"><input type="button"  onclick="confirmationMessage()" value="Delete"></form></td>
+                     <td><form  name="myform" action="{% url 'delete_categoriaNoticia' o.id_tiponot %}"><input type="button" class="btn" onclick="confirmationMessage()" value="Eliminar"></form></td>
                 </tr>
             {% endfor %}
        
