@@ -1,33 +1,31 @@
 {% extends "views/index.html" %} 
-{% load static %}
 
   <!-- /.container -->
 
 {% block content %}
+{% load static %}
 
 <link rel="stylesheet" href="{% static 'css/table.css' %}">
-<script src="{% static 'scripts/table.js' %}"></script>
 
 <h2>Responsive Table</h2>
+<script src="{% static 'scripts/table.js' %}"></script>
 
 <div class="table-wrapper">
     <input class="formFecha2" type="text" id="myInput" onkeyup="myFunction()" placeholder="Search for names..">
     <table class="fl-table " id="myTable">
         <thead>
         <tr>
-            <th>Evento</th>
-            <th>Fecha Publicacion</th>
-            <th>Id</th>
+            <th>Categoria</th>
+            <th>ID</th>
             <th>Opciones</th>
         </tr>
         </thead>
         <tbody>
-            {% for o in listaEvento %}
+            {% for o in listaCategoriaNoticia %}
                 <tr >
-                     <td >{{o.titulo}}</td>
-                     <td>{{o.fecha}}</td>
-                     <td>{{o.id_evento}}</td>
-                     <td><form  name="myform" action="{% url 'delete_evento' o.id_evento %}"><input type="button"  onclick= "confirmationMessage()" value="Delete"></form></td>
+                     <td >{{o.categoria}}</td>
+                     <td>{{o.id_tiponot}}</td>
+                     <td><form  name="myform" action="{% url 'delete_categoriaNoticia' o.id_tiponot %}"><input type="submit"  onclick= "" value="Delete"></form></td>
                 </tr>
             {% endfor %}
        

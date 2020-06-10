@@ -14,6 +14,7 @@
         <thead>
         <tr>
             <th>Titulo Noticia</th>
+            <th>Categoria</th>
             <th>Fecha Publicacion</th>
             <th>Id</th>
             <th>Options</th>
@@ -23,9 +24,10 @@
             {% for o in listaNoticia %}
                 <tr>
                      <td>{{o.titulo}}</td>
+                     <td>{{o.tipo_noticia.categoria}}</td>
                      <td>{{o.fecha}}</td>
                      <td>{{o.id_noticia}}</td>
-                     <td><form action="{% url 'delete_noticia' o.id_noticia%}"><input type="submit" value="Delete"></form></td>
+                     <td><form name="myform" action="{% url 'delete_noticia' o.id_noticia %}"><input type="button" onclick= "confirmationMessage()" value="Delete"></form></td>
                 </tr>
             {% endfor %}
                 
