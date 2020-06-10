@@ -159,3 +159,21 @@ table{
     /* Add a grey background color to the table header and on hover */
     background-color: #f1f1f1;
   }
+
+  .btn {
+    font-family: "Roboto", sans-serif;
+    text-transform: uppercase;
+    outline: 0;
+    background: #DC143C;
+    width: auto;
+    border: 0;
+    padding: 8px;
+    color: #FFFFFF;
+    font-size: 11px;
+    -webkit-transition: all 0.3 ease;
+    transition: all 0.3 ease;
+    cursor: pointer;
+  }
+  .btn button:hover,.form button:active,.form button:focus {
+    background: #43A047;
+  }

@@ -11,7 +11,7 @@
 <h2>Responsive Table</h2>
 
 <div class="table-wrapper">
-    <input class="formFecha2" type="text" id="myInput" onkeyup="myFunction()" placeholder="Search for names..">
+    <input class="formFecha2" type="text" id="myInput" onkeyup="myFunction()" placeholder="Buscar Evento">
     <table class="fl-table " id="myTable">
         <thead>
         <tr>
@@ -27,7 +27,7 @@
                      <td >{{o.titulo}}</td>
                      <td>{{o.fecha}}</td>
                      <td>{{o.id_evento}}</td>
-                     <td><form  name="myform" action="{% url 'delete_evento' o.id_evento %}"><input type="button"  onclick= "confirmationMessage()" value="Delete"></form></td>
+                     <td><form  name="myform" action="{% url 'delete_evento' o.id_evento %}"><input type="button" class="btn" onclick= "confirmationMessage()" value="Eliminar"></form></td>
                 </tr>
             {% endfor %}
        
