@@ -25,7 +25,7 @@
                 <tr >
                      <td >{{o.categoria}}</td>
                      <td>{{o.id_tiponot}}</td>
-                     <td><form  name="myform" action="{% url 'delete_categoriaNoticia' o.id_tiponot %}"><input type="submit"  onclick= "" value="Delete"></form></td>
+                     <td><form  name="myform" action="{% url 'delete_categoriaNoticia' o.id_tiponot %}"><input type="button"  onclick="confirmationMessage()" value="Delete"></form></td>
                 </tr>
             {% endfor %}
        
