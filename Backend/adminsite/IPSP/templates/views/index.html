@@ -12,15 +12,18 @@
 	<ul>
     <a  href="{% url 'noticia' %}"><li tabindex="0" class="icon-news">Registrar Noticias</li></a>
     <a  href="{% url 'evento' %}"><li tabindex="0" class="icon-evento"><span>Registrar Evento</span></li></a>
+    <a  href="{% url 'categoria' %}"><li tabindex="0" class="icon-categoria"><span>Resgistar Categorias</span></li></a>
     <a  href="{% url 'empleado' %}"><li tabindex="0" class="icon-users"><span>Resgistar Empleado</span></li></a>
-    <li tabindex="0" ></li>
-    <a  href="{% url 'modificar_noticia' %}"><li tabindex="0" class="icon-delete">Modificar Noticias</li></a>
-    <a  href="{% url 'modificar_evento' %}"><li tabindex="0" class="icon-delete-event"><span>Modificar Evento</span></li></a>
-    <a  href="{% url 'deletempleado' %}"><li tabindex="0" class="icon-user-delete"><span>Modificar Empleado</span></li></a>
 
     <li tabindex="0" ></li>
-    <a  href="{% url 'delete' %}"><li tabindex="0" class="icon-delete">Eliminar Noticias</li></a>
+    <a  href="{% url 'modificar_noticia' %}"><li tabindex="0" class="icon-edit-file">Modificar Noticias</li></a>
+    <a  href="{% url 'modificar_evento' %}"><li tabindex="0" class="icon-edit"><span>Modificar Evento</span></li></a>
+    <a  href="{% url 'modificar_empleado' %}"><li tabindex="0" class="icon-edit-acc"><span>Modificar Empleado</span></li></a>
+
+    <li tabindex="0" ></li>
+    <a  href="{% url 'delete' %}"><li tabindex="0" class="icon-delete-news">Eliminar Noticias</li></a>
     <a  href="{% url 'deletevento' %}"><li tabindex="0" class="icon-delete-event"><span>Eliminar Evento</span></li></a>
+    <a  href="{% url 'deletecategoria' %}"><li tabindex="0" class="icon-delete">Eliminar Categorias </li></a>
     <a  href="{% url 'deletempleado' %}"><li tabindex="0" class="icon-user-delete"><span>Eliminar Empleado</span></li></a>
     <li tabindex="0" ></li>
     <a class="nav-link" href="{% url 'logout' %}"><li tabindex="0" class="icon-log-out"> <span>Cerrar Sesión</span></li></a>

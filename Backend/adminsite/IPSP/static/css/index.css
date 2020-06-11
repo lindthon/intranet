@@ -94,14 +94,33 @@ body {
   .menu ul li.icon-news {
     background-image: url("http://www.entypo.com/images/news.svg");
   }
+  
   .menu ul li.icon-evento {
     background-image: url("http://www.entypo.com/images/calendar.svg");
   }
   .menu ul li.icon-delete-event {
-    background-image: url("http://www.entypo.com/images/circle-with-cross.svg");
+    background-image: url("/static/images/icon-delete-event.png");
+  }
+  .menu ul li.icon-categoria {
+    background-image: url("http://www.entypo.com/images/new-message.svg");
   }
 
- 
+  .menu ul li.icon-edit {
+    background-image: url("/static/images/icon-edit.png");
+  }
+  .menu ul li.icon-edit-acc {
+    background-image: url("/static/images/icons-edit-acc.png");
+  }
+  .menu ul li.icon-edit-file {
+    background-image: url("/static/images/icon-edit-file.png");
+  }
+
+  .menu ul li.icon-delete-news {
+    background-image: url("/static/images/icon-delete-news.png");
+  }
+
+
+
   .menu ul li:hover {
     background-color: rgba(0, 0, 0, 0.1);
   }
