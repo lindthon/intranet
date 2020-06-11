@@ -30,7 +30,7 @@
 <div class="inner contact">
                 <!-- Form Area -->
                 <div class="contact-form divCont">
-                    <h3 class="letterh3">Registrar Noticas</h3>
+                    <h3 class="letterh3">Modificar Noticas</h3>
 
                     <!-- Form -->
                     <form enctype="multipart/form-data" id="contact-us" method="POST"   >
@@ -41,7 +41,7 @@
                             <label class="labelCol"  >Titulo De Noticia:</label>
                             <input type="text" class="formFecha2" required="required" name="titulo"  value="{{noticia.titulo}}" />
                             <label  class="labelCol"   >Imagen</label>
-                            <input type="file" name="archivoimg"  class="formFecha2" required="required" value="{{noticia.imagen.url}}" accept="image/*" id="id_imagen"/>
+                            <input type="file" name="archivoimg"  class="formFecha2"   accept="image/*" id="id_imagen"/>
                         </div><!-- End Left Inputs -->
                         <div class="col-xs-6 wow animated slideInLeft" data-wow-delay=".5s">
 
@@ -57,7 +57,7 @@
 
                                 </select>
                                 <label  class="labelCol col-md-3">  Fecha De Publicacion:</label>
-                                <input type="date" name="date" placeholder="yyyy-mm-dd" required="required" value="{{noticia.fecha}}"class="formFecha2 col-md-3"/>
+                                <input type="date" name="date" value="{{noticia.fecha}}" class="formFecha2 col-md-3"/>
                             </div>
                             <label  class="labelCol">Escriba la reseña de la noticia:</label>
 
@@ -69,8 +69,8 @@
                         <div class="relative fullwidth col-xs-12">
                             <!-- Send Button -->
                             <div class="divBtn">
-                                <button type="submit" id="submit" name="submit" class="form-btn semibold">Publicar Noticia</button> 
-                                <button type="submit" id="submit" name="submit" class="form-btn semibold">Limpiar Campos</button> 
+                                <button type="submit" id="submit" name="submit" class="form-btn semibold">Modificar</button> 
+                                <button type="reset" id="reset" name="reset" class="form-btn semibold">Limpiar</button> 
                             </div>
                         </div><!-- End Bottom Submit -->
                         <!-- Clear -->

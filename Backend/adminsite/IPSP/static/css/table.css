@@ -3,8 +3,9 @@
     -webkit-box-sizing: border-box;
     -moz-box-sizing: border-box;
 }
+
 #myInput {
-    background-image: url('http://www.entypo.com/images/magnifying-glass.svg'); /* Add a search icon to input */
+    background-image: url('/static/images/icon-search.png'); /* Add a search icon to input */
     background-position: 10px 12px; /* Position the search icon */
     background-repeat: no-repeat; /* Do not repeat the icon image */
     width: 100%; /* Full-width */
