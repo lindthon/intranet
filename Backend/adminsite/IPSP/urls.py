@@ -4,6 +4,8 @@ from .views import *
 
 
 urlpatterns = [
+      #Api Eventos
+    path('getPrincipal/', get_Principal),
 
     #Api Buzon_Sugerencias
     path('postSugerencia/', postCreateSugerencia),

@@ -29,9 +29,26 @@ export class IndexComponent implements OnInit {
    }
 
   ngOnInit(): void {
-    this.getMejoresEmpleados(this._http)
+    this.getMejoresEmpleados(this._http);
+    this.getDatosPrincipal(this._http);
 
   }
+  datprincipal : any;
+  infoPrincipal = [];
+
+  getDatosPrincipal(_http:HttpClient){
+    this._http.get('http://127.0.0.1:8000/getPrincipal/')
+    .subscribe(
+      (data)=>{console.log(data);
+        this.datprincipal=data;
+
+  
+      }
+      ,(err: HttpErrorResponse)=>{console.log("Un error ha ocurrido")}
+      ,()=>console.log("solicitud finalizada OK")
+      )
+  }
+
   datos : any;
   empleados = [];
   getMejoresEmpleados(_http:HttpClient){

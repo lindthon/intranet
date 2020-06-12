@@ -369,9 +369,17 @@ def view_ModificarPrinciapl (request):
         principal.save()
         response= Principal.objects.all()[0]
 
-        
-
     return render(request, 'views/viewModificarPrincipal.html', {"Principal":response})
+
+def get_Principal(request):
+    data = Principal.objects.all()[0]
+    res=dict()
+    res["Empresa"]=data.nombre_empresa
+    res["Eslogan"]=data.eslogan 
+    res["Image_Eslogan"]=data.image_eslogan.url
+    res["Image_Principal"]=data.image_principal.url
+    return JsonResponse(res)
+
 
 @login_required(login_url='/')
 def view_RegistrarCategoria(request):
