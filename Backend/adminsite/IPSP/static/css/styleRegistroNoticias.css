@@ -254,3 +254,30 @@ center{
   overflow: hidden;
   padding: 62px 55px 90px 55px;
 }
+
+.divContCategorias {
+  height: 60%;
+  width: 85%;
+  background: #fff;
+  border-radius: 10px;
+  overflow: hidden;
+  padding: 62px 55px 90px 55px;
+}
+
+.btn {
+  font-family: "Roboto", sans-serif;
+  text-transform: uppercase;
+  outline: 0;
+  background: #8BC3A3;
+  width: 100%;
+  border: 0;
+  padding: 15px;
+  color: #FFFFFF;
+  font-size: 14px;
+  -webkit-transition: all 0.3 ease;
+  transition: all 0.3 ease;
+  cursor: pointer;
+}
+.btn button:hover,.form button:active,.form button:focus {
+  background: #43A047;
+}

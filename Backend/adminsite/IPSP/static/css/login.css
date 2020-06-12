@@ -89,7 +89,7 @@
   color: #EF3B3A;
 }
 body {
-  background: white; /* fallback for old browsers */
+  background: #081F47  ; /* fallback for old browsers */
   font-family: "Roboto", sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;      
