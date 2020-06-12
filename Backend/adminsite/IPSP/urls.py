@@ -35,6 +35,9 @@ urlpatterns = [
     path('registroEmpleado/', view_RegistrarEmpleado, name='empleado'),
     path('registroCategorias/', view_RegistrarCategoria, name='categoria'),
 
+    path('modificarPrincipal/', view_ModificarPrinciapl, name='modificar_principal'),
+
+
 
     path('deleteEvento/', view_DeleteEvento, name='deletevento'),
     path('deleteEvento/<int:pk>', delete_evento, name='delete_evento'),

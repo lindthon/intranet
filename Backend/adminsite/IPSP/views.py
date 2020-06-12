@@ -182,22 +182,21 @@ def get_Eventos(request):
 def get_Contacto(request):
     if request.method=='GET':
         response = dict()
-        data = Contacto.objects.all()
+        data = Empleado.objects.all()
         contador = 0
         for contacto in data:
             res = dict()
             contador=contador+1
             response["Contacto "+ str(contador)]=res
-            res["Nombre"]=contacto.nombre 
+            res["Nombre"]=contacto.nombre + " " +contacto.apellido
             res["Correo"]=contacto.correo
-            res["Ubicacion"]=contacto.ubicacion
-            res["Extension"]=contacto.extension
+            res["Extension"]=contacto.ubicacion
+            res["Ubicacion"]="Centro"
 
     return JsonResponse(response)
 
-
 def get_Empleado(request):
-    if request.method=='GET':
+     if request.method=='GET':
         response = dict()
         data = Empleado.objects.all()
         contador = 0
@@ -216,7 +215,7 @@ def get_Empleado(request):
                 res["date"]=str(empleado.fecha_nacimiento.day) +" de "+ month_name
                 res["image"]=empleado.imagen.url
 
-    return JsonResponse(response)
+        return JsonResponse(response)
 
 def get_MejorEmpleado(request):
      if request.method=='GET':
@@ -291,7 +290,7 @@ def get_Sugerencia(request):
 from django.contrib.auth import authenticate, login
 from django.shortcuts import redirect
 
-@login_required
+@login_required(login_url='/')
 @csrf_exempt
 def view_RegistrarNoticias(request):
         response = Tipo_noticia.objects.all()
@@ -308,7 +307,7 @@ def view_RegistrarNoticias(request):
 
         return render(request, 'viewRegistroNoticias.html', {"categorias":response})
 
-@login_required
+@login_required(login_url='/')
 def view_RegistrarEventos(request):
         response = Mes_Evento.objects.all()
         if request.method=='POST':
@@ -327,7 +326,7 @@ def view_RegistrarEventos(request):
 
         return render(request, 'views/viewRegistroEventos.html', {"meses":response})
 
-
+@login_required(login_url='/')
 def view_RegistrarEmpleado(request):
     response= Tipo_categoria.objects.all()
     if request.method=='POST':
@@ -353,8 +352,28 @@ def view_RegistrarEmpleado(request):
             tipo_categoria=idfield,nombre=nombre,apellido=apell,
             correo=correo,imagen=imagen,fecha_nacimiento=fecha,ubicacion=ext)
             empleado.save()
-    return render(request, 'views/viewRegistroEmpleado.html', {"categorias":response})        
+    return render(request, 'views/viewRegistroEmpleado.html', {"categorias":response})    
 
+@login_required(login_url='/')
+def view_ModificarPrinciapl (request):
+    response= Principal.objects.all()[0]
+    if request.method=='POST':
+        print("entrando")
+        principal = Principal.objects.get(id_principal=1)
+        principal.nombre_empresa=request.POST['empre']
+        if(bool(request.FILES.get('image_principal', False)) == True ):
+                principal.image_principal=request.FILES['image_principal']
+        if(bool(request.FILES.get('image_eslogan', False)) == True ):
+                principal.image_eslogan=request.FILES['image_eslogan']
+        principal.eslogan=request.POST['eslogan']
+        principal.save()
+        response= Principal.objects.all()[0]
+
+        
+
+    return render(request, 'views/viewModificarPrincipal.html', {"Principal":response})
+
+@login_required(login_url='/')
 def view_RegistrarCategoria(request):
     if request.method=='POST':
         if(request.POST.get("tipoForm1")=="form1"):
@@ -365,21 +384,24 @@ def view_RegistrarCategoria(request):
             cate.save()
 
     return render(request, 'views/viewRegistroCategoria.html', {})    
-    
+@login_required(login_url='/')
 def view_DeleteNoticia(request):
     response= Noticia.objects.all()
     return render(request, 'views/viewDeleteNoticia.html', {"listaNoticia":response}) 
 
+@login_required(login_url='/')
 def delete_noticia(request, pk):
     val = pk
     noticia= Noticia.objects.get(id_noticia=val)
     noticia.delete()
     response= Noticia.objects.all()
     return render(request, 'views/viewDeleteNoticia.html', {"listaNoticia":response}) 
-
+@login_required(login_url='/')
 def view_ModificarNoticia(request):
     response= Noticia.objects.all()
     return render(request, 'views/viewModificarNoticia.html', {"listaNoticia":response})
+
+@login_required(login_url='/')
 @csrf_exempt
 def modificar_noticia(request,pk):#get noticia por id 
     print(pk)
@@ -403,10 +425,12 @@ def modificar_noticia(request,pk):#get noticia por id
         noticia.tipo_noticia=tipo
         noticia.save()
     return render(request, 'views/viewModificarNoticia.html', {"listaNoticia":response,"noticia":noticia,"categoria":categoria}) 
-
+@login_required(login_url='/')
 def view_ModificarEvento(request):
     response= Evento.objects.all()
     return render(request, 'views/viewModificarEvento.html', {"listaEvento":response})
+
+@login_required(login_url='/')
 @csrf_exempt
 def modificar_evento(request,pk):#get noticia por id 
     print(pk)
@@ -429,10 +453,12 @@ def modificar_evento(request,pk):#get noticia por id
         evento.save()
     return render(request, 'views/viewModificarEvento.html', {"listaEvento":response,"evento":evento,"fechaevento":fecha}) 
 
+@login_required(login_url='/')
 def view_ModificarEmpleado(request):
     response = Empleado.objects.all()
     return render(request, 'views/viewModificarEmpleado.html', {"listaEmpleado":response})
 
+@login_required(login_url='/')
 @csrf_exempt
 def modificar_empleado(request,pk):#get noticia por id 
     print(pk)
@@ -455,11 +481,12 @@ def modificar_empleado(request,pk):#get noticia por id
         empleado.save()
     return render(request, 'views/viewModificarEmpleado.html', {"listaEmpleado":response,"empleado":empleado}) 
 
+@login_required(login_url='/')
 def view_DeleteEvento(request):
     response= Evento.objects.all()
     return render(request, 'views/viewDeleteEvento.html', {"listaEvento":response}) 
 
-
+@login_required(login_url='/')
 def delete_evento(request,pk):
     val = pk
     evento= Evento.objects.get(id_evento=val)
@@ -467,21 +494,22 @@ def delete_evento(request,pk):
     response= Evento.objects.all()
     return render(request, 'views/viewDeleteEvento.html', {"listaEvento":response}) 
 
+@login_required(login_url='/')
 def view_DeleteEmpleado(request):
     response= Empleado.objects.all()
     return render(request, 'views/viewDeleteEmpleado.html', {"listaEmpleado":response}) 
-
+@login_required(login_url='/')
 def delete_empleado(request,pk):
     val = pk
-    empleado= empleado.objects.get(id_empleado=val)
+    empleado= Empleado.objects.get(id_empleado=val)
     empleado.delete()
     response= Evento.objects.all()
     return render(request, 'views/viewDeleteEmpleado.html', {"listaEmpleado":response}) 
-
+@login_required(login_url='/')
 def view_DeleteCategoriaNoticia(request):
     response= Tipo_noticia.objects.all()
     return render(request, 'views/viewDeleteCategoriaNoticia.html', {"listaCategoriaNoticia":response}) 
-
+@login_required(login_url='/')
 def delete_categoriaNoticia(request,pk):
     val = pk
     tipo= Tipo_noticia.objects.get(id_tiponot=val)

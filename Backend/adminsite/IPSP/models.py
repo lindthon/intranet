@@ -58,6 +58,12 @@ class Tipo_noticia(models.Model):
     id_tiponot = models.AutoField(primary_key=True )
     categoria = models.CharField(max_length=100)
 
+class Principal(models.Model):
+    id_principal = models.AutoField(primary_key=True )
+    nombre_empresa = models.CharField(max_length=150)
+    eslogan = models.CharField(max_length=190)
+    image_eslogan = models.ImageField(verbose_name="Imagen")
+    image_principal = models.ImageField(verbose_name="Imagen")
 
 class Noticia(models.Model):
     id_noticia = models.AutoField(primary_key=True)
