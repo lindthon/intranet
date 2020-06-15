@@ -1,0 +1,58 @@
+{% extends "views/index.html" %} 
+{% load static %}
+
+  <!-- /.container -->
+
+{% block content %}
+<link rel="stylesheet" href="{% static 'css/table.css' %}">
+<script src="{% static 'scripts/table.js' %}"></script>
+<script>
+    function myFunction(x) {
+        var sugest = document.getElementById('sugest')
+        var valor = alert(sugest.textContent)
+        var estado = document.getElementById('state')
+        console.log(estado.textContent)
+        estado.innerText="leido"
+        
+
+    }
+       
+
+    
+</script>
+<h2>Buzon De Sugerencias</h2>
+<div class="table-wrapper">
+    <input class="form" autocomplete="off" type="text" id="myInput" onkeyup="myInputBuzon()" placeholder="Buscar categoria">
+    <table class="fl-table" id="myTable">
+        <thead>
+        <tr>
+            <th>Mensaje</th>
+            <th>Tipo Sugerencia</th>
+            <th>Correo</th>
+            <th>Estado</th>
+        </tr>
+        </thead>
+
+        <tbody>
+            {% for o in lista%}
+                <tr onclick="">
+                     <td id="sugest">{{o.sugerencia}}</td>
+                     <td>{{o.tipo_sugerencia.sugerencia}}</td>
+                     <td>{{o.correo}}</td>
+                     <!--<td id="state">No leido</td>-->
+
+                    <td>
+                        <form name="myform"  method="post">          
+                        {% csrf_token %}
+                        <input type="hidden"name="id_sugerencia" value="{{o.id_sugerencia}}"/>
+                        <input type="submit" id="submit" name="submit" class="btn" value="{{o.ubicacion}}"/>
+
+                    </form>
+                    </td>
+                </tr>
+            {% endfor %}
+                
+        <tbody>
+    </table>
+</div>
+{% endblock %}
