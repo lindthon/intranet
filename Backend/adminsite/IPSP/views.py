@@ -13,6 +13,18 @@ import datetime
 from django.views.decorators.csrf import csrf_exempt
 # Create your views here
 # .
+
+
+def get_Principal(request):
+    data = Principal.objects.all()[0]
+    res=dict()
+    res["Empresa"]=data.nombre_empresa
+    res["Eslogan"]=data.eslogan 
+    res["Image_Eslogan"]=data.image_eslogan.url
+    res["Image_Principal"]=data.image_principal.url
+    return JsonResponse(res)
+
+
 #Api de noticias 
 def get_UltimaNoticias(request):
     if request.method=='GET':
@@ -260,7 +272,7 @@ def postCreateSugerencia(request):
         tipo = Tipo_sugerencia.objects.filter(sugerencia=response["tipo"])[0]
         #Aqui creo el elemento de tipo sugerencia
         sugerencia = Buzon_sugerencia(tipo_sugerencia=tipo
-        ,sugerencia=response["sugerencia"],correo=response["correo"])
+        ,sugerencia=response["sugerencia"],correo=response["correo"],ubicacion="No leido")
 
        
         sugerencia.save()
@@ -282,7 +294,6 @@ def get_Sugerencia(request):
             res["Correo"]=sugerencias.correo
     return JsonResponse(response)
 
-    print(tipo = Tipo_sugerencia.objects.filter(sugerencia=response["tipo"])[0])
 
 
 
@@ -371,14 +382,6 @@ def view_ModificarPrinciapl (request):
 
     return render(request, 'views/viewModificarPrincipal.html', {"Principal":response})
 
-def get_Principal(request):
-    data = Principal.objects.all()[0]
-    res=dict()
-    res["Empresa"]=data.nombre_empresa
-    res["Eslogan"]=data.eslogan 
-    res["Image_Eslogan"]=data.image_eslogan.url
-    res["Image_Principal"]=data.image_principal.url
-    return JsonResponse(res)
 
 
 @login_required(login_url='/')
@@ -404,6 +407,7 @@ def delete_noticia(request, pk):
     noticia.delete()
     response= Noticia.objects.all()
     return render(request, 'views/viewDeleteNoticia.html', {"listaNoticia":response}) 
+
 @login_required(login_url='/')
 def view_ModificarNoticia(request):
     response= Noticia.objects.all()
@@ -433,6 +437,7 @@ def modificar_noticia(request,pk):#get noticia por id
         noticia.tipo_noticia=tipo
         noticia.save()
     return render(request, 'views/viewModificarNoticia.html', {"listaNoticia":response,"noticia":noticia,"categoria":categoria}) 
+
 @login_required(login_url='/')
 def view_ModificarEvento(request):
     response= Evento.objects.all()
@@ -506,6 +511,7 @@ def delete_evento(request,pk):
 def view_DeleteEmpleado(request):
     response= Empleado.objects.all()
     return render(request, 'views/viewDeleteEmpleado.html', {"listaEmpleado":response}) 
+
 @login_required(login_url='/')
 def delete_empleado(request,pk):
     val = pk
@@ -513,10 +519,12 @@ def delete_empleado(request,pk):
     empleado.delete()
     response= Evento.objects.all()
     return render(request, 'views/viewDeleteEmpleado.html', {"listaEmpleado":response}) 
+
 @login_required(login_url='/')
 def view_DeleteCategoriaNoticia(request):
     response= Tipo_noticia.objects.all()
     return render(request, 'views/viewDeleteCategoriaNoticia.html', {"listaCategoriaNoticia":response}) 
+
 @login_required(login_url='/')
 def delete_categoriaNoticia(request,pk):
     val = pk
@@ -526,6 +534,24 @@ def delete_categoriaNoticia(request,pk):
     tipo.delete()
     response= Tipo_noticia.objects.all()
     return render(request, 'views/viewDeleteCategoriaNoticia.html', {"listaCategoriaNoticia":response}) 
+
+@csrf_exempt
+def view_buzon(request):
+    buzon = Buzon_sugerencia.objects.all().order_by('-ubicacion')
+    print(buzon)
+    if request.method=='POST':
+        print("entorsssss")
+        bzn = Buzon_sugerencia.objects.get(id_sugerencia=request.POST['id_sugerencia'])
+        bzn.ubicacion="Leido"
+        bzn.save()
+        buzon = Buzon_sugerencia.objects.all().order_by('-ubicacion')
+        print(buzon)
+        return render(request,'views/buzon.html',{"lista":buzon}) 
+
+    return render(request,'views/buzon.html',{"lista":buzon})
+
+
+
 
 
 def view_Login(request):

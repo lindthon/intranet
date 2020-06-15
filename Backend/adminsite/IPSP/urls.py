@@ -64,7 +64,8 @@ urlpatterns = [
     path('deleteCategoriaNoticia/', view_DeleteCategoriaNoticia, name='deletecategoria'),
     path('deleteCategoriaNoticia/<int:pk>', delete_categoriaNoticia, name='delete_categoriaNoticia'),
 
-    
+    path('buzon/',view_buzon,name='buzon'),
+
     path('', login, name='login'),
     path('logout/', logout_view, name='logout'),
 
