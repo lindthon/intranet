@@ -73,7 +73,7 @@ export class SugerenciasComponent implements OnInit {
           "tipo": this.option,
           "sugerencia": this.suggestion,
           "correo":this.email,
-          "ubicion":"centro",
+          "ubicion":"No leido",
 
 
       };
@@ -82,6 +82,8 @@ export class SugerenciasComponent implements OnInit {
       this.postSugerencia(this._http)
 
      //Limpio variables
+     this.formGroup.nativeElement[8] = ""
+     
      this.suggestion = "";
      this.email = "";
      this.option = "";
