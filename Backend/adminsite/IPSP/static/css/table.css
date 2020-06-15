@@ -160,13 +160,12 @@ table{
     /* Add a grey background color to the table header and on hover */
     background-color: #f1f1f1;
   }
-
   .btn {
     font-family: "Roboto", sans-serif;
     text-transform: uppercase;
     outline: 0;
     background: #DC143C;
-    width: auto;
+    width: 75px;
     border: 0;
     padding: 8px;
     color: #FFFFFF;
@@ -175,6 +174,40 @@ table{
     transition: all 0.3 ease;
     cursor: pointer;
   }
-  .btn button:hover,.form button:active,.form button:focus {
-    background: #43A047;
+
+  .btn[value="No leido"] {
+    font-family: "Roboto", sans-serif;
+    text-transform: uppercase;
+    outline: 0;
+    background: #DC143C;
+    width: 75px;
+    border: 0;
+    padding: 8px;
+    color: #FFFFFF;
+    font-size: 11px;
+    -webkit-transition: all 0.3 ease;
+    transition: all 0.3 ease;
+    cursor: pointer;
   }
+  .btn:hover {
+    background-color: #555555;
+    color: white;
+  }
+  .btn[value="Leido"] {
+    font-family: "Roboto", sans-serif;
+    text-transform: uppercase;
+    outline: 0;
+    cursor: not-allowed;
+    pointer-events: none;
+
+    background: #43A047;
+    width: 75px;
+    border: 0;
+    padding: 8px;
+    color: #FFFFFF;
+    font-size: 11px;
+    -webkit-transition: all 0.3 ease;
+    transition: all 0.3 ease;
+    cursor: pointer;
+  }
+  
