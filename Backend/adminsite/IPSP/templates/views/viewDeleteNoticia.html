@@ -7,8 +7,8 @@
 <link rel="stylesheet" href="{% static 'css/table.css' %}">
 <script src="{% static 'scripts/table.js' %}"></script>
 
-<h2>Responsive Table</h2>
-<div class="table-wrapper">
+<div class="table-wrapper divCont">
+    <h2 class="h2label"> Noticias</h2>
     <input class="form" type="text" id="myInput" onkeyup="myFunction()" placeholder="Buscar Noticia">
     <table class="fl-table" id="myTable">
         <thead>
@@ -16,22 +16,49 @@
             <th>Titulo Noticia</th>
             <th>Categoria</th>
             <th>Fecha Publicacion</th>
-            <th>ID</th>
             <th>Opciones</th>
         </tr>
         </thead>
         <tbody>
             {% for o in listaNoticia %}
                 <tr>
-                     <td>{{o.titulo}}</td>
+                     <td><a href="{% url 'modificarNoticia' o.id_noticia %}">{{o.titulo}}</a></td>
                      <td>{{o.tipo_noticia.categoria}}</td>
                      <td>{{o.fecha}}</td>
-                     <td>{{o.id_noticia}}</td>
-                     <td><form name="myform" action="{% url 'delete_noticia' o.id_noticia %}"><input type="button" class="btn" onclick= "confirmationMessage()" value="Eliminar"></form></td>
+                     <td>
+                         <form name="myform{{o.id_noticia}}" action="{% url 'delete_noticia' o.id_noticia %}">
+                             <input type="button" id="{{o.id_noticia}}" onclick="confirmationMessage('{{o.id_noticia}}')"  class="btn floated"  value="Eliminar">
+                        </form>
+                        <a href="{% url 'modificarNoticia' o.id_noticia %}">
+                            <input type="button" id="{{o.id_noticia}}"   class="btn floated"  value="Modificar">
+                        </a>
+                    </td>
                 </tr>
             {% endfor %}
-                
+        
         <tbody>
     </table>
+    {% if listaNoticia.has_other_pages %}
+    <div class="pagi" >
+     {% if listaNoticia.has_previous %}
+        <a class="link" href="?page={{ listaNoticia.previous_page_number }}">&laquo;</a>
+
+      {% else %}
+      <a class="link" href="#">&laquo;</a>
+      {% endif %}
+      {% for i in listaNoticia.paginator.page_range %}
+        {% if listaNoticia.number == i %}
+        <a class="link" href="?page={{ i }}">{{ i }}</a>
+        {% else %}
+          <a class="link" href="?page={{ i }}">{{ i }}</a>
+        {% endif %}
+      {% endfor %}
+      {% if listaNoticia.has_next %}
+        <a class="link" href="?page={{ listaNoticia.next_page_number }}">&raquo;</a>
+      {% else %}
+      <a class="link" href="#">&raquo;</a>
+      {% endif %}
+    </div>
+    {% endif %}
 </div>
 {% endblock %}

@@ -6,6 +6,7 @@ from django.contrib.auth import login as do_login
 from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth import logout
 
+from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 
 from .models import *
 import json
@@ -76,8 +77,11 @@ def get_NoticiaPorCategoria(request):
             noticias = Noticia.objects.filter(tipo_noticia = categoria.id_tiponot)#Codigo de Noticia Brigada
             res = dict()
             response[categoria.categoria]=res
+            contador=0
             for noticia in noticias:
                 new = dict()
+                contador+=1
+                res["contador"]=contador
                 res[noticia.id_noticia] = new
                 new['title'] = noticia.titulo
                 new['descr'] = noticia.descripcion
@@ -398,7 +402,15 @@ def view_RegistrarCategoria(request):
 @login_required(login_url='/')
 def view_DeleteNoticia(request):
     response= Noticia.objects.all()
-    return render(request, 'views/viewDeleteNoticia.html', {"listaNoticia":response}) 
+    page = request.GET.get('page', 1)
+    paginator = Paginator(response, 2)
+    try:
+        notic = paginator.page(page)
+    except PageNotAnInteger:
+        notic = paginator.page(1)
+    except EmptyPage:
+        notic = paginator.page(paginator.num_pages)
+    return render(request, 'views/viewDeleteNoticia.html', {"listaNoticia":notic}) 
 
 @login_required(login_url='/')
 def delete_noticia(request, pk):
@@ -502,7 +514,8 @@ def view_DeleteEvento(request):
 @login_required(login_url='/')
 def delete_evento(request,pk):
     val = pk
-    evento= Evento.objects.get(id_evento=val)
+    print(val)
+    evento= Evento.objects.get(id_evento=pk)
     evento.delete()
     response= Evento.objects.all()
     return render(request, 'views/viewDeleteEvento.html', {"listaEvento":response}) 
@@ -516,8 +529,13 @@ def view_DeleteEmpleado(request):
 def delete_empleado(request,pk):
     val = pk
     empleado= Empleado.objects.get(id_empleado=val)
+    print(empleado.auth_user.id)
+    auth = User.objects.get(id=empleado.auth_user.id)
+    auth.delete()
     empleado.delete()
-    response= Evento.objects.all()
+    print(val)
+    
+    response= Empleado.objects.all()
     return render(request, 'views/viewDeleteEmpleado.html', {"listaEmpleado":response}) 
 
 @login_required(login_url='/')
@@ -534,10 +552,20 @@ def delete_categoriaNoticia(request,pk):
     tipo.delete()
     response= Tipo_noticia.objects.all()
     return render(request, 'views/viewDeleteCategoriaNoticia.html', {"listaCategoriaNoticia":response}) 
-
+    
+@login_required(login_url='/')
 @csrf_exempt
 def view_buzon(request):
     buzon = Buzon_sugerencia.objects.all().order_by('-ubicacion')
+    page = request.GET.get('page', 1)
+    paginator = Paginator(buzon, 7)
+    try:
+        buz = paginator.page(page)
+    except PageNotAnInteger:
+        buz = paginator.page(1)
+    except EmptyPage:
+        buz = paginator.page(paginator.num_pages)
+
     print(buzon)
     if request.method=='POST':
         print("entorsssss")
@@ -545,10 +573,16 @@ def view_buzon(request):
         bzn.ubicacion="Leido"
         bzn.save()
         buzon = Buzon_sugerencia.objects.all().order_by('-ubicacion')
+        try:
+             buz = paginator.page(page)
+        except PageNotAnInteger:
+            buz = paginator.page(1)
+        except EmptyPage:
+            buz = paginator.page(paginator.num_pages)
         print(buzon)
-        return render(request,'views/buzon.html',{"lista":buzon}) 
+        return render(request,'views/buzon.html',{"lista":buz}) 
 
-    return render(request,'views/buzon.html',{"lista":buzon})
+    return render(request,'views/buzon.html',{"lista":buz})
 
 
 
@@ -595,3 +629,7 @@ def logout_view(request):
     return redirect('/')
 
     # Redirect to a success page.
+
+def error_404(request,exception=None):
+    return render(request, "views/404.html",{})
+
