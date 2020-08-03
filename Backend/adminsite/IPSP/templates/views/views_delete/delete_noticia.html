@@ -1,0 +1,58 @@
+{% extends "views/login/index.html" %} 
+{% load static %}
+
+  <!-- /.container -->
+{% block content %}
+<body>
+<div id="layoutSidenav_content">
+    <main>
+        <div class="container-fluid">
+            <h1 class="mt-4">Tabla De Noticias</h1>
+            <ol class="breadcrumb mb-4">
+                <li class="breadcrumb-item"><a href="index.html">Opcion</a></li>
+                <li class="breadcrumb-item active">Eliminar Noticia</li>
+            </ol>
+           
+            <div class="card mb-4">
+                <div class="card-header">
+                    <i class="fas fa-table mr-1"></i>
+                    Tabla de noticias
+                </div>
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                            <thead>
+                                <tr>
+                                    <th>Titulo Noticia</th>
+                                    <th>Categoria</th>
+                                    <th>Fecha Publicacion</th>
+                                    <th>Opciones</th>
+                                </tr>
+                            </thead>
+                            
+                            <tbody>
+                                {% for o in listaNoticia %}
+                                <tr>
+                                     <td><a href="{% url 'modificarNoticia' o.id_noticia %}">{{o.titulo}}</a></td>
+                                     <td>{{o.tipo_noticia.categoria}}</td>
+                                     <td>{{o.fecha}}</td>
+                                     <td>
+                                         <form name="myform{{o.id_noticia}}" action="{% url 'delete_noticia' o.id_noticia %}">
+                                             <input type="button" id="{{o.id_noticia}}"   onclick="confirmationMessage('{{o.id_noticia}}')"  class="btn-table floated"  value="Eliminar">
+                                        </form>
+                                        <a href="{% url 'modificarNoticia' o.id_noticia %}">
+                                            <input type="button" id="{{o.id_noticia}}"   class="btn floated"  value="Modificar">
+                                        </a>
+                                    </td>
+                                </tr>
+                            {% endfor %}
+
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+</body>
+    {% endblock %}  

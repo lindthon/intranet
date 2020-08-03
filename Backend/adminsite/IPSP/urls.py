@@ -1,9 +1,19 @@
 from django.urls import path
 from .views import *
 #from django.contrib.auth import logout
+from rest_framework_jwt.views import obtain_jwt_token, refresh_jwt_token
+from django.contrib.auth.views import PasswordResetView,PasswordResetConfirmView,PasswordResetDoneView,PasswordResetCompleteView
+from django.contrib.auth import views as auth_views
 
 
 urlpatterns = [
+    path('loginn/', LoginUser.as_view()),
+    path('login_frontend/', login_frontend),
+
+    path('get_user/', get_userByName),
+
+    path('get_brigada/', get_miembros_brigada),
+
       #Api Eventos
     path('getPrincipal/', get_Principal),
 
@@ -36,6 +46,7 @@ urlpatterns = [
     path('registroEventos/', view_RegistrarEventos,name='evento'),
     path('registroEmpleado/', view_RegistrarEmpleado, name='empleado'),
     path('registroCategorias/', view_RegistrarCategoria, name='categoria'),
+    path('registroBrigada/', view_RegistrarBrigada, name='brigada'),
 
     path('modificarPrincipal/', view_ModificarPrinciapl, name='modificar_principal'),
 
@@ -59,7 +70,7 @@ urlpatterns = [
 
 
     path('deleteEmpleado/', view_DeleteEmpleado, name='deletempleado'),
-    path('deleteEmpleado/<int:pk>', delete_empleado, name='delete_empleado'),
+    path('deleteEmpleado/<str:pk>', delete_empleado, name='delete_empleado'),
 
     path('deleteCategoriaNoticia/', view_DeleteCategoriaNoticia, name='deletecategoria'),
     path('deleteCategoriaNoticia/<int:pk>', delete_categoriaNoticia, name='delete_categoriaNoticia'),
@@ -69,8 +80,15 @@ urlpatterns = [
     path('', login, name='login'),
     path('logout/', logout_view, name='logout'),
 
+    path('api-token-auth/', obtain_jwt_token),
+    path('api-token-refresh/', refresh_jwt_token),
 
+    #recuperacion de clave de usuarios
+    path('reset_password/', auth_views.PasswordResetView.as_view(), name='password_reset'),
+    path('reset/<uidb64>/<token>/', auth_views.PasswordResetConfirmView.as_view(), name='password_reset_confirm'),
+    path('reset_password_sent/', auth_views.PasswordResetDoneView.as_view(), name='password_reset_done'),
+    path('reset_password_complete/', auth_views.PasswordResetCompleteView.as_view(), name='password_reset_complete'),
+    path('sendEmail/', sendEmail),
 
     
-
 ]

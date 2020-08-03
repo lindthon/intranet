@@ -249,7 +249,7 @@ center{
 .divCont {
   height: 72%;
   width: 85%;
-  background: #fff;
+  background: rgb(255, 255, 255);
   border-radius: 10px;
   overflow: hidden;
   padding: 62px 55px 90px 55px;
@@ -281,3 +281,15 @@ center{
 .btn button:hover,.form button:active,.form button:focus {
   background: #43A047;
 }
+
+img.principal{
+  height: 50px;
+  vertical-align: middle;
+
+}
+input.principal{
+  height: 50px;
+  margin: 0;
+  padding: 0;
+}
+

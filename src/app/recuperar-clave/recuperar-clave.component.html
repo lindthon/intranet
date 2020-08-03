@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Material Login Form a Responsive Widget Template :: w3layouts</title>
+    <!-- meta tags -->
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="keywords" content="Art Sign Up Form Responsive Widget, Audio and Video players, Login Form Web Template, Flat Pricing Tables, Flat Drop-Downs, Sign-Up Web Templates, 
+		Flat Web Templates, Login Sign-up Responsive Web Template, Smartphone Compatible Web Template, Free Web Designs for Nokia, Samsung, LG, Sony Ericsson, Motorola Web Design"
+    />
+    <!-- /meta tags -->
+    <!-- custom style sheet -->
+    <!-- /custom style sheet -->
+    <!-- fontawesome css -->
+    <!-- /fontawesome css -->
+    <!-- google fonts-->
+    <link href="//fonts.googleapis.com/css?family=Raleway:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i"
+        rel="stylesheet">
+    <!-- /google fonts-->
+
+</head>
+
+
+<body>
+    <h2>Industrial Pesquera Santa Priscila</h2>
+
+    <div class=" w3l-login-form">
+        <h2>Recuperar Contraseña</h2>
+        <form action="#" method="POST">
+
+            <div class=" w3l-form-group">
+                <label>Correo:</label>
+                <div class="group">
+                    <i class="fas fa-unlock"></i>
+                    <input type="text" class="form-control" name="correo"  [(ngModel)]="correo" placeholder="correo electrónico" required="required" />
+                </div>
+            </div>
+            <div class="forgot">
+            </div>
+            <button type="submit"  (click)="enviarCorrero();" >enviar</button>
+            <div  class="w3l-form-group" *ngIf="showCorrectMessage"  >
+                <p class="copyright-agileinfo">Correo enviado verifique su cuenta.</p>
+            </div>
+            <div class="w3l-form-group"  *ngIf="showErrorMessage">
+                <label>Correo electrónico incorrecto..</label>
+              </div>
+
+        </form>
+       <!-- <p class=" w3l-register-p">Don't have an account?<a href="" class="register"> Register</a></p>-->
+    </div>
+    <footer>
+        <p class="copyright-agileinfo">All Rights Reserved IPSP</p>
+    </footer>
+
+</body>
+
+</html>

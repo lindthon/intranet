@@ -35,6 +35,15 @@
                             <input type="text" name="categoria" id="name" required="required" class="formFecha" placeholder="Nueva categoria de mejor empleado" />
                             <button type="submit" id="submit" name="emplecategoria" class="form-btn semibold">Registrar Tipo</button> 
                     </form>
+                    <form id="contact-us" method="post" action="#">
+                        {% csrf_token %}
+                        <div class="col-xs-6  mx-auto wow animated slideInLeft" data-wow-delay=".5s">
+                            <h5 class="letterh3">Registro Brigada</h5>
+                            <label class="ml-5 labelCol" for="Motivo">Nombre Brigada:</label>
+                            <input type="hidden" name="tipoForm3" id="tipoForm3"  value="form3" />
+                            <input type="text" name="categoria_brigada" id="name" required="required" class="formFecha" placeholder="Nombre de brigada" />
+                            <button type="submit" id="submit" name="" class="form-btn semibold">Registrar Brigada</button> 
+                    </form>
 
                         </div><!-- End Left Inputs -->
                         <!-- Clear -->

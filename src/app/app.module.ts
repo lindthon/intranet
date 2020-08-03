@@ -2,6 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { FormsModule } from '@angular/forms';
+import { RouterModule } from '@angular/router';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -19,7 +20,7 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { CalendarComponent } from './calendar/calendar.component';
 
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { IgxCalendarModule } from 'igniteui-angular';
+import { IgxCalendarModule, IgxIconModule } from 'igniteui-angular';
 import {Ng2SmartTableModule} from 'ng2-smart-table';
 
 import { SugerenciasComponent } from './sugerencias/sugerencias.component';
@@ -29,6 +30,12 @@ import { DirectorioComponent } from './directorio/directorio.component';
 import { HttpClientModule } from '@angular/common/http';
 
 import { HashLocationStrategy, LocationStrategy  } from '@angular/common';
+import { LoginComponent } from './login/login.component';
+import { CookieService } from 'ngx-cookie-service';
+import { BrigadasComponent } from './brigadas/brigadas.component';
+import { EmpleadosComponent } from './empleados/empleados.component';
+import { RecuperarClaveComponent } from './recuperar-clave/recuperar-clave.component';
+import { PerfilComponent } from './perfil/perfil.component';
 
 @NgModule({
   declarations: [
@@ -36,7 +43,6 @@ import { HashLocationStrategy, LocationStrategy  } from '@angular/common';
     IndexComponent,
     HeaderComponent,
     FooterComponent,
-    NoticiasComponent,
     CarrouselComponent,
     CategoriaNoticiasComponent,
     NoticiaComponent,
@@ -44,9 +50,16 @@ import { HashLocationStrategy, LocationStrategy  } from '@angular/common';
     CalendarComponent,
     SugerenciasComponent,
     ReglamentoComponent,
-    DirectorioComponent
+    DirectorioComponent,
+    LoginComponent,
+    BrigadasComponent,
+    NoticiasComponent,
+    EmpleadosComponent,
+    RecuperarClaveComponent,
+    PerfilComponent,
   ],
   imports: [
+    IgxIconModule,
     BrowserModule,
     AppRoutingModule,
     NgbModule,
@@ -56,9 +69,10 @@ import { HashLocationStrategy, LocationStrategy  } from '@angular/common';
     BrowserAnimationsModule,
     IgxCalendarModule,
     Ng2SmartTableModule,
+    RouterModule,
     HttpClientModule
   ],
-  providers: [
+  providers: [CookieService,
     {provide : LocationStrategy , useClass: HashLocationStrategy}
   ],
   bootstrap: [AppComponent]

@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { faDoorClosed,faDoorOpen} from '@fortawesome/free-solid-svg-icons';
 declare var jQuery: any;
+import { LoginService } from '../login/login.service';
+import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-header',
@@ -10,7 +13,50 @@ declare var jQuery: any;
 export class HeaderComponent implements OnInit {
   faDoorClosed=faDoorClosed;
   faDoorOpen=faDoorOpen;
-  constructor() { }
+
+  cedula: string = "0105890883";
+  clave: string="Oscar1993";
+  constructor( public service_login : LoginService,public _http :HttpClient, public router: Router) { 
+
+
+  }
+
+ 
+  logout(){
+    this.service_login.logout();
+    console.log(localStorage.getItem("token"));
+    console.log("saliendo...")
+    }
+    loginToRoles(){
+        console.log("https://www.santa-priscila-admin.com/ipsp/roles/Index.php");
+        
+        const formData = new FormData();
+        formData.append('txt_cedula', "0105890883");
+        formData.append('txt_clave_1', "Oscar1993");
+        console.log(formData.get('txt_cedula'));
+        console.log(formData.get('txt_clave_1'));
+
+        for(var i in formData){
+            console.log(i)
+        }
+        const headers = new HttpHeaders({ 'enctype': 'multipart/form-data' });
+        console.log(headers);
+            
+        let options = { headers: headers };
+        const data ={
+            "txt_cedula":"0105890883",
+            "txt_clave_1":"Oscar1993"
+        }
+
+        this._http.post('https://www.santa-priscila-admin.com/ipsp/roles/comprueba.php',formData)
+      .subscribe(
+        data=>console.log(formData)
+        ,(err: HttpErrorResponse)=>{console.log("Un error ha ocurrido");console.log(HttpErrorResponse)}
+        ,()=>console.log("solicitud finalizada OK")
+        )
+
+    }
+
 
   ngOnInit(): void {
     (function ($) {

@@ -1,0 +1,57 @@
+{% extends "views/login/index.html" %} 
+  <!-- /.container -->
+{% block content %}
+<div id="layoutSidenav_content">
+      <div class="card">
+        <div class="card-header"><strong>Registro De Noticias</strong> </div>
+        <div class="card-body">
+          <form class="form-horizontal" action="#" method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+
+            <div class="form-group row">
+              <label class="col-md-3 col-form-label" for="inputSuccess1">Noticia:</label>
+              <div class="col-md-9">
+                <input class="form-control " name="titulo" id="inputSuccess1" required="required" id="text-input" type="text" name="text-input" placeholder="Ingrese Noticia"><span class="help-block"></span>
+              </div>
+            </div>
+            <div class="form-group row">
+                <label class="col-md-3 col-form-label" required="required" for="select1">Categoria Noticia:</label>
+                <div class="col-md-9">
+                  <select class="form-control" name="categoria"  id="select1" name="select1">
+                    <option value="0">Seleciones el mes del evento</option>
+                    {% for cat in categorias  %}
+                    <option value="{{cat.id_tiponot}}">{{cat.categoria}}</option>
+                    {% endfor  %}
+                  </select>
+                </div>
+              </div>
+            <div class="form-group row">
+              <label class="col-md-3 col-form-label" for="date-input">Fecha de la noticia:</label>
+              <div class="col-md-9">
+                <input class="form-control" name="fecha" required="required" id="date-input" type="date" name="date-input" placeholder="date"><span class="help-block">Día/Mes/Año</span>
+              </div>
+            </div>
+            <div class="form-group row">
+              <label class="col-md-3 col-form-label" for="textarea-input">Descripción de la noticia:</label>
+              <div class="col-md-9">
+                <textarea class="form-control" name="descripcion" required="required" id="textarea-input" name="textarea-input" rows="9" placeholder="Escriba una breve descripción.."></textarea>
+              </div>
+            </div>
+  
+            <div class="form-group row">
+              <label class="col-md-3 col-form-label" for="file-input">Suba imagen de la noticia:</label>
+              <div class="col-md-9">
+                <input id="file-input" type="file"  name="archivoimg"  required="required" accept="image/*">
+              </div>
+            </div>
+            <div class="card-footer">
+              <button class="btn btn-sm btn-primary" type="submit"  id="submit" name="submit"> Registrar</button>
+              <button class="btn btn-sm btn-danger" type="reset"> Limpiar</button>
+            </div>
+         
+          </form>
+        </div>
+      
+      </div>
+</div>
+{% endblock  %}

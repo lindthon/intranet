@@ -1,0 +1,55 @@
+{% extends "views/login/index.html" %} 
+  <!-- /.container -->
+{% block content %}
+<div id="layoutSidenav_content">
+      <div class="card">
+        <div class="card-header"><strong>Registro De Brigadas</strong> </div>
+        <div class="card-body">
+          <form class="form-horizontal" action="" method="post" enctype="multipart/form-data">
+            
+            <div class="form-group row">
+              <label class="col-md-3 col-form-label" for="text-input">Brigada:</label>
+              <div class="col-md-9">
+                <input class="form-control" id="text-input" type="text" name="text-input" placeholder="Ingrese Noticia"><span class="help-block"></span>
+              </div>
+            </div>
+            <div class="form-group row">
+                <label class="col-md-3 col-form-label" for="select1">Categoria Noticia:</label>
+                <div class="col-md-9">
+                  <select class="form-control" id="select1" name="select1">
+                    <option value="0">Seleciones el mes del evento</option>
+                    <option value="1">Option #1</option>
+                    <option value="2">Option #2</option>
+                    <option value="3">Option #3</option>
+                  </select>
+                </div>
+              </div>
+            <div class="form-group row">
+              <label class="col-md-3 col-form-label" for="date-input">Fecha de la noticia:</label>
+              <div class="col-md-9">
+                <input class="form-control" id="date-input" type="date" name="date-input" placeholder="date"><span class="help-block">Día/Mes/Año</span>
+              </div>
+            </div>
+            <div class="form-group row">
+              <label class="col-md-3 col-form-label" for="textarea-input">Descripción de la noticia:</label>
+              <div class="col-md-9">
+                <textarea class="form-control" id="textarea-input" name="textarea-input" rows="9" placeholder="Escriba una breve descripción.."></textarea>
+              </div>
+            </div>
+  
+            <div class="form-group row">
+              <label class="col-md-3 col-form-label" for="file-input">Suba imagen de la noticia:</label>
+              <div class="col-md-9">
+                <input id="file-input" type="file" name="file-input">
+              </div>
+            </div>
+         
+          </form>
+        </div>
+        <div class="card-footer">
+          <button class="btn btn-sm btn-primary" type="submit"> Submit</button>
+          <button class="btn btn-sm btn-danger" type="reset"> Reset</button>
+        </div>
+      </div>
+</div>
+{% endblock  %}

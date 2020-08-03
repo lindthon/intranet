@@ -1,5 +1,6 @@
 import { Component,ViewChild,ElementRef, OnInit } from '@angular/core';
 import { HttpClient, HttpResponse, HttpErrorResponse } from '@angular/common/http';
+import { FormGroup, FormGroupDirective } from '@angular/forms';
 
 @Component({
   selector: 'app-sugerencias',
@@ -9,7 +10,8 @@ import { HttpClient, HttpResponse, HttpErrorResponse } from '@angular/common/htt
 
 export class SugerenciasComponent implements OnInit {
 
-  
+   myForm: FormGroup;
+
    @ViewChild("sugerencia") sugerencia :ElementRef ;
 
     
@@ -79,13 +81,11 @@ export class SugerenciasComponent implements OnInit {
       };
 
 
-      this.postSugerencia(this._http)
-
-     //Limpio variables
-     this.formGroup.nativeElement[8] = ""
-     
+     this.postSugerencia(this._http)
+      //this.formGroup.nativeElement[8]= "";
+     //Limpio variable
      this.suggestion = "";
-     this.email = "";
+     this.email = "xzxxzx";
      this.option = "";
    
     }
@@ -113,6 +113,11 @@ export class SugerenciasComponent implements OnInit {
         ,()=>console.log("solicitud finalizada OK")
         )
     }
+
+     resetForm(formData: any, formDirective: FormGroupDirective): void {
+      formDirective.resetForm();
+      this.myForm.reset();
+  }
   
     
   

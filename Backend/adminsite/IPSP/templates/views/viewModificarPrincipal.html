@@ -8,6 +8,7 @@
 
 {% block content %}
 <link rel="stylesheet" href="{% static 'css/styleRegistroNoticias.css' %}">
+
 <script>
   var loadFile = function(event) {
     var output = document.getElementById('output');
@@ -16,6 +17,19 @@
       URL.revokeObjectURL(output.src) // free memory
     }
   };
+  var loadFilePrincipal = function(event) {
+    var output = document.getElementById('output2');
+    output.src = URL.createObjectURL(event.target.files[0]);
+    output.onload = function() {
+      URL.revokeObjectURL(output.src) // free memory
+    }
+
+
+  };
+
+  function myalert(){
+            alert("Modificacion exitosa !!!");
+        }
 </script>
 <div class="inner contact">
   <!-- Form Area -->
@@ -25,20 +39,28 @@
       <form enctype="multipart/form-data" id="contact-us" method="post" action="#">
           {% csrf_token %}
           <!-- Left Inputs -->
+
+          
+                    
+          
           <div class="col-xs-6 wow animated slideInLeft" data-wow-delay=".5s">
               <!-- Name -->
               <label  class="labelCol" for="Motivo">Empresa:</label>
               <input type="text" name="empre"  required="required" class="formFecha3" value="{{Principal.nombre_empresa}}" />
-              <label  class="labelCol" for="Motivo">Subir Imagen Principal:</label>
-              <input type="file" class="formFecha2" name="image_principal" accept="image/*" id="id_imagen">
+             
+
          
           </div><!-- End Left Inputs -->
+          <div class="col-xs-6 wow animated slideInLeft" data-wow-delay=".5s">    
+            <label  class="labelCol" for="Motivo">Subir Imagen Principal:</label>
+            <input type="file" class="formFecha2" name="image_principal" accept="image/*" onchange="loadFilePrincipal(event)" id="id_imagen">
+            <img id="output2" class="principal"  src="{{Principal.image_principal.url}}"/>
+          </div>
           
               <div class="col-xs-6 wow animated slideInLeft" data-wow-delay=".5s">    
                   <label  class="labelCol" for="Motivo">Subir Imagen Eslogan:</label>
-                
                     <input type="file" class="formFecha2" name="image_eslogan" accept="image/*" id="id_imagen" onchange="loadFile(event)">
-                    <img id="output"  width="45" height="35" src="{{Principal.image_eslogan.url}}"/>
+                    <img id="output" class="principal"  src="{{Principal.image_eslogan.url}}"/>
               </div>
 
            <!-- Email -->
@@ -56,8 +78,8 @@
           <div class="relative fullwidth col-xs-12">
               <!-- Send Button -->
               <div class="divBtn">
-                  <button type="submit" id="submit" name="submit" class="form-btn semibold">Publicar Evento</button> 
-                  <button type="submit" id="submit" name="" class="form-btn semibold">Limpiar Campos</button> 
+                  <button type="submit" id="submit" name="submit" onclick="myalert();" class="form-btn semibold">Modificar</button> 
+                  <button type="reset" id="reset" name="" class="form-btn semibold">Limpiar Campos</button> 
               </div>
           </div><!-- End Bottom Submit -->
           <!-- Clear -->
@@ -74,8 +96,9 @@
 
   </div><!-- End Contact Form Area -->
 </div><!-- End Inner -->
+<div class="bootstrap-iso">
+  <!-- Any HTML here will be styled with Bootstrap CSS -->
 
-
-
+  </div>
 
 {% endblock %}  

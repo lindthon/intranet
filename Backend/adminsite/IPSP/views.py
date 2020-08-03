@@ -7,13 +7,31 @@ from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth import logout
 
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
-
+from django.contrib import messages
 from .models import *
 import json
 import datetime
 from django.views.decorators.csrf import csrf_exempt
+from rest_framework_jwt.views import ObtainJSONWebToken
+from django.views.decorators.csrf import ensure_csrf_cookie
+from django.utils.decorators import method_decorator
+from django.contrib.auth.models import User
+
 # Create your views here
 # .
+def get_userByName(request):
+    if request.method=='GET':
+        response = dict()
+        id= request.GET.get("id")#nombre
+        user = User.objects.get(username=id)
+        usuario = Empleado.objects.get(auth_user=user)
+        response["nombre"]=usuario.nombre
+        response["apellido"]=usuario.apellido
+        response["correo"]=usuario.correo
+        response["img"]=usuario.imagen.url
+
+        print(usuario.apellido)
+        return JsonResponse(response)
 
 
 def get_Principal(request):
@@ -68,6 +86,23 @@ def get_NoticiaBrigada(request):
             res['id'] = noticia.id_noticia
             res['cat'] = "Brigada de Seguridad"
     return JsonResponse(response)
+def get_miembros_brigada(request):
+    if request.method=='GET':
+        response =dict()
+        tipos_de_brigadas= Tipo_brigada.objects.all()
+        for tipo in tipos_de_brigadas:
+            brigadas= Brigada.objects.filter(tipo_bri=tipo.id_tipobrigada)
+            res = dict()
+            response[tipo.nombre_brigada]=res
+            for miembros in brigadas:
+                new = dict()
+                res[miembros.id_brigada]=new
+                new["miembro"]=miembros.miembro
+                new["img"]=miembros.imagen.url
+    
+    return JsonResponse(response)
+
+
 
 def get_NoticiaPorCategoria(request):
     if request.method=='GET':
@@ -106,6 +141,7 @@ def get_TodasLasNoticiasByID(request):
                 response["Notica " + str(contador)]=res
                 res['title'] = noticia.titulo
                 res['descr'] = noticia.descripcion
+                res['resume']= noticia.descripcion[0:55]+" ..."
                 datetime_object = datetime.datetime.strptime(str(noticia.fecha.month), "%m")
                 month_name = datetime_object.strftime("%b")
                 res['date'] = month_name +" "+str(noticia.fecha.day)+", "+str(noticia.fecha.year)
@@ -129,7 +165,7 @@ def get_NoticiaByID(request):
                 response["Notica " + str(contador)]=res
                 res['title'] = noticia.titulo
                 res['descr'] = noticia.descripcion
-                res['resume']= noticia.descripcion[0:6]
+                res['resume']= noticia.descripcion[0:55]+" ..."
                 datetime_object = datetime.datetime.strptime(str(noticia.fecha.month), "%m")
                 month_name = datetime_object.strftime("%b")
                 res['date'] = month_name +" "+str(noticia.fecha.day)+", "+str(noticia.fecha.year)
@@ -272,13 +308,10 @@ def postCreateTipoSugerencia(request):
 def postCreateSugerencia(request):
     if request.method=='POST':
         response = json.loads(request.body)
-
         tipo = Tipo_sugerencia.objects.filter(sugerencia=response["tipo"])[0]
         #Aqui creo el elemento de tipo sugerencia
         sugerencia = Buzon_sugerencia(tipo_sugerencia=tipo
         ,sugerencia=response["sugerencia"],correo=response["correo"],ubicacion="No leido")
-
-       
         sugerencia.save()
         return HttpResponse(status=200)
     return HttpResponse(status=404)
@@ -309,6 +342,7 @@ from django.shortcuts import redirect
 @csrf_exempt
 def view_RegistrarNoticias(request):
         response = Tipo_noticia.objects.all()
+        print("registrando... noticias")
         if request.method=='POST':
             titulo = request.POST['titulo']
             fecha = request.POST['fecha']
@@ -320,7 +354,7 @@ def view_RegistrarNoticias(request):
             noticia.save()
             print(titulo,fecha,categoria,imagen,descripcion)
 
-        return render(request, 'viewRegistroNoticias.html', {"categorias":response})
+        return render(request, 'views/views_register/register_noticia.html', {"categorias":response})
 
 @login_required(login_url='/')
 def view_RegistrarEventos(request):
@@ -339,7 +373,7 @@ def view_RegistrarEventos(request):
             newEvento.save()
             print(evento,fecha,mes,hora,lugar,imagen,descripcion)
 
-        return render(request, 'views/viewRegistroEventos.html', {"meses":response})
+        return render(request, 'views/views_register/register_evento.html', {"meses":response})
 
 @login_required(login_url='/')
 def view_RegistrarEmpleado(request):
@@ -367,7 +401,7 @@ def view_RegistrarEmpleado(request):
             tipo_categoria=idfield,nombre=nombre,apellido=apell,
             correo=correo,imagen=imagen,fecha_nacimiento=fecha,ubicacion=ext)
             empleado.save()
-    return render(request, 'views/viewRegistroEmpleado.html', {"categorias":response})    
+    return render(request, 'views/views_register/register_empleado.html', {"categorias":response})    
 
 @login_required(login_url='/')
 def view_ModificarPrinciapl (request):
@@ -384,8 +418,24 @@ def view_ModificarPrinciapl (request):
         principal.save()
         response= Principal.objects.all()[0]
 
-    return render(request, 'views/viewModificarPrincipal.html', {"Principal":response})
+    return render(request, 'views/views_web/modify_index_web.html', {"Principal":response})
 
+#'views/views_web/modify_index_web.html'
+@login_required(login_url='/')
+def view_RegistrarBrigada(request):
+    response = Tipo_brigada.objects.all()
+    if request.method=='POST':
+            miembro_brigada = request.POST['miembro']
+            imagen = request.FILES['archivoimg']
+            tipo_brigada_ = request.POST['brigada_tipo']
+
+            descripcion = request.POST['descripcion']
+            id_bri = Tipo_brigada.objects.get(id_tipobrigada = tipo_brigada_)
+            brigada = Brigada(tipo_bri=id_bri, miembro=miembro_brigada, descripcion=descripcion, imagen=imagen)
+            brigada.save()
+            print(miembro_brigada,tipo_brigada_,imagen,descripcion)
+
+    return render(request, 'views/views_register/register_brigada.html', {"categorias":response})        
 
 
 @login_required(login_url='/')
@@ -397,20 +447,23 @@ def view_RegistrarCategoria(request):
         if(request.POST.get("tipoForm2")=="form2"):
             cate = Tipo_categoria(categoria=request.POST['categoria'])
             cate.save()
+        if(request.POST.get("tipoForm3")=="form3"):
+            brigada = Tipo_brigada(nombre_brigada=request.POST['categoria_brigada'])
+            brigada.save()
 
-    return render(request, 'views/viewRegistroCategoria.html', {})    
+    return render(request, 'views/views_register/register_categoria.html', {})    
 @login_required(login_url='/')
 def view_DeleteNoticia(request):
     response= Noticia.objects.all()
     page = request.GET.get('page', 1)
-    paginator = Paginator(response, 2)
+    paginator = Paginator(response, 4)
     try:
         notic = paginator.page(page)
     except PageNotAnInteger:
         notic = paginator.page(1)
     except EmptyPage:
         notic = paginator.page(paginator.num_pages)
-    return render(request, 'views/viewDeleteNoticia.html', {"listaNoticia":notic}) 
+    return render(request, 'views/views_delete/delete_noticia.html', {"listaNoticia":notic}) 
 
 @login_required(login_url='/')
 def delete_noticia(request, pk):
@@ -423,7 +476,7 @@ def delete_noticia(request, pk):
 @login_required(login_url='/')
 def view_ModificarNoticia(request):
     response= Noticia.objects.all()
-    return render(request, 'views/viewModificarNoticia.html', {"listaNoticia":response})
+    return render(request, 'views/views_modify/modify_noticia.html', {"listaNoticia":response})
 
 @login_required(login_url='/')
 @csrf_exempt
@@ -432,6 +485,7 @@ def modificar_noticia(request,pk):#get noticia por id
     response= Noticia.objects.all()
     categoria = Tipo_noticia.objects.all()
     noticia= Noticia.objects.get(id_noticia=pk)
+    cate_noticia=noticia.tipo_noticia
     print(noticia.titulo)
     print(noticia.imagen.url)
     print(noticia.fecha)
@@ -448,12 +502,12 @@ def modificar_noticia(request,pk):#get noticia por id
         tipo= Tipo_noticia.objects.get(id_tiponot=request.POST['categoria'])
         noticia.tipo_noticia=tipo
         noticia.save()
-    return render(request, 'views/viewModificarNoticia.html', {"listaNoticia":response,"noticia":noticia,"categoria":categoria}) 
+    return render(request, 'views/views_modify/modify_noticia.html', {"listaNoticia":response,"noticia":noticia,"categoria":categoria,"cate_noticia":cate_noticia}) 
 
 @login_required(login_url='/')
 def view_ModificarEvento(request):
     response= Evento.objects.all()
-    return render(request, 'views/viewModificarEvento.html', {"listaEvento":response})
+    return render(request,  'views/views_modify/modify_evento.html', {"listaEvento":response})
 
 @login_required(login_url='/')
 @csrf_exempt
@@ -476,19 +530,21 @@ def modificar_evento(request,pk):#get noticia por id
         print(request.POST['hora'])
         evento.lugar=request.POST['lugar']
         evento.save()
-    return render(request, 'views/viewModificarEvento.html', {"listaEvento":response,"evento":evento,"fechaevento":fecha}) 
+    return render(request, 'views/views_modify/modify_evento.html', {"listaEvento":response,"evento":evento,"fechaevento":fecha}) 
 
 @login_required(login_url='/')
 def view_ModificarEmpleado(request):
     response = Empleado.objects.all()
-    return render(request, 'views/viewModificarEmpleado.html', {"listaEmpleado":response})
+    categoriaslist= Tipo_categoria.objects.all()
+
+    return render(request, 'views/views_modify/modify_empleado.html', {"listaEmpleado":response,"categorias":categoriaslist})
 
 @login_required(login_url='/')
 @csrf_exempt
 def modificar_empleado(request,pk):#get noticia por id 
     print(pk)
     response= Empleado.objects.all()
-    categoria = Tipo_categoria.objects.all()
+    categoriaslist = Tipo_categoria.objects.all()
     empleado= Empleado.objects.get(id_empleado=pk)
     if request.method=='POST':
         empleado.nombre=request.POST['name']
@@ -503,13 +559,17 @@ def modificar_empleado(request,pk):#get noticia por id
             empleado.ubicacion=request.POST['ext']
         if(bool(request.FILES.get('image', False)) == True ):
             empleado.imagen=request.FILES['image']
+        if(request.POST['mejorEn']!=''):
+            tip= Tipo_categoria.objects.get(id_tipocat=int(request.POST['mejorEn']))
+            empleado.tipo_categoria = tip
+
         empleado.save()
-    return render(request, 'views/viewModificarEmpleado.html', {"listaEmpleado":response,"empleado":empleado}) 
+    return render(request,'views/views_modify/modify_empleado.html', {"listaEmpleado":response,"empleado":empleado,"categorias":categoriaslist}) 
 
 @login_required(login_url='/')
 def view_DeleteEvento(request):
     response= Evento.objects.all()
-    return render(request, 'views/viewDeleteEvento.html', {"listaEvento":response}) 
+    return render(request, 'views/views_delete/delete_evento.html', {"listaEvento":response}) 
 
 @login_required(login_url='/')
 def delete_evento(request,pk):
@@ -518,12 +578,12 @@ def delete_evento(request,pk):
     evento= Evento.objects.get(id_evento=pk)
     evento.delete()
     response= Evento.objects.all()
-    return render(request, 'views/viewDeleteEvento.html', {"listaEvento":response}) 
+    return render(request, 'views/views_delete/delete_evento.html', {"listaEvento":response}) 
 
 @login_required(login_url='/')
 def view_DeleteEmpleado(request):
     response= Empleado.objects.all()
-    return render(request, 'views/viewDeleteEmpleado.html', {"listaEmpleado":response}) 
+    return render(request, 'views/views_delete/delete_empleado.html', {"listaEmpleado":response}) 
 
 @login_required(login_url='/')
 def delete_empleado(request,pk):
@@ -536,7 +596,7 @@ def delete_empleado(request,pk):
     print(val)
     
     response= Empleado.objects.all()
-    return render(request, 'views/viewDeleteEmpleado.html', {"listaEmpleado":response}) 
+    return render(request, 'views/views_delete/delete_empleado.html', {"listaEmpleado":response}) 
 
 @login_required(login_url='/')
 def view_DeleteCategoriaNoticia(request):
@@ -557,16 +617,16 @@ def delete_categoriaNoticia(request,pk):
 @csrf_exempt
 def view_buzon(request):
     buzon = Buzon_sugerencia.objects.all().order_by('-ubicacion')
+    for i in buzon:
+        print(i.id_sugerencia)
     page = request.GET.get('page', 1)
-    paginator = Paginator(buzon, 7)
+    paginator = Paginator(buzon, 20)
     try:
         buz = paginator.page(page)
     except PageNotAnInteger:
         buz = paginator.page(1)
     except EmptyPage:
         buz = paginator.page(paginator.num_pages)
-
-    print(buzon)
     if request.method=='POST':
         print("entorsssss")
         bzn = Buzon_sugerencia.objects.get(id_sugerencia=request.POST['id_sugerencia'])
@@ -580,17 +640,19 @@ def view_buzon(request):
         except EmptyPage:
             buz = paginator.page(paginator.num_pages)
         print(buzon)
-        return render(request,'views/buzon.html',{"lista":buz}) 
+        return render(request,'views/views_web/buzon.html',{"lista":buz}) 
 
-    return render(request,'views/buzon.html',{"lista":buz})
+    return render(request,'views/views_web/buzon.html',{"lista":buz})
 
+#'views/views_web/buzon.html'
 
 
 
 
 def view_Login(request):
+    print("hpla")
     login(request)
-    return render(request, 'views/login.html', {})
+    return render(request, 'views/login/login.html', {})
 
 
 
@@ -619,9 +681,57 @@ def login(request):
                 print("si existe")
                 # Y le redireccionamos a la portada
                 return redirect('registroNoticias/')
+        else:
+            print("Password o usuario incorrecto")
+            messages.error(request,"Usuario o password incorrectos. ")
+            return render(request, "views/login/login.html", {'form': form,'mensaje':"Usuario o cotrnaseña iconrrecta."})
+
 
     # Si llegamos al final renderizamos el formulario
-    return render(request, "views/login.html", {'form': form})
+    return render(request, "views/login/login.html", {'form': form ,'mensaje':""})
+from django.core.mail import EmailMessage, BadHeaderError, send_mail
+
+@csrf_exempt
+def sendEmail(request):
+    if request.method == 'POST':
+        response = json.loads(request.body)
+        try:
+            usuario = User.objects.get(email=response['correo'])
+        except User.DoesNotExist:
+            usuario = None
+            print("No existe este elemetno...")
+            return HttpResponse(status=404)
+
+        print(response)
+        print(usuario)
+        new_password = User.objects.make_random_password()
+        usuario.set_password(new_password)
+        print(new_password)
+        usuario.save()
+        asunto = 'Cambio de contraseña de IPSP'
+        mail = response['correo']
+        mensaje = 'Usted ha solicitado recuperación de contraseña su contraseña nueva es la siguiente: '+ new_password
+        nombres = 'Colaborador de Santa Priscila'
+
+        if nombres != '' and len(mail.split('@')) == 2 and mensaje != '':
+            textomensaje = '<br>'
+            lista = mensaje.split('\n')
+            c = 0
+            for i in lista:
+                textomensaje += i+'</br>'
+                c+=1
+                if len(lista)  > c :
+                    textomensaje += '<br>'
+            msj = '<p><strong>IPSP :</strong>'+nombres+'</p><p><strong>Correo: </strong>'+mail+'</p><strong>Mensaje: </strong>'+textomensaje+'</p>'
+            msj2 = msj+'<br/><br/><br/><p>Usted se contacto con Industrial Pesquera Santa Priscila.</p><p><strong>NO RESPONDER A ESTE MENSAJE</strong>, nosotros nos pondremos en conacto con usted de ser necesario.</p><br/>'
+            try:
+                send_mail('Contactanos: '+asunto, msj,'ipspec2020@gmail.com', ['ipspec2020@gmail.com'], fail_silently=False, html_message = '<html><body>'+msj+'</body></html>')
+                send_mail('Correo enviado: '+asunto, msj2, 'ipspec2020@gmail.com', [mail], fail_silently=False, html_message= '<html><body>'+msj2+'</body></html>')
+            except BadHeaderError:
+                return HttpResponse('Invalid header found.')
+            return HttpResponse('Correo enviado',status=201)
+    return HttpResponse(status=404)
+
 
 
 def logout_view(request):
@@ -632,4 +742,66 @@ def logout_view(request):
 
 def error_404(request,exception=None):
     return render(request, "views/404.html",{})
+@csrf_exempt
+def login_frontend(request):
+    # Creamos el formulario de autenticación vacío
+    form = AuthenticationForm()
+    if request.method == "POST":
+        # Añadimos los datos recibidos al formulario
+        form = AuthenticationForm(data=request.POST)
+        # Si el formulario es válido...
+        print("verificando")
 
+        if form.is_valid():
+            # Recuperamos las credenciales validadas
+            username = form.cleaned_data['email']
+            password = form.cleaned_data['password']
+
+            # Verificamos las credenciales del usuario
+            user = authenticate(username=username, password=password)
+            print("verificando")
+
+            # Si existe un usuario con ese nombre y contraseña
+            if user is not None:
+                # Hacemos el login manualmente
+                do_login(request, user)
+                print("si existe")
+                response_data = {
+                #'es_admin_restaurante': user.es_admin_restaurante
+                'token': "asdsad",
+                }
+                response = Response(data=response_data)
+                # Y le redireccionamos a la portada
+                return response
+
+    # Si llegamos al final renderizamos el formulario
+    return render(request, "views/login.html", {'form': form})
+
+class LoginUser(ObtainJSONWebToken):
+    @method_decorator(ensure_csrf_cookie)
+    def post(self, request, *args, **kwargs):
+        #request.data  {'username': '___', 'password': '___'}
+        serializer = self.get_serializer(data=request.data)
+
+        if serializer.is_valid():
+            user = serializer.object.get('user') or request.user
+            token = serializer.object.get('token')
+            
+            #usuario = Usuarios.objects.get(id_usuario=user.id)
+           # role_type = Roles.objects.get(id_rol = usuario.id_rol.id_rol)
+            
+
+            response_data = {
+                api_settings.JWT_AUTH_COOKIE: token,
+                'username': "chrizz",
+                #'es_admin_restaurante': user.es_admin_restaurante
+                #'typeUser': role_type.nombre,
+            }
+            response = Response(data=response_data)
+
+            if api_settings.JWT_AUTH_COOKIE:
+                expiration = (datetime.datetime.utcnow() +
+                              api_settings.JWT_EXPIRATION_DELTA)
+                response.set_cookie(api_settings.JWT_AUTH_COOKIE, token, expires=expiration, httponly=True)
+            return response
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)

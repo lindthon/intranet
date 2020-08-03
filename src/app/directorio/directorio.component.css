@@ -1,14 +1,25 @@
 @import './css/bootstrap.css';
+div.carrousel{    
+    margin-bottom:1%;
+}
 
-.background-pattern{
-    background-image: url("src/assets/img/patrones/blue-snow.png")!important;
+div.background-pattern{
+    background-image: url("src/assets/img/patrones/beige-tiles.png")!important;
     background-repeat: repeat!important;
 }
 
 .container{
+    position: relative;
+    min-height: 75vh;
     margin-top: 1%;
     margin-bottom: 1%;
     background-color: white;
+}
+.footer{
+        position: absolute;
+        bottom: 0;
+        width: 100%;
+        height: 2.5rem;         
 }
 
 :host /deep/ a.ng2-smart-page-link.page-link {

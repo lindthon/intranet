@@ -1,0 +1,44 @@
+
+.centrate{
+    text-align: center;
+}
+
+div.background_pattern{
+
+    background-image: url("src/assets/img/background/bush/bush.png")!important;
+    background-repeat: repeat!important;
+  /* Full height */
+ 
+  /* Center and scale the image nicely */
+}
+#team{
+    background: #187986;
+}
+.large{
+    font-family: "Raleway";
+}
+div.callout p{
+    font-family: "Raleway";
+}
+.texto{
+    font-family: "Raleway";
+}
+.trabajadores-destacados{
+    padding-top: 5%;
+    padding-bottom: 10%;
+}
+
+.empl{
+    padding-bottom: 15%;
+}
+.pattern{
+    background-image: url("src/assets/img/patrones/weather.png");
+    height: 100%;
+
+}
+.footer{
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 2.5rem;         
+}

@@ -9,7 +9,7 @@
  <head>
      
     <link rel="stylesheet" href="{% static 'css/styleRegistroNoticias.css' %}"></head>
-<br />
+<br />  
 <div class="inner contact">
                 <!-- Form Area -->
                 <div class="contact-form divCont">
@@ -22,7 +22,7 @@
                         <div class="col-xs-6 wow animated slideInLeft" data-wow-delay=".5s">
                             <!-- Name -->
                             <label class="labelCol"  >Titulo De Noticia:</label>
-                            <input type="text" name="titulo" id="name" required="required" class="formFecha3 inp" placeholder="Titulo Noticia" />
+                            <input type="text" autocomplete="off" name="titulo" id="name" required="required" class="formFecha3 inp" placeholder="Titulo Noticia" />
                             <label  class="labelCol"   >Subir Imagen Noticia:</label>
                             <input type="file" name="archivoimg"  class="formFecha2" required="required" accept="image/*" id="id_imagen">
                         </div><!-- End Left Inputs -->
@@ -52,7 +52,7 @@
                             <!-- Send Button -->
                             <div class="divBtn">
                                 <button type="submit" id="submit" name="submit" class="form-btn semibold">Publicar Noticia</button> 
-                                <button type="submit" id="submit" name="submit" class="form-btn semibold">Limpiar Campos</button> 
+                                <button type="reset" id="reset" name="reset" class="form-btn semibold">Limpiar Campos</button> 
                             </div>
                         </div><!-- End Bottom Submit -->
                         <!-- Clear -->

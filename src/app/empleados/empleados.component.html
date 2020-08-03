@@ -1,0 +1,29 @@
+
+<div class='background_pattern'>
+
+<app-header></app-header>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css">
+
+</div>
+<!-- ==== TEAM MEMBERS ====--> 
+  <div class="pattern">
+  <section class="hero-section section">  
+    <div class="container">
+        <div class="highlight tb">
+          <h3 class="centered trabajadores-destacados">Trabajadores destacados</h3>
+        </div>
+    </div>
+    
+</section>
+<div class="div-pattern"></div>
+<div class="pattern">
+<div  class="container">
+  <div class="row centered">
+        <div *ngFor="let mejor of empleados" class="col-md-4  centered empl"  > 
+            <div > <img class="img img-circle" src="http://127.0.0.1:8000{{mejor.image}}" height="120px" width="120px" alt=""></div>
+            <h4 ><strong>{{mejor.name}}</strong></h4>
+            <p class="texto">{{mejor.MejorEn}}</p>
+        </div>
+  </div>
+</div>
+<app-footer></app-footer>

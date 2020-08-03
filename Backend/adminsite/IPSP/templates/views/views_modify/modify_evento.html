@@ -1,0 +1,128 @@
+{% extends "views/login/index.html" %} 
+  <!-- /.container -->
+{% block content %}
+<div id="layoutSidenav_content">
+    <!--Seccion de la tabla-->
+    <body>
+            <main>
+                <div class="container-fluid">                 
+                    <div class="card mb-4">
+                        <div class="card-header">
+                            <i class="fas fa-table mr-1"></i>
+                            Seleccione Evento
+                        </div>
+                        <div class="card-body">
+                            <div class="table-responsive">
+                                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                                    <thead>
+                                        <tr>
+                                            <th>Evento</th>
+                                            <th>Fecha Publicacion</th>
+                                            <th>ID</th>
+                                            <th>Opciones</th>
+                                        </tr>
+                                    </thead>
+                                    
+                                    <tbody>
+                                        {% for o in listaEvento %}
+                                        <tr >
+                                             <td><a href="{% url 'modificarEvento' o.id_evento %}">{{o.titulo}}</a></td>
+                                             <td>{{o.fecha}}</td>
+                                             <td>{{o.id_evento}}</td>
+                                             <td>
+                                                    <a href="{% url 'modificarEvento' o.id_evento %}">
+                                                        <input type="button"  id={{o.id_evento}} class="btn floated"  value="Modificar">   
+                                                    </a>                         
+                                            </td>
+                                        </tr>
+                                    {% endfor %}
+        
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </main>
+        </body>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <!--Seccion de formulario de modificacion-->
+      <div class="card">
+        <div class="card-header"><strong>Actualizar Eventos</strong> </div>
+        <div class="card-body">
+          <form class="form-horizontal" action="" method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+
+            <div class="form-group row">
+              <label class="col-md-3 col-form-label" for="text-input">Evento:</label>
+              <div class="col-md-9">
+                <input class="form-control" id="name" required="required"  type="text" name="evento"   required="required" value="{{evento.titulo}}"><span class="help-block"></span>
+              </div>
+            </div>
+            <div class="form-group row">
+                <label class="col-md-3 col-form-label" for="select1">Mes del evento:</label>
+                <div class="col-md-9">
+                  <select class="form-control" id="select1" name="mes"  required="required" >
+                    <option value="0">Seleciones el mes del evento</option>
+                    {% for mesEvento in meses  %}
+                    <option value="{{mesEvento.mes}}">{{mesEvento.mes}}</option>
+                    {% endfor  %}
+                  </select>
+                </div>
+              </div>
+            <div class="form-group row">
+              <label class="col-md-3 col-form-label" for="date-input">Fecha del evento:</label>
+              <div class="col-md-9">
+                <input class="form-control" id="date-input" type="date" name="fecha"  required="required" placeholder="date"><span class="help-block">Día/Mes/Año</span>
+              </div>
+            </div>
+            <div class="form-group row">
+                <label class="col-md-3 col-form-label" for="date-input">Hora del evento:</label>
+                <div class="col-md-9">
+                  <input class="form-control" id="date-input" type="time" name="hora"  required="required"  value="{{evento.hora}}"><span class="help-block"></span>
+                </div>
+            </div>
+            <div class="form-group row">
+                <label class="col-md-3 col-form-label" for="text-input">Lugar del evento:</label>
+                <div class="col-md-9">
+                  <input class="form-control" id="text-input" type="text" name="lugar"  required="required"   value="{{evento.lugar}}"><span class="help-block"></span>
+                </div>
+              </div>
+            <div class="form-group row">
+              <label class="col-md-3 col-form-label" for="textarea-input">Descripción del evento</label>
+              <div class="col-md-9">
+                <textarea class="form-control" id="textarea-input" name="descripcion" required="required" rows="9" placeholder="Escriba una breve descripción..">{{evento.descripcion}}</textarea>
+              </div>
+            </div>
+  
+            <div class="form-group row">
+              <label class="col-md-3 col-form-label" for="file-input">Suba imagen del evento:</label>
+              <div class="col-md-9">
+                <input id="file-input" type="file" name="imagen"  accept="image/*" required="required" >
+              </div>
+            </div>
+            <div class="card-footer">
+              <button class="btn btn-sm btn-primary" type="submit"> Actualizar</button>
+            </div>
+         
+          </form>
+        </div>
+      
+      </div>
+</div>
+{% endblock  %}

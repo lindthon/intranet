@@ -10,7 +10,7 @@ import {  LocalDataSource } from 'ng2-smart-table';
 export class DirectorioComponent implements OnInit {
 
   empleados: any;
-  data2=[]
+  data2=[];
 
 
   source: LocalDataSource ;

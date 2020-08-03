@@ -22,10 +22,10 @@ function myFunction() {
     }
   }
 
-function confirmationMessage(){
+function confirmationMessage(id){
     var value = confirm("Seguro que deseas eliminar este elemento ?");
-    if(value){
-       document.forms['myform'].submit();
+    if(value && id){
+       document.forms['myform'+id].submit();
        window.close();
     }
 }

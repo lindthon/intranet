@@ -2,12 +2,14 @@
 @import './css/style.css';
 
 
-div.carrousel{    
+.carrousel{    
     margin-bottom:1%;
 }
 
-div.background_pattern{
+.background_pattern{
     background-image: url("src/assets/img/patrones/beige-tiles.png")!important;
     background-repeat: repeat!important;
     
 }
+
+

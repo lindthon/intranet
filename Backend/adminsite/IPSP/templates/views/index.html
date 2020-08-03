@@ -1,5 +1,9 @@
 {% load static %}
 <link rel="stylesheet" href="{% static 'css/index.css' %}">
+<link rel="stylesheet" href="{% static 'css/bootstrap.css' %}">
+<link rel="shortcut icon" href="{% static 'images/logo.png' %}">
+
+<title>Administrador Intranet</title>
 
 
 <nav class="menu" tabindex="0">
@@ -13,11 +17,11 @@
     <a  href="{% url 'buzon' %}"><li tabindex="0" class="icon-mail"><span>Buzón De Sugerencias</span></li></a>
     <a  href="{% url 'modificar_principal' %}"><li tabindex="0" class="icon-principal"><span>Modificar Web</span></li></a>
     <li tabindex="0" ></li>
-    <li tabindex="0" ></li>
     <a  href="{% url 'noticia' %}"><li tabindex="0" class="icon-news">Registrar Noticias</li></a>
     <a  href="{% url 'evento' %}"><li tabindex="0" class="icon-evento"><span>Registrar Evento</span></li></a>
-    <a  href="{% url 'categoria' %}"><li tabindex="0" class="icon-categoria"><span>Resgistar Categorias</span></li></a>
-    <a  href="{% url 'empleado' %}"><li tabindex="0" class="icon-users"><span>Resgistar Empleado</span></li></a>
+    <a  href="{% url 'categoria' %}"><li tabindex="0" class="icon-categoria"><span>Registrar Categorias</span></li></a>
+    <a  href="{% url 'empleado' %}"><li tabindex="0" class="icon-users"><span>Registrar Empleado</span></li></a>
+    <a  href="{% url 'brigada' %}"><li tabindex="0" class="icon-users"><span>Registrar Brigada</span></li></a>
 
     <li tabindex="0" ></li>
     <a  href="{% url 'modificar_noticia' %}"><li tabindex="0" class="icon-edit-file">Modificar Noticias</li></a>

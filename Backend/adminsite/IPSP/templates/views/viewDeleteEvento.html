@@ -8,26 +8,35 @@
 <link rel="stylesheet" href="{% static 'css/table.css' %}">
 <script src="{% static 'scripts/table.js' %}"></script>
 
-<h2>Responsive Table</h2>
 
-<div class="table-wrapper">
-    <input class="formFecha2" type="text" id="myInput" onkeyup="myFunction()" placeholder="Buscar Evento">
+<div class="table-wrapper divCont">
+    <h2 class="h2label">Eventos</h2>
+    <input class="formFecha2" autocomplete="off" type="text" id="myInput" onkeyup="myFunction()" placeholder="Buscar Evento">
     <table class="fl-table " id="myTable">
         <thead>
         <tr>
             <th>Evento</th>
             <th>Fecha Publicacion</th>
-            <th>Id</th>
+            <th>ID</th>
             <th>Opciones</th>
         </tr>
         </thead>
         <tbody>
             {% for o in listaEvento %}
                 <tr >
-                     <td >{{o.titulo}}</td>
+                     <td><a href="{% url 'modificarEvento' o.id_evento %}">{{o.titulo}}</a></td>
                      <td>{{o.fecha}}</td>
                      <td>{{o.id_evento}}</td>
-                     <td><form  name="myform" action="{% url 'delete_evento' o.id_evento %}"><input type="button" class="btn" onclick= "confirmationMessage()" value="Eliminar"></form></td>
+                     <td>
+                            <form  name="myform{{o.id_evento}}" action="{% url 'delete_evento' o.id_evento %}">
+                                <a onclick="confirmationMessage('{{o.id_evento}}')" >
+                                <input type="button"  id={{o.id_evento}} class="btn floated"  value="Eliminar">
+                                </a>
+                           </form>
+                            <a href="{% url 'modificarEvento' o.id_evento %}">
+                                <input type="button"  id={{o.id_evento}} class="btn floated"  value="Modificar">   
+                            </a>                         
+                    </td>
                 </tr>
             {% endfor %}
        

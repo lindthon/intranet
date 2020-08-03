@@ -9,19 +9,30 @@ import { CalendarComponent } from './calendar/calendar.component';
 import { SugerenciasComponent } from './sugerencias/sugerencias.component';
 import { ReglamentoComponent } from './reglamento/reglamento.component';
 import { DirectorioComponent } from './directorio/directorio.component';
+import { LoginComponent } from './login/login.component';
+import { RecuperarClaveComponent } from './recuperar-clave/recuperar-clave.component';
+import { BrigadasComponent } from './brigadas/brigadas.component';
+import { EmpleadosComponent } from './empleados/empleados.component';
+import { AuthGuard } from './guard/AuthGuard.component';
+import { PerfilComponent } from './perfil/perfil.component';
 
 
 
 const routes: Routes = [
-  { path: "",component:IndexComponent},
-  { path: "noticias",component:NoticiasComponent},
+  { path: "",component:IndexComponent,canActivate: [AuthGuard]},
+  { path: "login",component:LoginComponent},
+  { path: "recuperar-clave",component:RecuperarClaveComponent},
+  { path: "perfil",component:PerfilComponent},
+  { path: "brigadas",component:BrigadasComponent,canActivate: [AuthGuard]},
+  { path: "empleados",component:EmpleadosComponent,canActivate: [AuthGuard]},
+  { path: "noticias",component:NoticiasComponent,canActivate: [AuthGuard]},
   { path: "categoria-noticias/:id/:categoria",component:CategoriaNoticiasComponent, pathMatch: 'full'},
   { path: "noticia/:id/details",component:NoticiaComponent, pathMatch: 'full'},
-  { path: "eventos",component:EventosComponent},
-  { path: "calendario",component:CalendarComponent},
-  { path: "sugerencias",component:SugerenciasComponent},
-  { path: "reglamento",component:ReglamentoComponent},
-  { path: "directorio",component:DirectorioComponent}
+  { path: "eventos",component:EventosComponent,canActivate: [AuthGuard]},
+  { path: "calendario",component:CalendarComponent,canActivate: [AuthGuard]},
+  { path: "sugerencias",component:SugerenciasComponent,canActivate: [AuthGuard]},
+  { path: "reglamento",component:ReglamentoComponent,canActivate: [AuthGuard]},
+  { path: "directorio",component:DirectorioComponent,canActivate: [AuthGuard]}
 ];
 
 @NgModule({
@@ -29,4 +40,4 @@ const routes: Routes = [
   exports: [RouterModule]
 })
 export class AppRoutingModule { }
-export const routingComponents =[IndexComponent,NoticiasComponent]
+export const routingComponents =[IndexComponent,NoticiasComponent,BrigadasComponent]

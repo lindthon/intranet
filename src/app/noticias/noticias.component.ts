@@ -162,11 +162,12 @@ export class NoticiasComponent implements OnInit {
 
   NoticiasPorCategoria: any;
   arrayCategoria =[];
-  NewsCater:any;
-  arrayNoticiasCate = [];
+  NewsCater:any;/*Variable que para la noticias */
+  arrayNoticiasCate= [];
   arrayNoticiasCate2 = [];
 
   note : any;
+  contador_noticias: number=0;
   getNoticiasPorCategoria(_http:HttpClient){
     this._http.get('http://127.0.0.1:8000/getNoticiasPorCategoria/')
     .subscribe(
@@ -176,16 +177,16 @@ export class NoticiasComponent implements OnInit {
           let NewsCater = data[keyCategoria];
           console.log("categoria")
           console.log(NewsCater);
+          this.contador_noticias=this.contador_noticias+1;
           this.arrayCategoria.push(keyCategoria)
           for(let keyNoticia in NewsCater){
             let noticia = NewsCater[keyNoticia];
             console.log("noticia")
             this.arrayNoticiasCate.push(noticia)
             console.log(noticia);
-            for (let key in noticia) {
-            }
          }
-        }   
+        }
+        ;console.log(this.contador_noticias);
       }
       ,(err: HttpErrorResponse)=>{console.log("Un error ha ocurrido")}
       ,()=>console.log("solicitud finalizada OK")
@@ -228,11 +229,11 @@ export class NoticiasComponent implements OnInit {
   getNoticias(_http:HttpClient){
     this._http.get('http://127.0.0.1:8000/getNoticiasBrigada/')
     .subscribe(
-      (data)=>{console.log(data);
-        this.noticiasbrigada=data;
+      (data)=>{//console.log(data);
+        //this.noticiasbrigada=data;
         for (let key in this.noticiasbrigada) {
           let notica = this.noticiasbrigada[key];
-          console.log(notica);
+          //console.log(notica);
           this.brigada.push(notica);
       }   
       }
@@ -245,12 +246,12 @@ export class NoticiasComponent implements OnInit {
   getNoticiasCambios(_http:HttpClient){
     this._http.get('http://127.0.0.1:8000/getNoticiasCambio/')
     .subscribe(
-      (data)=>{console.log(data);
+      (data)=>{//console.log(data);
         this.noticiasCambio=data;
         for (let key in this.noticiasCambio) {
           let notica = this.noticiasCambio[key];
-          console.log(notica);
-          this.cambios.push(notica);
+          //console.log(notica);
+          //this.cambios.push(notica);
       }   
       }
       ,(err: HttpErrorResponse)=>{console.log("Un error ha ocurrido")}
@@ -263,11 +264,11 @@ export class NoticiasComponent implements OnInit {
   getCumpleaniosEmpleados(_http:HttpClient){
     this._http.get('http://127.0.0.1:8000/getEmpleadoBirthday/')
     .subscribe(
-      (data)=>{console.log(data);
+      (data)=>{//console.log(data);
         this.empleados=data;
         for (let key in this.empleados) {
           let empleado = this.empleados[key];
-          console.log(empleado);
+         // console.log(empleado);
           this.birthdays.push(empleado);
       }   
       }

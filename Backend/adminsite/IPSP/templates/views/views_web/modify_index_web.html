@@ -1,0 +1,94 @@
+{% extends "views/login/index.html" %} 
+{% load static %}
+
+{% block content %}
+<script src="{% static 'js2/function.js' %}"></script>
+
+<div id="layoutSidenav_content">
+  <div class="card">
+    <div class="card-header"><strong class="pr-5">Imágenes Intranet Web</strong> </div>
+    <div class="card-body ">
+        <!--div class="form-group row">
+          <label class="col-md-3 col-form-label" for="text-input">Imagen Fondo:</label>
+            <div class="col-md-6">
+              <input id="file-input" type="file" accept="image/*" name="image_principal" accept="image/*" onchange="loadFilePrincipal(event)" id="id_imagen" required="required">
+            </div>
+            <div>
+              <img id="output2" class="principal pl-3"  src="{{Principal.image_principal.url}}"/>
+            </div>
+        </div>
+        <div class="form-group row">
+          <label class="col-md-3 col-form-label" for="text-input">Imagen Eslogan:</label>
+            <div class="col-md-6">
+              <input id="file-input" type="file" accept="image/*" name="image_principal" accept="image/*" onchange="loadFile(event)" id="id_imagen" required="required">
+            </div>
+            <div >
+              <img id="output" class="principal pl-3"  src="{{Principal.image_eslogan.url}}"/>
+            </div>
+        </div>-->
+        <div class="row ml-5">
+            <div class="card mb-3 ml-5" style="max-width: 540px;max-height: 700px;">
+              <div class="row no-gutters">
+                <div class="col-md-4">
+                  <img src="{{Principal.image_eslogan.url}}"  id="output" class="card-img principal" alt="...">
+                </div>
+                <div class="col-md-8">
+                  <div class="card-body">
+                    <h5 class="card-title">Imagen del eslogan</h5>
+                    <p class="card-text"></p>
+                    <p class="card-text"><small class="text-muted"></small></p>
+                    <div class="col-md-6">
+                      <input id="file-input" type="file" accept="image/*" name="image_principal" accept="image/*" onchange="loadFile(event)" id="id_imagen" required="required">
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+
+            <div class="card mb-3 ml-5" style="max-width: 540px;max-height: 700px;">
+              <div class="row no-gutters">
+                <div class="col-md-4">
+                  <img  src="{{Principal.image_principal.url}}"  id="output2" class="card-img principal" alt="...">
+                </div>
+                <div class="col-md-8">
+                  <div class="card-body">
+                    <h5 class="card-title">Imagen de fondo de la web</h5>
+                    <p class="card-text"></p>
+                    <p class="card-text"><small class="text-muted"></small></p>
+                    <div class="col-md-6">
+                      <input id="file-input" type="file" accept="image/*" name="image_principal" accept="image/*" onchange="loadFile(event)" id="id_imagen" required="required">
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          
+          
+          
+          
+          
+          
+          </div>
+
+
+    </div>
+    <div class="card">
+      <div class="card-header"><strong>Eslogan Intranet Web</strong> </div>
+      <div class="card-body">
+        <div class="form-group row">
+          <label class="col-md-3 col-form-label" for="textarea-input">Descripción de la noticia:</label>
+          <div class="col-md-9">
+            <textarea class="form-control" name="descripcion" required="required" id="textarea-input" name="textarea-input" rows="7" placeholder="Escriba una breve descripción..">{{Principal.eslogan}}</textarea>
+          </div>
+        </div>  
+      </div>
+    </div>
+    <div class="card-footer">
+      <button class="btn btn-sm btn-primary" type="submit" onclick="myalert();" id="submit" name="submit"> Actualizar</button>
+    </div>
+  </div>
+ 
+</div>
+
+{% endblock %}  

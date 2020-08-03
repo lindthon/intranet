@@ -31,9 +31,11 @@
               <li>
                   <a routerLink="/noticias">Noticias</a>
               </li>
-
               <li>
-                  <a routerLink="/eventos">Eventos</a>
+                <a routerLink="/brigadas">Brigadas</a>
+            </li>
+              <li>
+                  <a routerLink="/eventos">Eventoso</a>
               </li>
 
               <li>
@@ -70,7 +72,7 @@
 
                   <ul class="main-menu">
                       <li class="main-menu-active">
-                          <a href="#" class="quitarflecha">Principal</a>
+                          <a routerLink="/" class="quitarflecha">Principal</a>
                           <!--<ul class="sub-menu">
                               <li><a routerLink="/">Misión Visión y Valores</a></li>
                               <li><a routerLink="/">Certificados</a></li>
@@ -79,48 +81,58 @@
                       </li>
 
                       <li class="main-menu-active">
-                          <a href='#/noticias'>Noticias</a>
+                          <a  [routerLink]="['/noticias']">Destacados</a>
 
                           <ul class="sub-menu">
-                            <li><a href="#/noticias">Últimos Comunicados</a></li>
-                            <li><a [routerLink]="['/categoria-noticias',1, 'details']">Categorías</a></li>
-                        </ul>
+                            <li><a [routerLink]="['/noticias']">Noticias</a></li>
+                            <li><a [routerLink]="['/categoria-noticias',12, 'details']">Categorías</a></li>
+                            <li><a [routerLink]="['/brigadas']">Brigadas</a></li>
+                            <li><a [routerLink]="['/empleados']">Empleados</a></li>
+                          </ul>
                       </li>
 
                       <li class="main-menu-active">
                           <a routerLink="/eventos" class="quitarflecha">Eventos </a>
-
                           <!--<ul class="sub-menu">
                             <li><a routerLink="/eventos">Eventos por mes</a></li>
                             <li><a routerLink="/eventos">Calendario de eventos</a></li>
                         </ul>-->
                       </li>                                      
-
-                      <li class="main-menu-item">
-                        <a href="#/directorio" class="quitarflecha">Directorio general</a>
+                    
+                      <li class="main-menu-active">
+                        <a routerLink="/directorio" class="quitarflecha">Directorio general</a>
                       </li>
 
-                      <li>
-                          <a href="#/reglamento" class="quitarflecha">Reglamento</a>
+                      <li class="main-menu-active">
+                          <a routerLink="/reglamento" class="quitarflecha">Reglamento</a>
                       </li>
-
-                      <li>
-                          <a routerLink="/sugerencias" class="quitarflecha">Buzón de sugerencias</a>
+                      <li class="main-menu-active">
+                        <a routerLink="/empleados" class="quitarflecha">Empleados</a>
+                    </li>
+                      <li class="main-menu-active">
+                          <a  routerLink="/sugerencias" class="quitarflecha">Buzón de sugerencias</a>
                       </li>
-
+                      <li class="main-menu-active">                          
+                        <a class="quitarflecha"  [routerLink]="['/perfil']"><fa-icon  class="fa fa-user-circle fa-2" aria-hidden="true"></fa-icon></a>
+                    </li>
                       <li class="otherItem">                          
                             <a class="otherLinks lock">
                                 <fa-icon class="icon-unlock" [icon]="faDoorClosed"></fa-icon>
                                 <fa-icon class="icon-lock" [icon]="faDoorOpen"></fa-icon>
                             </a>
                             <ul class="sub-menu">
-                                <li><a [href]="">E-Learning</a></li>
-                                <li><a href="">SGC</a></li>
+                                <li><a  href="http://wisecorp-ec.com/e-learning-stapriscila/login/index.php">E-Learning</a></li>
+                                <li>
+                                    <form action="https://www.santa-priscila-admin.com/ipsp/roles/comprueba.php" target="_blank" method="POST" #form>
+                                        <input type="hidden" name="txt_cedula" value="{{cedula}}">
+                                        <input type="hidden" name="txt_clave_1" value="{{clave}}">
+                                    </form>
+                                    <a routerLink=""  type="submit" (click)="form.submit()" >Roles-IPSP</a>
+                                </li>
+                                <li><a routerLink="/login" (click)="logout()">Log out</a></li>
                             </ul>
-                        
                     </li>
-                     
-
+                 
                   </ul>
                   
               </nav>

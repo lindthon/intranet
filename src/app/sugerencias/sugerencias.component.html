@@ -6,42 +6,42 @@
     <h1 class="text-center">Dejanos tus sugerencias</h1>
     <hr>
     <hr>
-    <form #form>
+    <form #form  >
       <h2>1. ¿Como nos ayuda tu sugerencia?</h2>
       <div class="form-check">
         <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" value="option1" (click)="setOption('Prevenir accidentes')" checked>
-        <label class="form-check-label label-option" for="exampleRadios1">
+        <label class="form-check-label label-option pl-3" for="exampleRadios1">
           Prevenir accidentes
         </label>      
       </div>
       <div class="form-check">
         <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios2" value="option2" (click)="setOption('Aumentar la calidad')" >
-        <label class="form-check-label label-option" for="exampleRadios2">
+        <label class="form-check-label label-option pl-3" for="exampleRadios2">
           Aumentar la calidad
         </label> 
       </div>
       <div class="form-check">
         <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios3" value="option3" (click)="setOption('Mejora el servicio')">
-        <label class="form-check-label label-option" for="exampleRadios3">
+        <label class="form-check-label label-option pl-3" for="exampleRadios3">
           Mejora el servicio
         </label> 
       </div>
       <div class="form-check">
         <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios4" value="option4" (click)="setOption('Ahorrar tiempo')">
-        <label class="form-check-label label-option" for="exampleRadios4">
+        <label class="form-check-label label-option pl-3" for="exampleRadios4">
           Ahorrar tiempo
         </label> 
       </div>
       <div class="form-check">
         <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios5" value="option5" (click)="setOption('Reducir gastos')">
-        <label class="form-check-label label-option" for="exampleRadios5">
+        <label class="form-check-label label-option pl-3" for="exampleRadios5">
           Reducir gastos
         </label> 
       </div>
-      <div class="form-check">
+      <!--<div class="form-check">
         <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios6" value="option6 "  (click)="setOption('option6')">
-        <input type="text" class="input-option" id="exampleInput" placeholder="Otro" for="exampleRadios6">
-      </div>
+        <input type="text" class="form-check-label label-option input-option ml-6" id="exampleInput" placeholder="Otro" for="exampleRadios6">
+      </div>-->
         
       
       <div  #sugerencia class="form-group">
@@ -53,8 +53,12 @@
         <h2 for="exampleFormControlInput1">3. ¿Cuál es tu dirección de correo?</h2>
         <input  type="email" class="form-control" id="correo" placeholder="name@example.com">
       </div>
+      <div calss=" btn-group" role="group">
+        <button type="submit"  (click)="sendData();" class="btn btn-primary  center-block button-text col-6">Publica tu sugerencia</button>
+  
 
-      <button type="submit" (click)="sendData()" class="btn btn-primary center-block button-text">Publica tu sugerencia</button>
+      </div>
+   
     </form>
     
   </div>

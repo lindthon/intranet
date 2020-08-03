@@ -1,8 +1,8 @@
 body {
-    background: #e6e6e6;
+    background: #b1a9a9ab;
     margin: 0;
     font-family: "Open Sans", Helvetica Neue, Helvetica, Arial, sans-serif;
-    color: #fff;
+    color: rgb(255, 255, 255);
     padding-left: 325px;
     padding-top: 25px;
     
@@ -241,8 +241,7 @@ body {
       pointer-events: none;
     }
   }
-
-  a
+a
   {
   text-decoration:none;
   color: white;

@@ -1,0 +1,86 @@
+{% extends "views/login/index.html" %} 
+  <!-- /.container -->
+{% block content %}
+<div id="layoutSidenav_content">
+
+      <div class="card">
+        <div class="card-header"><strong>Registro Colaborador</strong> </div>
+        <div class="card-body">
+          <form class="form-horizontal" action="" method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+
+            <div class="form-group row">
+              <label class="col-md-3 col-form-label" for="text-input">Nombre:</label>
+              <div class="col-md-9">
+                <input class="form-control" id="text-input" name="name" type="text" placeholder="Ingrese su nombre"  required="required"><span class="help-block"  ></span>
+              </div>
+            </div>
+            <div class="form-group row">
+              <label class="col-md-3 col-form-label" for="text-input">Apellido:</label>
+              <div class="col-md-9">
+                <input class="form-control" id="text-input"  name="apellido" type="text" placeholder="Ingrese su apellido"  required="required"><span class="help-block"  ></span>
+              </div>
+            </div>
+            <div class="form-group row">
+              <label class="col-md-3 col-form-label" for="text-input">Cedula:</label>
+              <div class="col-md-9">
+                <input class="form-control" id="text-input" type="text" name="cedula" placeholder="Ingrese su cedula"  required="required"><span class="help-block"  ></span>
+              </div>
+            </div>
+            <div class="form-group row">
+              <label class="col-md-3 col-form-label" for="text-input">Usuario:</label>
+              <div class="col-md-9">
+                <input class="form-control" id="text-input"  name="user" type="text"  placeholder="Ingrese su usuario"  required="required"><span class="help-block" ></span>
+              </div>
+            </div>
+            <div class="form-group row">
+              <label class="col-md-3 col-form-label" for="text-input">Contraseña:</label>
+              <div class="col-md-9">
+                <input class="form-control" id="text-input" name="password" type="password"  placeholder="**********" autocomplete="new-password"  required="required"><span class="help-block"></span>
+              </div>
+            </div>
+            <div class="form-group row">
+              <label class="col-md-3 col-form-label" for="email-input">Correo:</label>
+              <div class="col-md-9">
+                <input class="form-control" id="email-input" type="email" name="correo" placeholder="Enter Email" autocomplete="false"  required="required"><span class="help-block"></span>
+              </div>
+            </div>
+            <div class="form-group row">
+              <label class="col-md-3 col-form-label" for="ext-input">Extensión:</label>
+              <div class="col-md-9">
+                <input class="form-control" id="text-input" type="text" name="ext" placeholder="Extensión" autocomplete="false"  required="required"><span class="help-block"></span>
+              </div>
+            </div>
+            <div class="form-group row">
+              <label class="col-md-3 col-form-label" for="date-input">Fecha Nacimiento:</label>
+              <div class="col-md-9">
+                <input class="form-control" id="date-input" type="date" name="fecha"  placeholder="date"  required="required"><span class="help-block">Día/Mes/Año</span>
+              </div>
+            </div>
+            <div class="form-group row">
+              <label class="col-md-3 col-form-label" for="file-input">Suba una imagen:</label>
+              <div class="col-md-9">
+                <input id="file-input" type="file" accept="image/*" name="image"  required="required">
+              </div>
+            </div>
+            <div class="form-group row">
+              <label class="col-md-3 col-form-label" for="select1">Select</label>
+              <div class="col-md-9">
+                <select class="form-control" id="select1" name="mejorEn"  required="required">
+                  <option value="0">Please select</option>
+                  {% for cate in categorias  %}
+                      <option value="{{cate.id_tipocat}}">{{cate.categoria}}</option>
+                  {% endfor  %}
+
+                </select>
+              </div>
+            </div>
+            <div class="card-footer">
+              <button class="btn btn-sm btn-primary" type="submit"> Submit</button>
+              <button class="btn btn-sm btn-danger" type="reset"> Reset</button>
+            </div>
+          </form>
+        </div>
+      </div>
+</div>
+{% endblock  %}

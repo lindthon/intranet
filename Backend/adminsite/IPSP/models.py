@@ -73,6 +73,16 @@ class Noticia(models.Model):
     fecha =  models.DateField(blank=True, null=True)
     imagen = models.ImageField(verbose_name="Imagen")
 
+class Tipo_brigada(models.Model):
+    id_tipobrigada = models.AutoField(primary_key=True )
+    nombre_brigada = models.CharField(max_length=100)
+
+class Brigada(models.Model):
+    id_brigada = models.AutoField(primary_key=True)
+    tipo_bri = models.ForeignKey(Tipo_brigada, on_delete=models.CASCADE)
+    descripcion = models.CharField(max_length=100)
+    miembro = models.TextField(max_length=200)
+    imagen = models.ImageField(verbose_name="Imagen")
 
 
 

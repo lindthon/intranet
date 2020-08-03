@@ -1,0 +1,70 @@
+{% load static %}
+<link rel="shortcut icon" href="{% static 'images/logo.png' %}">
+<head>
+	<title>Portal de Colaboradores - Iniciar Sesión</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+<!--===============================================================================================-->	
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="{% static 'css/login/utils.css' %}">
+	<link rel="stylesheet" type="text/css" href="{% static 'css/login/main.css' %}">
+<!--===============================================================================================-->
+</head>
+<body style="background-color: #999999;">
+	
+	<div class="limiter">
+		<div class="container-login100">
+			<div class="login100-more" style="background-image: url('static/images/administrador.jpg');"> 			
+			</div>
+
+			<div class="wrap-login100 p-l-50 p-r-50 p-t-72 p-b-50">
+				<form class="login100-form validate-form" method="post" name="frm_login" id="frm_login">
+                    {% csrf_token %}
+
+					<div id="logo" align="center">
+						<img src="static/images/logo.png" width="70%">
+					</div>
+					
+					<span class="login100-form-title p-b-59 p-l-30">
+                        Administrador Intranet
+                    </span>	
+                   
+					
+					
+					<div class="wrap-input100 validate-input" data-validate="Name is required">
+						<span class="label-input100">Usuario</span>
+						<input class="input100" type="text" name="username" id="username" placeholder="Ingrese su nombre de usuario...">
+						<span class="focus-input100"></span>
+					</div>				
+
+					<div class="wrap-input100 validate-input" data-validate = "Password is required">
+						<span class="label-input100">Clave</span>
+						<input class="input100" type="password" name="password" id="password" placeholder="*************">
+						<span class="focus-input100"></span>
+					</div>		
+
+					
+
+					<div class="container-login100-form-btn">
+						<div class="wrap-login100-form-btn">
+							<div class="login100-form-bgbtn"></div>
+							<button class="login100-form-btn" type="submit" name="btn_registrar" id="btn_registrar">								
+								Iniciar sesión
+							</button>
+						</div>
+					{% for message in messages %}					
+						<div class="p-t-10 p-l-10" id="">
+							<span id="closebtn" onclick="this.parentElement.style.display='none';">&times;</span> 
+							<strong>{{message}}</strong>
+						</div>							
+					{% endfor %}
+				
+							
+							
+						
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+
+</body>

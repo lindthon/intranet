@@ -1,36 +1,53 @@
-{% extends "views/index.html" %} 
+{% extends "views/login/index.html" %} 
 
   <!-- /.container -->
 
 {% block content %}
 {% load static %}
-
-<link rel="stylesheet" href="{% static 'css/table.css' %}">
-
-<h2>Responsive Table</h2>
 <script src="{% static 'scripts/table.js' %}"></script>
-
-<div class="table-wrapper">
-    <input class="formFecha2" type="text" id="myInput" onkeyup="myFunction()" placeholder="Buscar Categoria">
-    <table class="fl-table " id="myTable">
-        <thead>
-        <tr>
-            <th>Categoria</th>
-            <th>ID</th>
-            <th>Opciones</th>
-        </tr>
-        </thead>
-        <tbody>
-            {% for o in listaCategoriaNoticia %}
-                <tr >
-                     <td >{{o.categoria}}</td>
-                     <td>{{o.id_tiponot}}</td>
-                     <td><form  name="myform" action="{% url 'delete_categoriaNoticia' o.id_tiponot %}"><input type="button" class="btn" onclick="confirmationMessage()" value="Eliminar"></form></td>
-                </tr>
-            {% endfor %}
-       
-        <tbody>
-    </table>
-</div>
-
+<div id="layoutSidenav_content">
+    <main>
+        <div class="container-fluid">
+            <h1 class="mt-4">Tabla Categoria Noticias</h1>
+            <ol class="breadcrumb mb-4">
+                <li class="breadcrumb-item"><a href="index.html">Opcion</a></li>
+                <li class="breadcrumb-item active">Eliminar categoria noticias</li>
+            </ol>
+            <div class="card mb-4">
+                <div class="card-header">
+                    <i class="fas fa-table mr-1"></i>
+                    Tabla Categorias
+                </div>
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                            <thead>
+                                <tr>
+                                    <th>Categorias</th>
+                                    <th>ID</th>
+                                    <th>Opciones</th>
+                                    
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for o in listaCategoriaNoticia %}
+                                <tr >
+                                     <td >{{o.categoria}}</td>
+                                     <td>{{o.id_tiponot}}</td>
+                                     <td>
+                                         <form  name="myform{{o.id_tiponot}}" action="{% url 'delete_categoriaNoticia' o.id_tiponot %}">
+                                             <input type="button" class="btn-table" id="{{id_tiponot}}"class="btn" onclick="confirmationMessage('{{o.id_tiponot}}')" value="Eliminar">
+                                        </form>
+                                    </td>
+                                </tr>
+                            {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+</body>
+</html>
 {% endblock %}

@@ -1,0 +1,94 @@
+{% extends "views/index.html" %} 
+{% load static %}
+
+  <!-- /.container -->
+
+{% block content %}
+
+    
+<head><link rel="stylesheet" href="{% static 'css/styleRegistroNoticias.css' %}">
+    <link rel="stylesheet" href="{% static 'css/dropdown.css' %}"></head>
+
+
+    <div class="dropdown">
+        <button class="dropbtn">Modificar Evento</button>
+        <div class="dropdown-content">
+          {% for eve in listaEvento  %}
+            <a href="{% url 'modificarEvento' eve.id_evento %}">{{eve.titulo}}</a>
+          {% endfor  %}
+        </div>
+      </div>
+        
+</head>
+<br />
+<div class="inner contact">
+                <!-- Form Area -->
+                <div class="contact-form divCont">
+                    <h3 class="letterh3">Modificar Eventos</h3>
+                    <!-- Form -->
+                    <form enctype="multipart/form-data" id="contact-us" method="post" action="#">
+                        {% csrf_token %}
+                        <!-- Left Inputs -->
+                        <div class="col-xs-6 wow animated slideInLeft" data-wow-delay=".5s">
+                            <!-- Name -->
+                            <label  class="labelCol" for="Motivo">Titulo De Evento:</label>
+                            <input type="text" name="evento" id="name" required="required" class="formFecha3" value="{{evento.titulo}}" />
+                            <label  class="labelCol" for="Motivo">Subir Imagen Noticia:</label>
+                            <input type="file" class="formFecha2" name="imagen" value="{{evento.imagen}}" accept="image/*"  />
+                       
+                        </div><!-- End Left Inputs -->
+
+                        
+                            <div class="col-xs-6 wow animated slideInLeft" data-wow-delay=".5s">
+                                <label  class="labelCol" for="Motivo">Mes del Evento:</label>
+                                <select name="mes" class="formFecha2">
+                                    <option value="{{mesEvento.mes}}">{{evento.mes.mesCompleto}}</option>
+                                </select>
+                                <label  class="labelCol"  >Fecha evento:</label>
+                                <input type="date" name="fecha" class="formFecha2"  />
+                                <label  class="labelCol"  >Fecha anterior: {{evento.fecha}}</label>
+
+                            </div>
+                            
+                            <div class="col-xs-6 wow animated slideInLeft" data-wow-delay=".5s">
+                                <label  class="labelCol" for="Motivo">Hora De Evento:</label>
+                                <input type="time" name="hora" id="name" required="required" class="formFecha2" value="{{evento.hora}}" />      
+                                <label  class="labelCol"  >Lugar Del  Evento:</label>
+                                <input type="text" name="lugar" id="subject" required="required" class="formFecha3"  value="{{evento.lugar}}" />
+                            </div>
+
+                         <!-- Email -->
+                        
+                        <!-- Subject -->
+                        <!-- Right Inputs -->
+                        <label  class="labelCol " >Escriba la descripcion del evento:</label>
+                        <div class="col-xs-6 wow animated slideInRight" data-wow-delay=".5s">
+            
+                                <textarea name="descripcion" id="message" class="formMessage2 " >{{evento.descripcion}}</textarea>
+                        </div>
+                        
+                        
+                        <!-- Bottom Submit -->
+                        <div class="relative fullwidth col-xs-12">
+                            <!-- Send Button -->
+                            <div class="divBtn">
+                                <button type="submit" id="submit" name="submit" class="form-btn semibold">Modificar</button> 
+                                <button type="submit" id="submit" name="" class="form-btn semibold">Limpiar</button> 
+                            </div>
+                        </div><!-- End Bottom Submit -->
+                        <!-- Clear -->
+                        <div class="clear"></div>
+                    </form>
+
+                    <!-- Your Mail Message -->
+                    <div class="mail-message-area">
+                        <!-- Message -->
+                        <div class="alert gray-bg mail-message not-visible-message">
+                            <strong>Thank You !</strong> Your email has been delivered.
+                        </div>
+                    </div>
+
+                </div><!-- End Contact Form Area -->
+            </div><!-- End Inner -->
+
+{% endblock %}  

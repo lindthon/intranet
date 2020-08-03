@@ -1,11 +1,16 @@
 {% extends "views/index.html" %} 
+
 {% load static %}
 
   <!-- /.container -->
 
 {% block content %}
-<link rel="stylesheet" href="{% static 'css/table.css' %}">
 <script src="{% static 'scripts/table.js' %}"></script>
+
+<link rel="stylesheet" href="{% static 'css/table.css' %}">
+
+{% block jquery %}
+
 <script>
     function myFunction(x) {
         var sugest = document.getElementById('sugest')
@@ -13,17 +18,21 @@
         var estado = document.getElementById('state')
         console.log(estado.textContent)
         estado.innerText="leido"
-        
+    }    
+    const list_element = document.getElementById('list');
+const pagination_element = document.getElementById('pagination');
 
-    }
-       
+
 
     
 </script>
-<h2>Buzon De Sugerencias</h2>
-<div class="table-wrapper">
+{% endblock %}
+<div class="x">
+
+<div class="table-wrapper divCont">
+    <h4 class="h3Label">Buzon de sugerencias</h4>
     <input class="form" autocomplete="off" type="text" id="myInput" onkeyup="myInputBuzon()" placeholder="Buscar categoria">
-    <table class="fl-table" id="myTable">
+    <table class="fl-table " id="myTable">
         <thead>
         <tr>
             <th>Mensaje</th>
@@ -32,13 +41,14 @@
             <th>Estado</th>
         </tr>
         </thead>
-
+        
         <tbody>
             {% for o in lista%}
                 <tr onclick="">
                      <td id="sugest">{{o.sugerencia}}</td>
                      <td>{{o.tipo_sugerencia.sugerencia}}</td>
                      <td>{{o.correo}}</td>
+
                      <!--<td id="state">No leido</td>-->
 
                     <td>
@@ -54,5 +64,31 @@
                 
         <tbody>
     </table>
+    {% if lista.has_other_pages %}
+    <div class="pagi" >
+      {% if lista.has_previous %}
+        <a class="link" href="?page={{ lista.previous_page_number }}">&laquo;</a>
+      {% else %}
+      <a class="link" href="#">&laquo;</a>
+      {% endif %}
+      {% for i in lista.paginator.page_range %}
+        {% if lista.number == i %}
+        <a class="link" href="?page={{ i }}">{{ i }}</a>
+        {% else %}
+          <a class="link" href="?page={{ i }}">{{ i }}</a>
+        {% endif %}
+      {% endfor %}
+      {% if lista.has_next %}
+        <a class="link" href="?page={{ lista.next_page_number }}">&raquo;</a>
+      {% else %}
+      <a class="link" href="#">&raquo;</a>
+      {% endif %}
+    </div>
+    {% endif %}
 </div>
+</div>
+
+
+
 {% endblock %}
+

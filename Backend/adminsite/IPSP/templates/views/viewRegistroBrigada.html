@@ -1,0 +1,82 @@
+{% extends "views/index.html" %} 
+{% load static %}
+
+  <!-- /.container -->
+  
+
+  {% block content %}
+  
+    
+ <head>
+    <link rel="stylesheet" href="{% static 'css/styleRegistroNoticias.css' %}"></head>
+    <link rel="stylesheet" href="{% static 'css/dropdown.css' %}"></head>
+
+<br />
+    
+ <head>
+     
+    <link rel="stylesheet" href="{% static 'css/styleRegistroNoticias.css' %}"></head>
+<br />
+<div class="inner contact divCont">
+                <!-- Form Area -->
+                <div class="contact-form ">
+                    <h3 class="letterh3">Registrar Brigada</h3>
+
+                    <!-- Form -->
+                    <form enctype="multipart/form-data" id="contact-us" method="POST"   >
+                        {% csrf_token %}
+                        <!-- Left Inputs -->
+                        <div class="col-xs-6 wow animated slideInLeft" data-wow-delay=".5s">
+                            <!-- Name -->
+                            <label class="labelCol"  >Titulo De Noticia:</label>
+                            <input type="text" class="formFecha2" required="required" name="miembro"  value="{{noticia.titulo}}" />
+                            <label  class="labelCol"   >Imagen</label>
+                            <input type="file" name="archivoimg"  class="formFecha2"   accept="image/*" id="id_imagen"/>
+                        </div><!-- End Left Inputs -->
+                        <div class="col-xs-6 wow animated slideInLeft" data-wow-delay=".5s">
+
+                            
+                         </div><!-- End Left Inputs -->
+    
+                        <div class="col-xs-6 wow animated slideInLeft" data-wow-delay=".5s">
+                                <label  class="labelCol col-md-3">Tipo Brigada:</label>
+                                <select name="brigada_tipo" required="required"  class="formFecha col-md-3">
+                                    {% for cate in categorias  %}
+                                    <option value={{cate.id_tipobrigada}}>{{cate.nombre_brigada}}</option>
+                                    {% endfor  %}
+
+                                </select>
+                            </div>
+                            <label  class="labelCol">Escriba descripcion</label>
+                            <input type="text" class="formFecha2" required="required" name="descripcion"  value="{{noticia.titulo}}" />
+
+                        <div class="col-xs-6 wow animated slideInRight" data-wow-delay=".5s">
+                            <!-- Message -->
+                            <textarea name="" id="message" value="{{noticia.descripcion}}" class="formMessage textarea" >{{noticia.descripcion}}</textarea>
+                        </div><!-- End Right Inputs -->
+                        <!-- Bottom Submit -->
+                        <div class="relative fullwidth col-xs-12">
+                            <!-- Send Button -->
+                            <div class="divBtn">
+                                <button type="submit" id="submit" name="submit" class="form-btn semibold">Modificar</button> 
+                                <button type="reset" id="reset" name="reset" class="form-btn semibold">Limpiar</button> 
+                            </div>
+                        </div><!-- End Bottom Submit -->
+                        <!-- Clear -->
+                        <div class="clear"></div>
+                    </form>
+
+                    <!-- Your Mail Message -->
+                    <div class="mail-message-area">
+                        <!-- Message -->
+                        <div class="alert gray-bg mail-message not-visible-message">
+                            <strong>Thank You !</strong> Your email has been delivered.
+                        </div>
+                    </div>
+
+                </div><!-- End Contact Form Area -->
+            </div><!-- End Inner -->
+
+
+{% endblock %}  
+

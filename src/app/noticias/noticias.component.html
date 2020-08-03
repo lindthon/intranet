@@ -1,5 +1,6 @@
 <div class="background_pattern">
 <app-header></app-header>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css">
 
 <app-carrousel></app-carrousel>
 
@@ -30,7 +31,7 @@
               <div class="row">
                   <div class="col-12">
 
-                  <div *ngFor="let ultima of ultimos">
+                  <div *ngFor="let ultima of ultimos | slice:0:6">
                     <div class="col-lg-4">
                         <!-- Single Featured Post -->
                         <div class="single-featured-post">
@@ -66,16 +67,16 @@
               <div  class="row">
                   <div class="col-12">
                     <div *ngFor="let noticias of arrayNoticiasCate" >
-                      <div  *ngIf="noticias.cat === cat" class="col-lg-4">
+                      <div  *ngIf="noticias.cat === cat"  class="col-lg-4">
                       <!-- Single Featured Post -->
-                      <div  class="single-featured-post">
+                      <div class="single-featured-post" >
                           <!-- Thumbnail -->
-                          <div class="post-thumbnail mb-50">
+                          <div  class="post-thumbnail mb-50">
                               <img src="http://127.0.0.1:8000{{noticias.image}}" alt="">                                    
                           </div>
                           <!-- Post Contetnt -->
                           <div  class="post-content">
-                              <div class="post-meta">
+                              <div  class="post-meta">
                                   <a >{{noticias.date}}</a>
                                   <a >{{noticias.cat}}</a>
                               </div>
@@ -111,7 +112,7 @@
 
       <!-- Sidebar Widget -->
       <div class="single-sidebar-widget">
-        <img src="assets/img/portfolio/birthday.png" alt="">
+        <!--<img src="assets/img/portfolio/birthday.png" alt="">-->
       </div>
 
       <!-- Sidebar Widget -->
@@ -124,7 +125,7 @@
           <!-- Single YouTube Channel -->
           <div *ngFor="let birthday of birthdays">
 
-            <div class="single-youtube-channel d-flex cuadro">
+            <div class="single-youtube-channel d-flex ">
                 <div class="youtube-channel-thumbnail ">
                     <img src="http://127.0.0.1:8000{{birthday.image}}" alt="">
                 </div>

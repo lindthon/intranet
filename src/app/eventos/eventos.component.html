@@ -1,6 +1,7 @@
 <div class="background_pattern">
     <app-header></app-header>       
-    
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css">
+
         <hr>
         <!-- ##### Archive Post Area Start ##### -->
         <div class="archive-post-area">
@@ -16,7 +17,7 @@
                                         <span class="year">{{event.year}}</span>
                                         <span class="time"><fa-icon [icon]="faClock"></fa-icon>{{event.time}}</span>
                                     </time>
-                                    <img alt="Independence Day" src="https://farm4.staticflickr.com/3100/2693171833_3545fb852c_q.jpg" />
+                                    <img alt="Independence Day" src="http://127.0.0.1:8000{{event.image}}" />
                                     <div class="info">
                                         <h2 class="title">{{event.title}}</h2>
                                         <p class="desc">{{event.desc}}</p>
