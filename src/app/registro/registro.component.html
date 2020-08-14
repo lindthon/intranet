@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Login</title>
+    <!-- meta tags -->
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="keywords" content="Art Sign Up Form Responsive Widget, Audio and Video players, Login Form Web Template, Flat Pricing Tables, Flat Drop-Downs, Sign-Up Web Templates, 
+		Flat Web Templates, Login Sign-up Responsive Web Template, Smartphone Compatible Web Template, Free Web Designs for Nokia, Samsung, LG, Sony Ericsson, Motorola Web Design"
+    />
+    <!-- /meta tags -->
+    <!-- custom style sheet -->
+    <!-- /custom style sheet -->
+    <!-- fontawesome css -->
+    <!-- /fontawesome css -->
+    <!-- google fonts-->
+    <link href="//fonts.googleapis.com/css?family=Raleway:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i"
+        rel="stylesheet">
+    <!-- /google fonts-->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css">
+
+</head>
+
+
+<body>
+    <h2>Industrial Pesquera Santa Priscila</h2>
+
+    <div class=" w3l-login-form">
+        <h2>Formulario de registro</h2>
+        <form action="#" method="POST">
+            <div class="row">
+            <div class=" w3l-form-group col-6">
+                <label>Usuario:</label>
+                <div class="group">
+                    <i class="fas fa-user"></i>
+                    <input type="text" class="form-control" name="username" [(ngModel)]="username" placeholder="Username" required="required" />
+                </div>
+            </div>
+            <div class=" w3l-form-group col-6">
+                <label>Cédula:</label>
+                <div class="group">
+                    <i class="fas fa-id-card"></i>
+                    <input type="text" class="form-control" name="cedula"   [(ngModel)]="cedula"  placeholder="cédula" required="required" />
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class=" w3l-form-group col-6">
+                <label>Nombres:</label>
+                <div class="group">
+                    <i class="fas fa-edit"></i>
+                    <input type="text" class="form-control" name="nombres"   [(ngModel)]="nombres"  placeholder="nombres" required="required" />
+                </div>
+            </div>
+            <div class=" w3l-form-group col-6">
+                <label>Apellidos:</label>
+                <div class="group">
+                    <i class="fas fa-edit"></i>    
+                    <input type="text" class="form-control" name="apellidos"   [(ngModel)]="apellidos"  placeholder="apellidos" required="required" />
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class=" w3l-form-group col-6">
+                <label>Correo:</label>
+                <div class="group">
+                    <i class="fas fa-envelope"></i>
+                    <input type="text" class="form-control" name="correo"   [(ngModel)]="correo"  placeholder="correo eléctronico" required="required" />
+                </div>
+            </div>
+           
+            <div class=" w3l-form-group col-6">
+                <label>Extensión:</label>
+                <div class="group">
+                    <i class="far fa-calendar-alt"></i>
+                    <input type="text" class="form-control" name="extension"   [(ngModel)]="extension"  placeholder="extension de su area" required="required" />
+                </div>
+            </div>
+
+        </div>
+        <div class=" w3l-form-group">
+            <label>Fecha de nacimiento:</label>
+            <div class="group">
+                <i class="far fa-calendar-alt"></i>
+                <input type="date" class="form-control" name="fecha"   [(ngModel)]="fecha"  placeholder="fecha de nacimiento" required="required" />
+            </div>
+        </div>
+            <div class=" w3l-form-group">
+                <label>Contraseña:</label>
+                <div class="group">
+                    <i class="fas fa-unlock"></i>
+                    <input type="password" class="form-control" name="password"   [(ngModel)]="password"  placeholder="Password" required="required" />
+                </div>
+            </div>
+            <button type="submit" >Registrarme</button>
+            <div class="w3l-form-group"  *ngIf="showErrorMessage">
+                <label>Usuario o contraseña incorrecto..</label>
+              </div>
+        </form>
+       
+       <!-- <p class=" w3l-register-p">Don't have an account?<a href="" class="register"> Register</a></p>-->
+    </div>
+    <footer>
+        <p class="copyright-agileinfo">All Rights Reserved IPSP</p>
+    </footer>
+
+</body>
+
+</html>

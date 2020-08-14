@@ -33,13 +33,14 @@
                                      <td>{{o.id_empleado}}</td>
                                      <td>
                                        
-                                        <a href="{% url 'modificarEmpleado'  o.id_empleado %}">
-                                            <input type="button" class="btn floated" value="Modificar">
-                                        </a>
+                                      <a href="{% url 'modificarEmpleado'  o.id_empleado %}">
+
+                                            <input type="submit" class="btn floated" value="Modificar">
+                                      </a>
                 
                                     </td>
                                 </tr>
-                            {% endfor %}   
+                                {% endfor %}   
 
                             </tbody>
                         </table>
@@ -62,67 +63,69 @@
       <div class="card">
         <div class="card-header"><strong>Acutalizar datos del colaborador</strong> </div>
         <div class="card-body">
-          <form class="form-horizontal" action="" method="post" enctype="multipart/form-data">
+            <form class="form-horizontal" action="#" method="post" enctype="multipart/form-data">
+
             {% csrf_token %}
 
             <div class="form-group row">
               <label class="col-md-3 col-form-label" for="text-input">Nombre:</label>
               <div class="col-md-9">
-                <input class="form-control" id="text-input" name="name" type="text" value="{{empleado.nombre}}"  required="required"><span class="help-block"  ></span>
+                <input class="form-control" id="id_empleado" name="name" type="hidden" ><span class="help-block"  ></span>
+                <input class="form-control" id="name" name="name" type="text" value="{{empleado.nombre}}"  ><span class="help-block"  ></span>
               </div>
             </div>
             <div class="form-group row">
               <label class="col-md-3 col-form-label" for="text-input">Apellido:</label>
               <div class="col-md-9">
-                <input class="form-control" id="text-input"  name="apellido" type="text" value="{{empleado.apellido}}" required="required"><span class="help-block"  ></span>
+                <input class="form-control" id="apellido"  name="apellido" type="text" value="{{empleado.apellido}}" ><span class="help-block"  ></span>
               </div>
             </div>
             <div class="form-group row">
               <label class="col-md-3 col-form-label" for="text-input">Cedula:</label>
               <div class="col-md-9">
-                <input class="form-control" id="text-input" type="text" name="cedula"  value="{{empleado.id_empleado}}" required="required"><span class="help-block"  ></span>
+                <input class="form-control" id="cedula" type="text" name="cedula"  value="{{empleado.id_empleado}}" ><span class="help-block"  ></span>
               </div>
             </div>
             <div class="form-group row">
               <label class="col-md-3 col-form-label" for="text-input">Usuario:</label>
               <div class="col-md-9">
-                <input class="form-control" id="text-input"  name="user" type="text" value="{{empleado.auth_user.username}}"  required="required"><span class="help-block" ></span>
+                <input class="form-control" id="usuario"  name="user" type="text" value="{{empleado.auth_user.username}}" ><span class="help-block" ></span>
               </div>
             </div>
             <div class="form-group row">
               <label class="col-md-3 col-form-label" for="text-input">Contraseña:</label>
               <div class="col-md-9">
-                <input class="form-control" id="text-input" name="password" type="password"  placeholder="**********" autocomplete="new-password"  required="required"><span class="help-block"></span>
+                <input class="form-control" id="password" name="password" type="password"  placeholder="**********" autocomplete="new-password"  ><span class="help-block"></span>
               </div>
             </div>
             <div class="form-group row">
               <label class="col-md-3 col-form-label" for="email-input">Correo:</label>
               <div class="col-md-9">
-                <input class="form-control" id="email-input" type="email" name="correo"value="{{empleado.correo}}"  autocomplete="false"  required="required"><span class="help-block"></span>
+                <input class="form-control" id="correo" type="email" name="correo"value="{{empleado.correo}}"  autocomplete="false"  required="required"><span class="help-block"></span>
               </div>
             </div>
             <div class="form-group row">
               <label class="col-md-3 col-form-label" for="ext-input">Extensión:</label>
               <div class="col-md-9">
-                <input class="form-control" id="text-input" type="text" name="ext"  value="{{empleado.ubicacion}}" autocomplete="false"  required="required"><span class="help-block"></span>
+                <input class="form-control" id="extension" type="text" name="ext"  value="{{empleado.ubicacion}}" autocomplete="false"  ><span class="help-block"></span>
               </div>
             </div>
             <div class="form-group row">
               <label class="col-md-3 col-form-label" for="date-input">Fecha Nacimiento:</label>
               <div class="col-md-9">
-                <input class="form-control" id="date-input" type="date" name="fecha"  placeholder="date"  required="required"><span class="help-block">Día/Mes/Año</span>
+                <input class="form-control" id="fecha" type="date" name="fecha"  placeholder="date"  ><span class="help-block">Día/Mes/Año</span>
               </div>
             </div>
             <div class="form-group row">
               <label class="col-md-3 col-form-label" for="file-input">Suba una imagen:</label>
               <div class="col-md-9">
-                <input id="file-input" type="file" accept="image/*" name="image"  required="required">
+                <input id="file-input" type="file" accept="image/*" name="image"  >
               </div>
             </div>
             <div class="form-group row">
               <label class="col-md-3 col-form-label" for="select1">Logro en:</label>
               <div class="col-md-9">
-                <select class="form-control" id="select1" name="mejorEn"  required="required">
+                <select class="form-control" id="select1" name="mejorEn" >
                   <option value="0">Please select</option>
                   {% for cate in categorias  %}
                       <option value="{{cate.id_tipocat}}">{{cate.categoria}}</option>
@@ -132,9 +135,11 @@
               </div>
             </div>
             <div class="card-footer">
-              <button class="btn btn-sm btn-primary" type="submit"> Actualizar</button>
+              <button class="btn btn-sm btn-primary" type="submit" "> Actualizar</button>
             </div>
+            
           </form>
+         
         </div>
       </div>
 </div>

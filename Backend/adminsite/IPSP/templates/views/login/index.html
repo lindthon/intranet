@@ -24,7 +24,7 @@
                 <div class="input-group">
                     <input class="form-control" disabled type="text" placeholder="" aria-label="Search" aria-describedby="basic-addon2" />
                     <div class="input-group-append">
-                        <button class="btn btn-primary"disabled type="button"><i class="fas fa-search"></i></button>
+                       <!-- <button class="btn btn-primary"disabled type="button"><i class="fas fa-search"></i></button>-->
                     </div>
                 </div>
             </form>
@@ -80,7 +80,7 @@
                                     <a class="nav-link" href="{% url 'modificar_noticia' %}">Modificar Noticia</a>
                                     <a class="nav-link" href="{% url 'modificar_evento' %}">Modificar Evento</a>
                                     <a class="nav-link" href="layout-static.html">Modificar Categorias</a>
-                                    <a class="nav-link" href="layout-static.html">Modificar Brigada</a>
+                                    <a class="nav-link" href="{% url 'modificar_brigada' %}">Modificar Brigada</a>
                                     <a class="nav-link" href="{% url 'modificar_empleado' %}">Modificar Empleado</a>
                                 </nav>
                             </div>
@@ -94,8 +94,12 @@
                                     <a class="nav-link" href="{% url 'delete' %}">Eliminar Noticia</a>
                                     <a class="nav-link" href="{% url 'deletevento' %}">Eliminar Evento</a>
                                     <a class="nav-link" href="{% url 'deletecategoria' %}">Eliminar Categorias</a>
-                                    <a class="nav-link" href="">Eliminar Brigada</a>
+                                    <a class="nav-link" href="{% url 'deletebrigada' %}">Eliminar Brigada</a>
                                     <a class="nav-link" href="{% url 'deletempleado' %}">Eliminar Empleado</a>
+
+                                    <a class="nav-link" href="{% url 'delete_CategoriaBrigada' %}">Eliminar Categorira Brigada</a>
+                                    <a class="nav-link" href="{% url 'logros' %}">Eliminar Logro Empleado</a>
+
                                 </nav>
                             </div>
                     </div>

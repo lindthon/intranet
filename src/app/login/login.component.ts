@@ -25,6 +25,7 @@ export class LoginComponent implements OnInit {
     const user = {username: this.username, password: this.password};
     console.log(this.username);
     this.service_login.login(user).subscribe( data => {
+      console.log(data);
       console.log(user.username);  
       this.service_login.setUser(user.username);  
       this.service_login.setToken(data.token);
@@ -33,6 +34,7 @@ export class LoginComponent implements OnInit {
       this.router.navigateByUrl('/');
     },
     (error)=>{
+      console.log(error);
       this.message="Usuario o contraseña incorrecta";
       console.log("error");
       this.showErrorMessage = true;

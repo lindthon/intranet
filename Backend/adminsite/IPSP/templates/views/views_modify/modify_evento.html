@@ -71,13 +71,13 @@
             <div class="form-group row">
               <label class="col-md-3 col-form-label" for="text-input">Evento:</label>
               <div class="col-md-9">
-                <input class="form-control" id="name" required="required"  type="text" name="evento"   required="required" value="{{evento.titulo}}"><span class="help-block"></span>
+                <input class="form-control" id="name" type="text" name="evento"  value="{{evento.titulo}}"><span class="help-block"></span>
               </div>
             </div>
             <div class="form-group row">
                 <label class="col-md-3 col-form-label" for="select1">Mes del evento:</label>
                 <div class="col-md-9">
-                  <select class="form-control" id="select1" name="mes"  required="required" >
+                  <select class="form-control" id="select1" name="mes"  >
                     <option value="0">Seleciones el mes del evento</option>
                     {% for mesEvento in meses  %}
                     <option value="{{mesEvento.mes}}">{{mesEvento.mes}}</option>
@@ -88,32 +88,32 @@
             <div class="form-group row">
               <label class="col-md-3 col-form-label" for="date-input">Fecha del evento:</label>
               <div class="col-md-9">
-                <input class="form-control" id="date-input" type="date" name="fecha"  required="required" placeholder="date"><span class="help-block">Día/Mes/Año</span>
+                <input class="form-control" id="date-input" type="date" name="fecha"  placeholder="date" value="{{evento.fecha}}"><span class="help-block">{{evento.fecha}}</span>
               </div>
             </div>
             <div class="form-group row">
                 <label class="col-md-3 col-form-label" for="date-input">Hora del evento:</label>
                 <div class="col-md-9">
-                  <input class="form-control" id="date-input" type="time" name="hora"  required="required"  value="{{evento.hora}}"><span class="help-block"></span>
+                  <input class="form-control" id="date-input" type="time" name="hora"    value="{{evento.hora}}"><span class="help-block"></span>
                 </div>
             </div>
             <div class="form-group row">
                 <label class="col-md-3 col-form-label" for="text-input">Lugar del evento:</label>
                 <div class="col-md-9">
-                  <input class="form-control" id="text-input" type="text" name="lugar"  required="required"   value="{{evento.lugar}}"><span class="help-block"></span>
+                  <input class="form-control" id="text-input" type="text" name="lugar"     value="{{evento.lugar}}"><span class="help-block"></span>
                 </div>
               </div>
             <div class="form-group row">
               <label class="col-md-3 col-form-label" for="textarea-input">Descripción del evento</label>
               <div class="col-md-9">
-                <textarea class="form-control" id="textarea-input" name="descripcion" required="required" rows="9" placeholder="Escriba una breve descripción..">{{evento.descripcion}}</textarea>
+                <textarea class="form-control" id="textarea-input" name="descripcion"  rows="9" placeholder="Escriba una breve descripción..">{{evento.descripcion}}</textarea>
               </div>
             </div>
   
             <div class="form-group row">
               <label class="col-md-3 col-form-label" for="file-input">Suba imagen del evento:</label>
               <div class="col-md-9">
-                <input id="file-input" type="file" name="imagen"  accept="image/*" required="required" >
+                <input id="file-input" type="file" name="imagen"  accept="image/*"  >
               </div>
             </div>
             <div class="card-footer">

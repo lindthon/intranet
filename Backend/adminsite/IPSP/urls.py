@@ -7,12 +7,17 @@ from django.contrib.auth import views as auth_views
 
 
 urlpatterns = [
-    path('loginn/', LoginUser.as_view()),
+    path('authentication/', agregarUsuariosToAuthentication,name="cambio"),
+    path('deleteauth/', deleteAuth,name="deleteauth"),
+
+    path('cambio/', LoginUser.as_view(),name="cambio"),
     path('login_frontend/', login_frontend),
 
+    path('credenciales/', getCredentials),
     path('get_user/', get_userByName),
 
     path('get_brigada/', get_miembros_brigada),
+    path('upadatePassUser/',postUpdatePassword),
 
       #Api Eventos
     path('getPrincipal/', get_Principal),
@@ -24,9 +29,12 @@ urlpatterns = [
 
     #Api Empleados
     path('getEmpleadoBirthday/', get_Empleado),
+    path('getEmpleadoPorCedula/<str:pk>', get_empleadoPorCedula),
+
 
     #Api Empleados
     path('getContacto/', get_Contacto),
+    path('postDataUser/', postUpdateEmpleado),
 
      #Api Eventos
     path('getEvento/', get_Eventos),
@@ -68,12 +76,22 @@ urlpatterns = [
     path('modificarEmpleado/', view_ModificarEmpleado, name='modificar_empleado'),
     path('modificarEmpleado/<str:pk>',modificar_empleado, name='modificarEmpleado'),
 
+    path('modificarBrigada/', view_ModificarBrigada, name='modificar_brigada'),
 
     path('deleteEmpleado/', view_DeleteEmpleado, name='deletempleado'),
     path('deleteEmpleado/<str:pk>', delete_empleado, name='delete_empleado'),
 
     path('deleteCategoriaNoticia/', view_DeleteCategoriaNoticia, name='deletecategoria'),
     path('deleteCategoriaNoticia/<int:pk>', delete_categoriaNoticia, name='delete_categoriaNoticia'),
+   
+    path('deleteCategoriaBrigada/', view_DeleteCategoriaBrigada, name='delete_CategoriaBrigada'),
+    path('deleteCategoriaBrigada/<int:pk>', delete_categoriaBrigada, name='delete_categoriaBrigada'),
+    
+   path('deleteLogrosEmpleados/',view_LogroEmpleado,name='logros'),
+   path('deleteLogrosEmpleados/<int:pk>',delete_LogroEmpleado,name='logros'),
+
+
+    path('deleteBrigada/', view_DeleteBrigada, name='deletebrigada'),
 
     path('buzon/',view_buzon,name='buzon'),
 

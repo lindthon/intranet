@@ -1,0 +1,49 @@
+{% extends "views/login/index.html" %} 
+
+  <!-- /.container -->
+
+{% block content %}
+{% load static %}
+<script src="{% static 'scripts/table.js' %}"></script>
+<div id="layoutSidenav_content">
+    <main>
+              <!--Categorias de brigadas de colaboradores-->
+              <div class="container-fluid">
+                <h3>Tabla: categorias brigadas</h3>
+            </div>
+              <div class="card mb-4">
+                <div class="card-header">
+                    <i class="fas fa-table mr-1"></i>
+                    Brigadas de los colaboradores
+                </div>
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                            <thead>
+                                <tr>
+                                    <th>Categorias</th>
+                                    <th>ID</th>
+                                    <th>Opciones</th>
+                                    
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for o in tiposBrigadas %}
+                                <tr >
+                                     <td >{{o.nombre_brigada}}</td>
+                                     <td>{{o.id_tipobrigada}}</td>
+                                     <td>
+                                        <form  name="myform{{o.id_tipobrigada}}" action="{% url 'delete_categoriaBrigada' o.id_tipobrigada %}">
+                                            <input type="button" class="btn-table" id="{{id_tipobrigada}}"class="btn" onclick="confirmationMessage('{{o.id_tiponot}}')" value="Eliminar">
+                                       </form>
+                                   </td>
+                                </tr>
+                            {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+    </main>
+
+{% endblock %}

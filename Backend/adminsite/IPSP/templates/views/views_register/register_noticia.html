@@ -18,7 +18,7 @@
                 <label class="col-md-3 col-form-label" required="required" for="select1">Categoria Noticia:</label>
                 <div class="col-md-9">
                   <select class="form-control" name="categoria"  id="select1" name="select1">
-                    <option value="0">Seleciones el mes del evento</option>
+                    <option value="0">Seleciones la categoria</option>
                     {% for cat in categorias  %}
                     <option value="{{cat.id_tiponot}}">{{cat.categoria}}</option>
                     {% endfor  %}

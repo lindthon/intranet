@@ -1,9 +1,194 @@
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css">
+
+<!-- CSS only -->
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
 
 <div class='background_pattern responsive '>
 
 <app-header></app-header>
-			<div class="card mx-auto mt-3" style="width: 50rem;;">
+
+<div class="container emp-profile">
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+  
+
+
+
+
+
+            <form method="post">
+                <div class="row">
+                    <div class="col-md-4">
+                        <div class="profile-img">
+                            <img [src]=" url ||default" alt="profile" width="100" height="100"/>
+                            <div class="file btn btn-lg btn-primary">
+                                Cambiar Imagen
+                                <input type="file" name="file"/>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="profile-head">
+                                    <h5>
+                                        {{nombre}}  {{apellido}}
+                                        
+                                    </h5>
+                                    <ul class="nav nav-tabs">
+                                        <li class="nav-item">
+                                            <a href="#home" class="nav-link active" role="tab" data-toggle="tab" (click)="reload()">Perfil</a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a href="#profile" class="nav-link" role="tab" data-toggle="tab">Actualizar datos</a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a href="#password" class="nav-link" role="tab" data-toggle="tab">Cambiar clave</a>
+                                        </li>
+                                    </ul>
+                        </div>
+                    </div>
+                    
+                </div>
+                <div class="row">
+                    <div class="col-md-4">
+                        <div class="profile-work">
+                            <p>Coolaborador de Santa Priscila</p>
+                            <a href="">{{nombre}}</a><br/>
+                            <a href="">{{apellido}}</a><br/>
+                            <a href="">{{correo}}</a>
+                        </div>
+                    </div>
+                    <div class="col-md-8">
+                                            
+                            <div class="tab-content">
+                                <div role="tabpanel" class="tab-pane fade show in active" id="home">
+                                    <div class="row">
+                                        <div class="col-4 ">
+                                            <label>Cédula :</label>
+                                        </div>
+                                        <div class="col-2 pt-1">
+                                            <label> {{cedula}}</label>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-4">
+                                            <label>Nombres :</label>
+                                        </div>
+                                        <div class="col-4 pt-1">
+                                            <label>{{nombre}}</label>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-4">
+                                            <label>Apellidos :</label>
+                                        </div>
+                                        <div class="col-2">
+                                            <label>{{apellido}}</label>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-4">
+                                            <label>Correo :</label>
+                                        </div>
+                                        <div class="col-md-2">
+                                            <label>{{correo}}</label>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-4">
+                                            <label>Fecha de nacimiento :</label>
+                                        </div>
+                                        <div class="col-md-2">
+                                            <label>{{fecha}}</label>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div role="tabpanel" class="tab-pane fade" id="profile">
+                                    <form #f="ngForm" (ngSubmit)="onSubmit(f)">
+                                    <div class="row">
+                                        <div class="col-md-4">
+                                            <label>Nombres</label>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <input type="text" name='name' [(ngModel)]='name'  value="{{nombre}}" size="55" />
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-4">
+                                            <label>Apellidos</label>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <input type="text" name='last_name' [(ngModel)]='last_name'  value="{{apellido}}" size="55">
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-4">
+                                            <label>Correos</label>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <input type="text"  name='mail' [(ngModel)]='mail'  value={{correo}} size="55">
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-4">
+                                            <label>Foto de perfil</label>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <input type="file" name='new_image' [(ngModel)]='new_image' placeholder="..">
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-4">
+                                            <label>Fecha de nacimiento</label>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <input type="date" name='born' [(ngModel)]='born' placeholder="Ingrese su fehca de nacimiento"  >
+                                        </div>
+                                    </div>
+                                  <!--  <button>Submit</button>-->
+                                    </form>
+                                    <div class="col-md-4">
+                                        <input type="submit" class="profile-edit-btn" (click)="updateInfo()" name="btnAddMore" value="Modificar"/>
+                                    </div>
+                                </div>
+                                <div role="tabpanel" class="tab-pane fade" id="password">
+                                    <form>
+                                    <div class="row">
+                                        <div class="col-md-4">
+                                            <label>Contraseña</label>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <input type="password" name='confirmacion1' [(ngModel)]='password'  placeholder="*********"  size="55" />
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-4">
+                                            <label>Confirmar contraseña</label>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <input type="password" name='confirmacion2' [(ngModel)]='confirmation'  placeholder="*********" class="rounded"   size="55">
+                                        </div>
+                                    </div>
+                                    <div *ngIf="coincidenFlag===false" id="">
+                                       <!--<span id="closebtn" onclick="this.parentElement.style.display='none';">&times;</span> -->
+                                        <strong  class="red-alet" >Las contrseñas no coniciden !!!</strong>
+                                    </div>
+                                    <div *ngIf="coincidenFlag===true" id="">
+                                       <!-- <span id="closebtn" onclick="this.pare ntElement.style.display='none';">&times;</span> -->
+                                        <strong>Contraseñas coniciden correctamente !!!</strong>
+                                    </div>	
+                                        <div class="col-md-4">
+                                            <input type="submit" class="profile-edit-btn" (click)="checkIfMatchingPasswords()" name="btnAddMore" value="Cambiar "/>
+                                        </div> 
+                                  <!--  <button>Submit</button>-->
+                                    </form>
+                                </div>
+                            </div>
+                       
+                    </div>
+                </div>
+            </form>           
+        </div>
+		<!--	<div class="card mx-auto mt-3" style="width: 50rem;;">
 
 				<div class="card-body  ">
 					<div class="col-3 mx-auto mb-5 ">
@@ -42,12 +227,12 @@
 				</div>
 			</div>
 
-				<div class="card mx-auto mt-3" style="width: 0rem;height: 11rem;"></div>
+				<div class="card mx-auto mt-3" style="width: 0rem;height: 11rem;"></div>-->
 			
-
-</div>
-
+<div class="card mx-auto mt-3" style="width: 0rem;height: 1rem;"></div>
+<div class="card mx-auto mt-3" style="width: 0rem;height: 5rem;"></div>
 
 <app-footer class="mt-8 pt-8 "></app-footer>
 
+</div>
 

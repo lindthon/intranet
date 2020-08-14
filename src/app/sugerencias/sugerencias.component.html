@@ -44,14 +44,14 @@
       </div>-->
         
       
-      <div  #sugerencia class="form-group">
+      <div  class="form-group">
         <h2 for="exampleFormControlTextarea1">2. ¿Cuál es tu sugerencia?</h2>
-        <textarea  class="form-control"  rows="3"></textarea>
+        <textarea  class="form-control"  [(ngModel)]='suggestion'  name="suggestion" rows="3"></textarea>
       </div>
       
       <div class="form-group">
         <h2 for="exampleFormControlInput1">3. ¿Cuál es tu dirección de correo?</h2>
-        <input  type="email" class="form-control" id="correo" placeholder="name@example.com">
+        <input  type="email" class="form-control"  [(ngModel)]='email' id="correo" name="email" placeholder="name@example.com">
       </div>
       <div calss=" btn-group" role="group">
         <button type="submit"  (click)="sendData();" class="btn btn-primary  center-block button-text col-6">Publica tu sugerencia</button>

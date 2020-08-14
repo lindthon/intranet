@@ -14,21 +14,20 @@ export class HeaderComponent implements OnInit {
   faDoorClosed=faDoorClosed;
   faDoorOpen=faDoorOpen;
 
-  cedula: string = "0105890883";
-  clave: string="Oscar1993";
+  cedula: string =localStorage.getItem("user");
+  clave:any;
   constructor( public service_login : LoginService,public _http :HttpClient, public router: Router) { 
-
 
   }
 
  
   logout(){
     this.service_login.logout();
+    
     console.log(localStorage.getItem("token"));
     console.log("saliendo...")
     }
-    loginToRoles(){
-        console.log("https://www.santa-priscila-admin.com/ipsp/roles/Index.php");
+   /* obtenerCredencialesARoles(){
         
         const formData = new FormData();
         formData.append('txt_cedula', "0105890883");
@@ -55,10 +54,25 @@ export class HeaderComponent implements OnInit {
         ,()=>console.log("solicitud finalizada OK")
         )
 
-    }
+    }*/
+    getCredenciales(_http: HttpClient){
+        this._http.get('http://127.0.0.1:8000/credenciales/?id='+localStorage.getItem("user"))
+        .subscribe(
+          (data)=>{console.log(data);
+            this.clave=data["clave"];
+            console.log("..........................")
+            
+          }
+          ,(err: HttpErrorResponse)=>{console.log("Un error ha ocurrido")}
+          ,()=>console.log("solicitud finalizada OK")
+          )
+    
+      }
 
 
   ngOnInit(): void {
+    this.getCredenciales(this._http);
+
     (function ($) {
       "use strict";
   

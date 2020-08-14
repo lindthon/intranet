@@ -13,8 +13,8 @@ export class LoginService {
 
   login(user: any): Observable<any> {
     //return this.http.post("https://reqres.in/api/login", user);    
-    return this.http.post("http://127.0.0.1:8000/api-token-auth/", user);
-      //return this.http.post("http://127.0.0.1:8000/login/", user);
+//return this.http.post("http://127.0.0.1:8000/api-token-auth/", user);
+    return this.http.post("http://127.0.0.1:8000/cambio/", user);
 
   }
   setUser(name: string){
@@ -25,6 +25,7 @@ export class LoginService {
   setToken(token: string) {
     localStorage.setItem('token', token);
     this.cookies.set("token", token);
+    
   }
   setLogin(isLoggedIn: boolean) {
     this.isLoggedIn=isLoggedIn;

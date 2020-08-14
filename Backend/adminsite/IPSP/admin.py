@@ -9,5 +9,7 @@ admin.site.register(Tipo_noticia)
 admin.site.register(Noticia)
 admin.site.register(Tipo_categoria)
 admin.site.register(Empleado)
-
+admin.site.register(Tipo_brigada)
+admin.site.register(Brigada)
+admin.site.register(a18usuarios)
 

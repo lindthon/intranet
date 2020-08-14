@@ -43,11 +43,18 @@
                     <input type="password" class="form-control" name="password"   [(ngModel)]="password"  placeholder="Password" required="required" />
                 </div>
             </div>
+
             <div class="forgot">
                 
                 <a [routerLink]="['/recuperar-clave']" routerLinkActive="active">Recuperar Contraseña?</a>
+
                 <p><input type="checkbox">Remember Me</p>
             </div>
+            <div class="forgot">
+
+                <a [routerLink]="['/registro']" routerLinkActive="active">No tengo cuenta, quiero registrarme.</a>
+             </div>
+
             <button type="submit" (click)="login()">Login</button>
             <div class="w3l-form-group"  *ngIf="showErrorMessage">
                 <label>Usuario o contraseña incorrecto..</label>

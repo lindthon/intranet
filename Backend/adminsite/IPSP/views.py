@@ -16,6 +16,8 @@ from rest_framework_jwt.views import ObtainJSONWebToken
 from django.views.decorators.csrf import ensure_csrf_cookie
 from django.utils.decorators import method_decorator
 from django.contrib.auth.models import User
+from rest_framework_jwt.settings import api_settings
+from rest_framework.response import Response
 
 # Create your views here
 # .
@@ -23,14 +25,17 @@ def get_userByName(request):
     if request.method=='GET':
         response = dict()
         id= request.GET.get("id")#nombre
+        print(id)
         user = User.objects.get(username=id)
-        usuario = Empleado.objects.get(auth_user=user)
+        usuario = Empleado.objects.get(id_empleado=id)
+        response["cedula"]=user.username
         response["nombre"]=usuario.nombre
         response["apellido"]=usuario.apellido
         response["correo"]=usuario.correo
-        response["img"]=usuario.imagen.url
+        response["fecha"]=usuario.fecha_nacimiento
+        #response["img"]=usuario.imagen.url
+        print(user.first_name)
 
-        print(usuario.apellido)
         return JsonResponse(response)
 
 
@@ -68,6 +73,7 @@ def get_UltimaNoticias(request):
     return JsonResponse(response)
 
 
+
 def get_NoticiaBrigada(request):
     if request.method=='GET':
         response = dict()
@@ -99,8 +105,25 @@ def get_miembros_brigada(request):
                 res[miembros.id_brigada]=new
                 new["miembro"]=miembros.miembro
                 new["img"]=miembros.imagen.url
+                new["brigada"]=tipo.nombre_brigada
     
     return JsonResponse(response)
+
+def get_empleadoPorCedula(request,pk):
+    if request.method=='GET':
+        response = dict()
+        print(pk)
+        empleado =Empleado.objects.get(id_empleado=pk)
+        response["Nombre"]=empleado.nombre
+        response["Apellido"]=empleado.apellido
+        response["Correo"]=empleado.correo
+        response["Cedula"]=empleado.id_empleado
+        response["User"]=empleado.auth_user.username
+        response["Fecha"]=empleado.fecha_nacimiento
+        response["Extension"]=empleado.ubicacion
+
+    return JsonResponse(response)
+
 
 
 
@@ -242,7 +265,7 @@ def get_Contacto(request):
             response["Contacto "+ str(contador)]=res
             res["Nombre"]=contacto.nombre + " " +contacto.apellido
             res["Correo"]=contacto.correo
-            res["Extension"]=contacto.ubicacion
+            res["Extension"]="444"
             res["Ubicacion"]="Centro"
 
     return JsonResponse(response)
@@ -261,11 +284,12 @@ def get_Empleado(request):
         for empleado in data:
             res = dict()
             contador=contador+1
-            if(empleado.fecha_nacimiento.month==today.month):
+            if(empleado.fecha_nacimiento!=None and empleado.fecha_nacimiento.month==today.month):
                 response["Empleado "+ str(contador)]=res
                 res["name"]=empleado.nombre +'\t'+ empleado.apellido
                 res["date"]=str(empleado.fecha_nacimiento.day) +" de "+ month_name
-                res["image"]=empleado.imagen.url
+                if(bool(empleado.imagen)==True):
+                    res["image"]=empleado.imagen.url
 
         return JsonResponse(response)
 
@@ -280,13 +304,16 @@ def get_MejorEmpleado(request):
         month_name = datetime_object.strftime("%b")
         for empleado in data:
                 res = dict()
-                contador=contador+1
-                response["Empleado "+ str(contador)]=res
-                res["name"]=empleado.nombre +'\t'+ empleado.apellido
-                res["date"]=str(empleado.fecha_nacimiento.day) +" de "+ month_name
-                res["image"]=empleado.imagen.url
-                temp = Tipo_categoria.objects.get(id_tipocat=empleado.tipo_categoria_id)
-                res["MejorEn"]=temp.categoria
+                if(bool(empleado.imagen) == True):
+                    res["image"]=empleado.imagen.url
+                if(empleado.tipo_categoria!=None):
+                    temp = Tipo_categoria.objects.get(id_tipocat=empleado.tipo_categoria_id)
+                    res["MejorEn"]=temp.categoria
+                    contador=contador+1
+                    response["Empleado "+ str(contador)]=res
+                    res["name"]=empleado.nombre +'\t'+ empleado.apellido
+                    if(empleado.fecha_nacimiento !=None):
+                        res["date"]=str(empleado.fecha_nacimiento.day) +" de "+ month_name
         return JsonResponse(response)
 
 
@@ -315,7 +342,43 @@ def postCreateSugerencia(request):
         sugerencia.save()
         return HttpResponse(status=200)
     return HttpResponse(status=404)
-    
+
+@csrf_exempt
+def postUpdateEmpleado(request):
+    if request.method=='POST':
+        print("update")
+        response = json.loads(request.body)
+        empleado = Empleado.objects.get(id_empleado=response['id'])
+        print(empleado)
+        empleado.nombre=response["first_name"]
+        empleado.apellido=response["last_name"]
+        empleado.correo=response["mail"]
+        print(response['mail'])
+        empleado.ubicacion=response["extension"]
+        empleado.fecha_nacimiento=response["fecha"]
+        empleado.save()
+        print("guardado")
+        print(response['first_name'])
+        #tipo = Tipo_sugerencia.objects.filter(sugerencia=response["tipo"])[0]
+        #Aqui creo el elemento de tipo sugerencia
+        return HttpResponse(status=200)
+    return HttpResponse(status=404)
+@csrf_exempt
+def postUpdatePassword(request):
+    if request.method=='POST':
+        print("update")
+        response = json.loads(request.body)
+        auth = User.objects.get(username=response['id'])
+        auth.set_password(response['password'])
+        auth.save()
+        empleado = Empleado.objects.get(id_empleado=response['id'])
+        print(auth.first_name)
+        print(response['password'])
+        empleado.save()
+        print(empleado.nombre)
+        return HttpResponse(status=200)
+    return HttpResponse(status=404)
+
 def get_Sugerencia(request):
     if request.method=='GET':
         response = dict()
@@ -409,7 +472,7 @@ def view_ModificarPrinciapl (request):
     if request.method=='POST':
         print("entrando")
         principal = Principal.objects.get(id_principal=1)
-        principal.nombre_empresa=request.POST['empre']
+        principal.nombre_empresa=request.POST['nombre_empresa']
         if(bool(request.FILES.get('image_principal', False)) == True ):
                 principal.image_principal=request.FILES['image_principal']
         if(bool(request.FILES.get('image_eslogan', False)) == True ):
@@ -428,14 +491,22 @@ def view_RegistrarBrigada(request):
             miembro_brigada = request.POST['miembro']
             imagen = request.FILES['archivoimg']
             tipo_brigada_ = request.POST['brigada_tipo']
-
             descripcion = request.POST['descripcion']
             id_bri = Tipo_brigada.objects.get(id_tipobrigada = tipo_brigada_)
             brigada = Brigada(tipo_bri=id_bri, miembro=miembro_brigada, descripcion=descripcion, imagen=imagen)
             brigada.save()
             print(miembro_brigada,tipo_brigada_,imagen,descripcion)
-
     return render(request, 'views/views_register/register_brigada.html', {"categorias":response})        
+@login_required(login_url='/')
+def view_ModificarBrigada(request):
+    response = Brigada.objects.all()
+
+    return render(request, 'views/views_modify/modify_brigada.html', {"brigadas":response})
+
+@login_required(login_url='/')
+def view_DeleteBrigada(request):
+    response = Brigada.objects.all()
+    return render(request, 'views/views_delete/delete_brigada.html', {"brigadas":response})        
 
 
 @login_required(login_url='/')
@@ -471,7 +542,7 @@ def delete_noticia(request, pk):
     noticia= Noticia.objects.get(id_noticia=val)
     noticia.delete()
     response= Noticia.objects.all()
-    return render(request, 'views/viewDeleteNoticia.html', {"listaNoticia":response}) 
+    return render(request, 'views/views_delete/delete_noticia.html', {"listaNoticia":response}) 
 
 @login_required(login_url='/')
 def view_ModificarNoticia(request):
@@ -562,8 +633,8 @@ def modificar_empleado(request,pk):#get noticia por id
         if(request.POST['mejorEn']!=''):
             tip= Tipo_categoria.objects.get(id_tipocat=int(request.POST['mejorEn']))
             empleado.tipo_categoria = tip
-
         empleado.save()
+    print("20000")
     return render(request,'views/views_modify/modify_empleado.html', {"listaEmpleado":response,"empleado":empleado,"categorias":categoriaslist}) 
 
 @login_required(login_url='/')
@@ -579,29 +650,35 @@ def delete_evento(request,pk):
     evento.delete()
     response= Evento.objects.all()
     return render(request, 'views/views_delete/delete_evento.html', {"listaEvento":response}) 
+from django.contrib.auth.hashers import check_password
 
 @login_required(login_url='/')
 def view_DeleteEmpleado(request):
     response= Empleado.objects.all()
+ 
+
     return render(request, 'views/views_delete/delete_empleado.html', {"listaEmpleado":response}) 
 
 @login_required(login_url='/')
 def delete_empleado(request,pk):
     val = pk
-    empleado= Empleado.objects.get(id_empleado=val)
-    print(empleado.auth_user.id)
-    auth = User.objects.get(id=empleado.auth_user.id)
-    auth.delete()
-    empleado.delete()
-    print(val)
+    #empleado= Empleado.objects.get(id_empleado=val)
+    #print(empleado.auth_user.id)
+    #auth = User.objects.get(id=empleado.auth_user.id)
+    #auth.delete()
+    #empleado.delete()
+    #print(val)
     
-    response= Empleado.objects.all()
+    response= User.objects.all()
     return render(request, 'views/views_delete/delete_empleado.html', {"listaEmpleado":response}) 
 
 @login_required(login_url='/')
 def view_DeleteCategoriaNoticia(request):
     response= Tipo_noticia.objects.all()
-    return render(request, 'views/viewDeleteCategoriaNoticia.html', {"listaCategoriaNoticia":response}) 
+    response_brigadas= Tipo_brigada.objects.all()
+    response_logros= Tipo_categoria.objects.all()
+
+    return render(request, 'views/views_delete/delete_categorias.html', {"listaCategoriaNoticia":response,"logrosEmpleados":response_logros,"tiposBrigadas":response_brigadas}) 
 
 @login_required(login_url='/')
 def delete_categoriaNoticia(request,pk):
@@ -611,8 +688,43 @@ def delete_categoriaNoticia(request,pk):
     noticia.delete()
     tipo.delete()
     response= Tipo_noticia.objects.all()
-    return render(request, 'views/viewDeleteCategoriaNoticia.html', {"listaCategoriaNoticia":response}) 
+    return render(request, 'views/views_delete/delete_categorias.html', {"listaCategoriaNoticia":response}) 
+
+@login_required(login_url='/')
+def view_DeleteCategoriaBrigada(request):
+    response_brigadas= Tipo_brigada.objects.all()
+    return render(request, 'views/views_delete/delete_categoria_brigada.html', {"tiposBrigadas":response_brigadas}) 
+
+@login_required(login_url='/')
+def delete_categoriaBrigada(request,pk):
+    val = pk
+    tipo= Tipo_brigada.objects.get(id_tipobrigada=val)
+    brigada = Brigada.objects.filter(tipo_bri=tipo)
+    brigada.delete()
+    tipo.delete()
+    response= Tipo_noticia.objects.all()
+    return render(request, 'views/views_delete/delete_categoria_brigada.html', {"tiposBrigadas":response}) 
+
+@login_required(login_url='/')
+def view_LogroEmpleado(request):
+    response_logros= Tipo_categoria.objects.all()
+    print(response_logros)
+    return render(request, 'views/views_delete/delete_logros.html', {"tiposLogros":response_logros}) 
+
+@login_required(login_url='/')
+def delete_LogroEmpleado(request,pk):
+    val = pk
+    tipo= Tipo_categoria.objects.get(id_tipocat=val)
+    empleado = Empleado.objects.filter(tipo_categoria=tipo)
+    for emp in empleado:
+        emp.tipo_categoria= null
+        emp.save()       
+    tipo.delete()
+    response= Tipo_categoria.objects.all()
+    return render(request, 'views/views_delete/delete_logros.html', {"tiposLogros":response}) 
     
+
+
 @login_required(login_url='/')
 @csrf_exempt
 def view_buzon(request):
@@ -647,6 +759,71 @@ def view_buzon(request):
 #'views/views_web/buzon.html'
 
 
+from django.contrib.auth.backends import ModelBackend
+from rest_framework import status
+
+from django.contrib.auth import get_user_model
+def agregarUsuariosToAuthentication(request):
+        usuarios = a18usuarios.objects.all()
+        for user in usuarios:
+            #creo sus credenciales para la autenticacion
+            
+            if len(user.nombres)<30:
+                auth = User.objects.create_user(
+                            username = user.cedula,
+                            password = user.clave,
+                            email=user.mail,
+                            first_name=user.nombres,
+                            last_name=user.apellidos
+                                
+                )
+                print(user)
+                auth.save()
+                empleado = Empleado(id_empleado=user.cedula,auth_user=auth,nombre=user.nombres,apellido=user.apellidos,
+                correo=user.mail)
+                empleado.save()
+     
+
+        print(usuarios[0])
+        print("200 ok")
+        return HttpResponse("hello!!!")
+def deleteAuth(request):
+        usuarios = User.objects.all()
+        for user in usuarios:
+                #creo sus credenciales para la autenticacion
+            print(user)
+            user.delete()
+        print(usuarios[0])
+        print("200 ok")
+        return HttpResponse("hello!!!")
+
+
+class EmailBackend(object):
+    def authenticate(self, request, username=None, password=None, **kwargs):
+        User = get_user_model()
+        try:
+             user = User.objects.get(username=username)
+        except User.DoesNotExist:
+            return None
+        else:
+            if getattr(user, 'is_active', False) and  user.check_password(password):
+                return user
+        return None
+    def get_user(self, user_id):
+        User = get_user_model()        
+        try:
+            return User.objects.get(pk=user_id)
+        except User.DoesNotExist:
+            return None
+
+def getCredentials(request):
+     if request.method=='GET':
+        response = dict()
+        id= request.GET.get("id")#nombre
+        usuario = a18usuarios.objects.get(cedula=id)
+        response["clave"]=usuario.clave
+        print(usuario.clave)
+        return JsonResponse(response)
 
 
 def view_Login(request):
@@ -660,16 +837,21 @@ def view_Login(request):
 @csrf_exempt
 def login(request):
     # Creamos el formulario de autenticación vacío
+    print("hola mundo")
+    #user = authenticate(username="chjoguer", password='zywcCQAmPf')
+   # print(user)
     form = AuthenticationForm()
     if request.method == "POST":
         # Añadimos los datos recibidos al formulario
         form = AuthenticationForm(data=request.POST)
         # Si el formulario es válido...
+        print(request.POST)
         if form.is_valid():
             # Recuperamos las credenciales validadas
             username = form.cleaned_data['username']
+            print(username)
             password = form.cleaned_data['password']
-
+            print(password)
             # Verificamos las credenciales del usuario
             user = authenticate(username=username, password=password)
             print("verificando")
@@ -678,13 +860,17 @@ def login(request):
             if user is not None:
                 # Hacemos el login manualmente
                 do_login(request, user)
+                empleado =Empleado.objects.get(auth_user=user)
                 print("si existe")
                 # Y le redireccionamos a la portada
-                return redirect('registroNoticias/')
+               # return redirect('registroNoticias/')
+                return render(request, "views/views_register/register_noticia.html", {'nombre': empleado.nombre})
+
         else:
-            print("Password o usuario incorrecto")
-            messages.error(request,"Usuario o password incorrectos. ")
-            return render(request, "views/login/login.html", {'form': form,'mensaje':"Usuario o cotrnaseña iconrrecta."})
+                print(form.is_valid())
+                print("Password o usuario incorrecto")
+                messages.error(request,"Usuario o password incorrectos. ")
+                return render(request, "views/login/login.html", {'form': form,'mensaje':"Usuario o cotrnaseña iconrrecta."})
 
 
     # Si llegamos al final renderizamos el formulario
@@ -778,22 +964,30 @@ def login_frontend(request):
     return render(request, "views/login.html", {'form': form})
 
 class LoginUser(ObtainJSONWebToken):
+    print("XXXXXXXXXXXXXXXXXXXXXX")
+
     @method_decorator(ensure_csrf_cookie)
     def post(self, request, *args, **kwargs):
         #request.data  {'username': '___', 'password': '___'}
-        serializer = self.get_serializer(data=request.data)
+        print("yyyyyyyyyyyyyyyyyyyyy")
 
+        serializer = self.get_serializer(data=request.data)
+        print(request.data)
         if serializer.is_valid():
-            user = serializer.object.get('user') or request.user
+            user = serializer.object.get('username') or request.user
             token = serializer.object.get('token')
-            
+            print(user)
+           # cedula=serializer.object.get('cedula')
+           # token = serializer.object.get('token')
+          #  empleado = Empleado.objects.get(id_empleado=cedula)
             #usuario = Usuarios.objects.get(id_usuario=user.id)
            # role_type = Roles.objects.get(id_rol = usuario.id_rol.id_rol)
             
 
             response_data = {
-                api_settings.JWT_AUTH_COOKIE: token,
-                'username': "chrizz",
+                 api_settings.JWT_AUTH_COOKIE: token,
+                 'token':token,
+                'username': "xyz",
                 #'es_admin_restaurante': user.es_admin_restaurante
                 #'typeUser': role_type.nombre,
             }

@@ -25,7 +25,7 @@ SECRET_KEY = 'av52h41b-r04@xw1sbmtnjmmxh#csl_9=46g#bm3!5b_299ww7'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS =['*']
 
 
 
@@ -43,6 +43,8 @@ INSTALLED_APPS = [
     'corsheaders',
      
     'rest_framework',
+    'rest_framework.authtoken',  # <-- Here
+
 ]
 REST_FRAMEWORK = {
     'DEFAULT_PERMISSION_CLASSES': (
@@ -56,8 +58,10 @@ REST_FRAMEWORK = {
 }
 JWT_AUTH = {
     'JWT_ALLOW_REFRESH': True,
-    'JWT_EXPIRATION_DELTA': datetime.timedelta(seconds=3600),
+    'JWT_EXPIRATION_DELTA': datetime.timedelta(seconds=60),
 }
+AUTHENTICATION_BACKENDS = ['django.contrib.auth.backends.ModelBackend',       
+                           'IPSP.views.EmailBackend',]
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -96,7 +100,12 @@ TEMPLATE_DIRS = (
 
 WSGI_APPLICATION = 'adminsite.wsgi.application'
 
-
+CORS_ORIGIN_ALLOW_ALL = True 
+CORS_ALLOW_CREDENTIALS = True
+CORS_ORIGIN_WHITELIST = [
+    "http://localhost:3000",
+    "http://localhost:4200",
+]  
 # Database
 # https://docs.djangoproject.com/en/3.0/ref/settings/#databases
 
@@ -134,7 +143,7 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/3.0/topics/i18n/
 
-LANGUAGE_CODE = 'en-us'
+LANGUAGE_CODE = 'es'
 
 TIME_ZONE = 'UTC'
 

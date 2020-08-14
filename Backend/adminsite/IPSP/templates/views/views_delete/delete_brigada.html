@@ -1,0 +1,61 @@
+{% extends "views/login/index.html" %} 
+{% load static %}
+
+  <!-- /.container -->
+{% block content %}
+<body>
+<div id="layoutSidenav_content">
+    <main>
+        <div class="container-fluid">
+            <h1 class="mt-4">Colaboradores de las brigadas</h1>
+            <ol class="breadcrumb mb-4">
+                <li class="breadcrumb-item"><a >Opcion</a></li>
+                <li class="breadcrumb-item active">Eliminar Colaborador De La Brigada</li>
+            </ol>
+            <div class="card mb-4">
+                <div class="card-header">
+                    <i class="fas fa-table mr-1"></i>
+                    Tabla de colaboradores de las brigadas
+                </div>
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                            <thead>
+                                <tr>
+                                    <th>Brigada</th>
+                                    <th>Miembro</th>
+                                    <th>Ubicacion</th>
+
+                                    <th>Opciones</th>
+                                </tr>
+                            </thead>
+                            
+                            <tbody>
+                                {% for o in brigadas %}
+                                <tr id="trid">
+                                  
+                                     <td>{{o.tipo_bri.nombre_brigada}}</td>
+                                     <td>{{o.miembro}}</td>
+                                     <td>{{o.descripcion}}</td>
+
+                                     <td>
+                                         <form name="myform" >
+                                             <input type="button" class="btn floated" value="Eliminar">
+                                        </form>
+                                        <a>
+                                            <input type="button" class="btn floated" value="Modificar">
+                                        </a>
+                
+                                    </td>
+                                </tr>
+                            {% endfor %}   
+
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+</body>
+    {% endblock %}  

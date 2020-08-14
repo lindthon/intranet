@@ -39,7 +39,7 @@
                                      <td>
                                             <form  name="myform{{o.id_evento}}" action="{% url 'delete_evento' o.id_evento %}">
                                                 <a onclick="confirmationMessage('{{o.id_evento}}')" >
-                                                <input type="button"  id={{o.id_evento}} class="btn-table floated"  value="Eliminar">
+                                                <input type="button"  id={{o.id_evento}} class="btn floated"  value="Eliminar">
                                                 </a>
                                            </form>
                                             <a href="{% url 'modificarEvento' o.id_evento %}">

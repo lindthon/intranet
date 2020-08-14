@@ -36,6 +36,8 @@ import { BrigadasComponent } from './brigadas/brigadas.component';
 import { EmpleadosComponent } from './empleados/empleados.component';
 import { RecuperarClaveComponent } from './recuperar-clave/recuperar-clave.component';
 import { PerfilComponent } from './perfil/perfil.component';
+import { RegistroComponent } from './registro/registro.component';
+
 
 @NgModule({
   declarations: [
@@ -57,6 +59,7 @@ import { PerfilComponent } from './perfil/perfil.component';
     EmpleadosComponent,
     RecuperarClaveComponent,
     PerfilComponent,
+    RegistroComponent,
   ],
   imports: [
     IgxIconModule,

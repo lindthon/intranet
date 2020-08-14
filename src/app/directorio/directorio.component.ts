@@ -12,7 +12,6 @@ export class DirectorioComponent implements OnInit {
   empleados: any;
   data2=[];
 
-
   source: LocalDataSource ;
   constructor(public  _http: HttpClient) { 
     this.getEmpleados(_http);
@@ -22,10 +21,15 @@ export class DirectorioComponent implements OnInit {
 
  
    settings = {
+    pager: {
+      display: true,
+      perPage: 15
+    },
     actions: {
       delete: false,
       add: false,
-      edit:false,      
+      edit:false,
+      
     },
     columns: {
       

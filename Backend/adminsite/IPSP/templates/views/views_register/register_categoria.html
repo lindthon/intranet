@@ -6,10 +6,13 @@
         <div class="card-header"><strong>Registro De Categorias</strong> </div>
         <div class="card-body">
             <form class="form-horizontal" action="" method="post" enctype="multipart/form-data">
-                <div class="form-group row">
+              {% csrf_token %}
+ 
+              <div class="form-group row">
                     <label class="col-md-3 col-form-label" for="text-input">Cateogoria Noticia:</label>
                     <div class="col-md-6">
-                        <input class="form-control" id="text-input" type="text" name="text-input" placeholder="Ingrese la nueva categoria de noticias"><span class="help-block"></span>
+                      <input type="hidden" name="tipoForm1" id="tipoForm1"  value="form1" />  
+                      <input class="form-control" id="text-input" type="text" name="tipoNoticia" placeholder="Ingrese la nueva categoria de noticias"><span class="help-block"></span>
                     </div>
                     <div class="col-md-3">
                         <button class="btn btn-sm btn-primary" type="submit"> Registrar</button>
@@ -21,10 +24,12 @@
             </form>
 
             <form class="form-horizontal" action="" method="post" enctype="multipart/form-data">
-                <div class="form-group row">
+              {% csrf_token %} 
+              <div class="form-group row">
                   <label class="col-md-3 col-form-label" for="text-input">Logro para Colaboradores:</label>
                   <div class="col-md-6">
-                    <input class="form-control" id="text-input" type="text" name="text-input" placeholder="Ingrese el nuevo logro para colaboradores"><span class="help-block"></span>
+                    <input type="hidden" name="tipoForm2" id="tipoForm2"  value="form2" />
+                    <input class="form-control" id="text-input" type="text" name="categoria" placeholder="Ingrese el nuevo logro para colaboradores"><span class="help-block"></span>
                   </div>
                   <div class="col-md-3">
                     <button class="btn btn-sm btn-primary" type="submit"> Registrar</button>
@@ -34,10 +39,13 @@
                 </div>
             </form>
             <form class="form-horizontal" action="" method="post" enctype="multipart/form-data">
-                <div class="form-group row">
+              {% csrf_token %}  
+              <div class="form-group row">
                   <label class="col-md-3 col-form-label" for="text-input">Cateogoria Brigada:</label>
                   <div class="col-md-6">
-                    <input class="form-control" id="text-input" type="text" name="text-input" placeholder="Ingrese la nueva categoria de brigadas"><span class="help-block"></span>
+                    <input type="hidden" name="tipoForm3" id="tipoForm3"  value="form3" />
+
+                    <input class="form-control" id="text-input" type="text" name="categoria_brigada" placeholder="Ingrese la nueva categoria de brigadas"><span class="help-block"></span>
                   </div>
                   <div class="col-md-3">
                     <button class="btn btn-sm btn-primary" type="submit"> Registrar</button>

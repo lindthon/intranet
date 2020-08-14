@@ -63,11 +63,11 @@
             <div class="form-group row">
               <label class="col-md-3 col-form-label" for="inputSuccess1">Noticia:</label>
               <div class="col-md-9">
-                <input class="form-control " name="titulo" id="inputSuccess1" required="required" id="text-input" type="text" name="text-input" value="{{noticia.titulo}}"><span class="help-block"></span>
+                <input class="form-control " name="titulo" id="inputSuccess1"  id="text-input" type="text" name="text-input" value="{{noticia.titulo}}"><span class="help-block"></span>
               </div>
             </div>
             <div class="form-group row">
-                <label class="col-md-3 col-form-label" required="required" for="">Categoria Noticia:</label>
+                <label class="col-md-3 col-form-label"  for="">Categoria Noticia:</label>
                 <div class="col-md-9">
                   <select class="form-control" name="categoria"  id="locationList" name="">
                     <option value={{cate_noticia.id_tiponot}}>{{cate_noticia.categoria}}</option>
@@ -81,20 +81,20 @@
             <div class="form-group row">
               <label class="col-md-3 col-form-label" for="date-input">Fecha de la noticia:</label>
               <div class="col-md-9">
-                <input class="form-control" name="fecha" required="required" id="date-input" type="date" name="date-input" placeholder=""><span class="help-block">{{noticia.fecha}}</span>
+                <input class="form-control" name="date"  id="date-input" type="date"  value="{{noticia.fecha}}"><span class="help-block">{{noticia.fecha}}</span>
               </div>
             </div>
             <div class="form-group row">
               <label class="col-md-3 col-form-label" for="textarea-input">Descripción de la noticia:</label>
               <div class="col-md-9">
-                <textarea class="form-control" name="descripcion" required="required" id="textarea-input" name="textarea-input" rows="9" placeholder="Escriba una breve descripción..">{{noticia.descripcion}}</textarea>
+                <textarea class="form-control" name="descripcion"  id="textarea-input" name="textarea-input" rows="9" placeholder="Escriba una breve descripción..">{{noticia.descripcion}}</textarea>
               </div>
             </div>
   
             <div class="form-group row">
               <label class="col-md-3 col-form-label" for="file-input">Suba imagen de la noticia:</label>
               <div class="col-md-9">
-                <input id="file-input" type="file"  name="archivoimg"  required="required" accept="image/*">
+                <input id="file-input" type="file"  name="archivoimg"   accept="image/*">
               </div>
             </div>
             <div class="card-footer">

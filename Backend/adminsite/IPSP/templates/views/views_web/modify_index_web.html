@@ -5,6 +5,8 @@
 <script src="{% static 'js2/function.js' %}"></script>
 
 <div id="layoutSidenav_content">
+  <form class="form-horizontal" action="" method="post" enctype="multipart/form-data">
+    {% csrf_token %}
   <div class="card">
     <div class="card-header"><strong class="pr-5">Imágenes Intranet Web</strong> </div>
     <div class="card-body ">
@@ -30,7 +32,7 @@
             <div class="card mb-3 ml-5" style="max-width: 540px;max-height: 700px;">
               <div class="row no-gutters">
                 <div class="col-md-4">
-                  <img src="{{Principal.image_eslogan.url}}"  id="output" class="card-img principal" alt="...">
+                  <img src="{{Principal.image_eslogan.url}}"  id="image_eslogan" class="card-img principal" alt="...">
                 </div>
                 <div class="col-md-8">
                   <div class="card-body">
@@ -38,7 +40,7 @@
                     <p class="card-text"></p>
                     <p class="card-text"><small class="text-muted"></small></p>
                     <div class="col-md-6">
-                      <input id="file-input" type="file" accept="image/*" name="image_principal" accept="image/*" onchange="loadFile(event)" id="id_imagen" required="required">
+                      <input id="file-input" type="file" accept="image/*" name="image_eslogan" accept="image/*" onchange="loadFile(event)" id="id_imagen" >
                     </div>
                   </div>
                 </div>
@@ -49,7 +51,7 @@
             <div class="card mb-3 ml-5" style="max-width: 540px;max-height: 700px;">
               <div class="row no-gutters">
                 <div class="col-md-4">
-                  <img  src="{{Principal.image_principal.url}}"  id="output2" class="card-img principal" alt="...">
+                  <img  src="{{Principal.image_principal.url}}"  id="image_principal" class="card-img principal" alt="...">
                 </div>
                 <div class="col-md-8">
                   <div class="card-body">
@@ -57,29 +59,30 @@
                     <p class="card-text"></p>
                     <p class="card-text"><small class="text-muted"></small></p>
                     <div class="col-md-6">
-                      <input id="file-input" type="file" accept="image/*" name="image_principal" accept="image/*" onchange="loadFile(event)" id="id_imagen" required="required">
+                      <input id="file-input" type="file" accept="image/*" name="image_principal" accept="image/*" onchange="loadFilePrincipal(event)" id="id_imagen">
                     </div>
                   </div>
                 </div>
               </div>
             </div>
-          
-          
-          
-          
-          
-          
           </div>
-
-
     </div>
+   
     <div class="card">
+      
       <div class="card-header"><strong>Eslogan Intranet Web</strong> </div>
+      
       <div class="card-body">
+        <div class="form-group row">
+          <label class="col-md-3 col-form-label" for="text-input">Nombre Empresa:</label>
+          <div class="col-md-9">
+            <input class="form-control" id="name" type="text" name="nombre_empresa"  value="{{Principal.nombre_empresa}}"><span class="help-block"></span>
+          </div>
+        </div>
         <div class="form-group row">
           <label class="col-md-3 col-form-label" for="textarea-input">Descripción de la noticia:</label>
           <div class="col-md-9">
-            <textarea class="form-control" name="descripcion" required="required" id="textarea-input" name="textarea-input" rows="7" placeholder="Escriba una breve descripción..">{{Principal.eslogan}}</textarea>
+            <textarea class="form-control" name="eslogan" required="required" id="textarea-input" name="textarea-input" rows="7" placeholder="Escriba una breve descripción..">{{Principal.eslogan}}</textarea>
           </div>
         </div>  
       </div>
@@ -88,6 +91,7 @@
       <button class="btn btn-sm btn-primary" type="submit" onclick="myalert();" id="submit" name="submit"> Actualizar</button>
     </div>
   </div>
+  </form>
  
 </div>
 

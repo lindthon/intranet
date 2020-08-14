@@ -1,0 +1,110 @@
+{% extends "views/login/index.html" %} 
+{% load static %}
+
+  <!-- /.container -->
+{% block content %}
+<body>
+<div id="layoutSidenav_content">
+    <main>
+        <div class="container-fluid">
+            <h1 class="mt-4">Colaboradores de las brigadas</h1>
+            <ol class="breadcrumb mb-4">
+                <li class="breadcrumb-item"><a href="index.html">Opcion</a></li>
+                <li class="breadcrumb-item active">Eliminar Colaborador De La Brigada</li>
+            </ol>
+            <div class="card mb-4">
+                <div class="card-header">
+                    <i class="fas fa-table mr-1"></i>
+                    Tabla de colaboradores de las brigadas
+                </div>
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                            <thead>
+                                <tr>
+                                    <th>Brigada</th>
+                                    <th>Miembro</th>
+                                    <th>Ubicacion</th>
+
+                                    <th>Opciones</th>
+                                </tr>
+                            </thead>
+                            
+                            <tbody>
+                                {% for o in brigadas %}
+                                <tr id="trid">
+                                  
+                                     <td>{{o.tipo_bri.nombre_brigada}}</td>
+                                     <td>{{o.miembro}}</td>
+                                     <td>{{o.descripcion}}</td>
+
+                                     <td>
+                                         <form name="myform" >
+                                             <input type="button" class="btn-table floated" value="Eliminar">
+                                        </form>
+                                        <a>
+                                            <input type="button" class="btn floated" value="Modificar">
+                                        </a>
+                
+                                    </td>
+                                </tr>
+                            {% endfor %}   
+
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+            <div class="card">
+              <div class="card-header"><strong>Registro De Miembros En Brigadas</strong> </div>
+              <div class="card-body">
+                <form class="form-horizontal" action="" method="post" enctype="multipart/form-data">
+                  {% csrf_token %}
+      
+                
+                  <div class="form-group row">
+                      <label class="col-md-3 col-form-label" for="brigada_tipo">Categoria Brigada:</label>
+                      <div class="col-md-9">
+      
+                        <select class="form-control" id="select1" name="brigada_tipo">
+      
+                          <option value="0">Seleciones la brigada</option>
+                          {% for categoria_brigada in categorias %}
+                          <option value="{{categoria_brigada.id_tipobrigada}}">{{categoria_brigada.nombre_brigada}}</option>
+      
+                          {% endfor %}   
+      
+                        </select>
+                      </div>
+                    </div>
+                     
+                
+                  <div class="form-group row">
+                    <label class="col-md-3 col-form-label" for="textarea-input">Coolaborador de la brigada:</label>
+                    <div class="col-md-9">
+                      <textarea class="form-control" id="textarea-input" name="miembro" rows="3" placeholder="Escriba los nombres de colaborador.."></textarea>
+                    </div>
+                  </div>
+                  <div class="form-group row">
+                    <label class="col-md-3 col-form-label" for="text-input">Descripcion:</label>
+                    <div class="col-md-9">
+                      <input class="form-control" id="text-input" type="text" name="descripcion" placeholder="Ingrese breve descripción"><span class="help-block"></span>
+                    </div>
+                  </div>
+                  <div class="form-group row">
+                    <label class="col-md-3 col-form-label" for="archivoimg">Suba imagen del colaborador:</label>
+                    <div class="col-md-9">
+                      <input id="file-input" type="file"  accept="image/*" name="archivoimg">
+                    </div>
+                  </div>
+                  <div class="card-footer">
+                    <button class="btn btn-sm btn-primary" type="submit"> Registrar</button>
+                    <button class="btn btn-sm btn-danger" type="reset"> Borrar</button>
+                  </div>
+                </form>
+              </div>
+            </div>
+    </main>
+</body>
+    {% endblock %}  

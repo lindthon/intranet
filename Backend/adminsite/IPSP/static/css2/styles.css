@@ -10278,11 +10278,26 @@ img.principal{
   text-align: center;
 }
 img.principal:hover {filter: blur(5px);}
+
 .btn[value="Modificar"] {
   font-family: "Roboto", sans-serif;
   text-transform: uppercase;
   outline: 0;
   background: #1f7c3b;
+  width: 75px;
+  border: 0;
+  padding: 8px;
+  color: #FFFFFF;
+  font-size: 11px;
+  -webkit-transition: all 0.3 ease;
+  transition: all 0.3 ease;
+  cursor: pointer;
+}
+.btn[value="Eliminar"] {
+  font-family: "Roboto", sans-serif;
+  text-transform: uppercase;
+  outline: 0;
+  background: #DC143C;
   width: 75px;
   border: 0;
   padding: 8px;

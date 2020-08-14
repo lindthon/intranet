@@ -12,7 +12,7 @@ export class SugerenciasComponent implements OnInit {
 
    myForm: FormGroup;
 
-   @ViewChild("sugerencia") sugerencia :ElementRef ;
+  // @ViewChild("sugerencia") sugerencia :ElementRef ;
 
     
     email: string;
@@ -26,14 +26,14 @@ export class SugerenciasComponent implements OnInit {
   @ViewChild('form') formGroup;
     ngOnInit():void {
        
-        console.log(this.formGroup); // Inspect the object for other available property and methods.
+        //console.log(this.formGroup); // Inspect the object for other available property and methods.
     }
 
   ngAfterViewInit() {
     console.log("afterinit");
     setTimeout(() => {
       
-      console.log(this.sugerencia.nativeElement.innerHTML);
+     // console.log(this.sugerencia.nativeElement.innerHTML);
 
     }, 1000);
     
@@ -46,13 +46,13 @@ export class SugerenciasComponent implements OnInit {
         if (!this.selectedLink) { 
             return "No seleccionado";  
 
-        }if(this.selectedLink==="option6"){
+        /* }if(this.selectedLink==="option6"){
           this.option = this.formGroup.nativeElement[6].value;
           this.tipo = {
                     "nuevaSugerencia": this.option,
                       }
         //  this.postNuevoTipoSugerencia(this._http);
-            return this.option = this.formGroup.nativeElement[6].value;
+            return this.option = this.formGroup.nativeElement[6].value;*/
         }  
         return name;  
     }  
@@ -60,11 +60,11 @@ export class SugerenciasComponent implements OnInit {
   //Action Buttuon
    sendData() {
     
-     console.log(this.sugerencia.nativeElement.innerHTML);
-     console.log(this.formGroup); 
+//     console.log(this.sugerencia.nativeElement.innerHTML);
+  //   console.log(this.formGroup); 
 
-     this.suggestion = this.formGroup.nativeElement[7].value;
-     this.email = this.formGroup.nativeElement[8].value;
+    /* this.suggestion = this.formGroup.nativeElement[7].value;*/
+   /*  this.email = "hola@gmail.com"//this.formGroup.nativeElement[8].value;/*/
      this.option = this.isSelected(this.selectedLink);
 
      console.log("Variable "+ this.option);
@@ -81,7 +81,7 @@ export class SugerenciasComponent implements OnInit {
       };
 
 
-     this.postSugerencia(this._http)
+     this.postSugerencia(this._http);
       //this.formGroup.nativeElement[8]= "";
      //Limpio variable
      this.suggestion = "";
@@ -105,14 +105,14 @@ export class SugerenciasComponent implements OnInit {
         )
     }
 
-    postNuevoTipoSugerencia( _http: HttpClient){
+   /* postNuevoTipoSugerencia( _http: HttpClient){
       this._http.post('http://127.0.0.1:8000/postTipoSugerencia/',this.tipo)
       .subscribe(
         data=>console.log(this.tipo)
         ,(err: HttpErrorResponse)=>{console.log("Un error ha ocurrido")}
         ,()=>console.log("solicitud finalizada OK")
         )
-    }
+    }*/
 
      resetForm(formData: any, formDirective: FormGroupDirective): void {
       formDirective.resetForm();

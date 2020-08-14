@@ -27,6 +27,9 @@ export class BrigadasComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    console.log(this.nombresBrigadas);
+    console.log("val")
+    console.log(this.diccionarioBrigadas);
   }
 
    NoticiasPorCategoria: any;
@@ -37,12 +40,21 @@ export class BrigadasComponent implements OnInit {
 
   note : any;
   contador_noticias: number=0;
+
+
+
+  brigadas:any;
+  nombresBrigadas=[];
+  diccionarioBrigadas=[];
   getNoticiasPorCategoria(_http:HttpClient){
     this._http.get('http://127.0.0.1:8000/get_brigada/')
     .subscribe(
       (data)=>{console.log(data);
         this.NoticiasPorCategoria=data;
+        this.diccionarioBrigadas.push(data);
         for (let keyCategoria in data) {
+          console.log(keyCategoria)
+          this.nombresBrigadas.push(keyCategoria);
           let NewsCater = data[keyCategoria];
           console.log("categoria")
           console.log(NewsCater);

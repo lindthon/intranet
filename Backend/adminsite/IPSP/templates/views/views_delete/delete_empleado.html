@@ -25,6 +25,7 @@
                                     <th>Colaborador</th>
                                     <th>Correo</th>
                                     <th>Cédula</th>
+
                                     <th>Opciones</th>
                                 </tr>
                             </thead>
@@ -33,13 +34,14 @@
                                 {% for o in listaEmpleado %}
                                 <tr id="trid">
                                      <td id="tdid">
-                                     <a href="{% url 'modificarEmpleado'  o.id_empleado %}">{{o.nombre}} {{o.apellido}}</a>
+                                     <a >{{o.nombre}} {{o.apellido}}</a>
                                     </td>
                                      <td>{{o.correo}}</td>
                                      <td>{{o.id_empleado}}</td>
+
                                      <td>
-                                         <form name="myform{{o.id_empleado}}" action="{% url 'delete_empleado' o.id_empleado%}">
-                                             <input type="button" onclick= "confirmationMessage('{{o.id_empleado}}')" class="btn-table floated" value="Eliminar">
+                                        <form name="myform{{o.id_empleado}}" action="{% url 'delete_empleado' o.id_empleado%}">
+                                             <input type="button" onclick= "confirmationMessage('{{o.id_empleado}}')" class="btn floated" value="Eliminar">
                                         </form>
                                         <a href="{% url 'modificarEmpleado'  o.id_empleado %}">
                                             <input type="button" class="btn floated" value="Modificar">

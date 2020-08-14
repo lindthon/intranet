@@ -1,0 +1,50 @@
+{% extends "views/login/index.html" %} 
+
+  <!-- /.container -->
+
+{% block content %}
+{% load static %}
+<script src="{% static 'scripts/table.js' %}"></script>
+<div id="layoutSidenav_content">
+    <main>
+        <!--Categorias de noticias de los empleados-->
+        <div class="container-fluid">
+            <h3>Tabla: categorias noticias</h3>
+        </div>
+            <div class="card mb-4">
+                <div class="card-header">
+                    <i class="fas fa-table mr-1"></i>
+                    Categorias de noticias
+                </div>
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                            <thead>
+                                <tr>
+                                    <th>Categorias</th>
+                                    <th>ID</th>
+                                    <th>Opciones</th>
+                                    
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for o in listaCategoriaNoticia %}
+                                <tr >
+                                     <td >{{o.categoria}}</td>
+                                     <td>{{o.id_tiponot}}</td>
+                                     <td>
+                                         <form  name="myform{{o.id_tiponot}}" action="{% url 'delete_categoriaNoticia' o.id_tiponot %}">
+                                             <input type="button" class="btn-table" id="{{id_tiponot}}"class="btn" onclick="confirmationMessage('{{o.id_tiponot}}')" value="Eliminar">
+                                        </form>
+                                    </td>
+                                </tr>
+                            {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+           
+    </main>
+
+{% endblock %}
