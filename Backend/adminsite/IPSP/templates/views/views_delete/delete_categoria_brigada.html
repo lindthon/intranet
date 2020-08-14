@@ -33,8 +33,8 @@
                                      <td >{{o.nombre_brigada}}</td>
                                      <td>{{o.id_tipobrigada}}</td>
                                      <td>
-                                        <form  name="myform{{o.id_tipobrigada}}" action="{% url 'delete_categoriaBrigada' o.id_tipobrigada %}">
-                                            <input type="button" class="btn-table" id="{{id_tipobrigada}}"class="btn" onclick="confirmationMessage('{{o.id_tiponot}}')" value="Eliminar">
+                                        <form  name="myform{{o.id_tipobrigada}}" action="{% url 'delete_categoria_brigada' o.id_tipobrigada %}">
+                                            <input type="button" class="btn-table" id="{{o.id_tipobrigada}}"class="btn" onclick="confirmationMessage('{{o.id_tipobrigada}}')" value="Eliminar">
                                        </form>
                                    </td>
                                 </tr>

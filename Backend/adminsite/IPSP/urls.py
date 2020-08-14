@@ -85,7 +85,7 @@ urlpatterns = [
     path('deleteCategoriaNoticia/<int:pk>', delete_categoriaNoticia, name='delete_categoriaNoticia'),
    
     path('deleteCategoriaBrigada/', view_DeleteCategoriaBrigada, name='delete_CategoriaBrigada'),
-    path('deleteCategoriaBrigada/<int:pk>', delete_categoriaBrigada, name='delete_categoriaBrigada'),
+    path('deleteCategoriaBrigada/<int:pk>', delete_categoriaBrigada, name='delete_categoria_brigada'),
     
    path('deleteLogrosEmpleados/',view_LogroEmpleado,name='logros'),
    path('deleteLogrosEmpleados/<int:pk>',delete_LogroEmpleado,name='logros'),

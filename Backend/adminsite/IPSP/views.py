@@ -702,7 +702,7 @@ def delete_categoriaBrigada(request,pk):
     brigada = Brigada.objects.filter(tipo_bri=tipo)
     brigada.delete()
     tipo.delete()
-    response= Tipo_noticia.objects.all()
+    response= Tipo_brigada.objects.all()
     return render(request, 'views/views_delete/delete_categoria_brigada.html', {"tiposBrigadas":response}) 
 
 @login_required(login_url='/')
@@ -717,7 +717,7 @@ def delete_LogroEmpleado(request,pk):
     tipo= Tipo_categoria.objects.get(id_tipocat=val)
     empleado = Empleado.objects.filter(tipo_categoria=tipo)
     for emp in empleado:
-        emp.tipo_categoria= null
+        emp.tipo_categoria= None
         emp.save()       
     tipo.delete()
     response= Tipo_categoria.objects.all()
